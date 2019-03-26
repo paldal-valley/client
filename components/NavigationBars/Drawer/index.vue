@@ -51,6 +51,7 @@ import { EventBus } from '~/utils/EventBus'
 export default {
   watch: {
     drawer() {
+      // test
       EventBus.$emit('drawer-to-toolbar', { drawer: this.drawer })
     }
   },
