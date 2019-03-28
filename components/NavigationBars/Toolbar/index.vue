@@ -28,6 +28,7 @@
         <!-- 툴바 메인 탭 -->
         <toolbar-tab-group
           v-for="tab in tabs.basic"
+          :key="tab.text"
           :tab="tab"/>
 
         <v-spacer></v-spacer>
@@ -35,6 +36,7 @@
         <!-- 툴바 오른쪽 탭 -->
         <toolbar-tab-group
           v-for="tab in conditionalTab"
+          :key="tab.text"
           :tab="tab"/>
 
         <v-toolbar-side-icon
@@ -48,16 +50,14 @@
 
 <script>
 import ToolbarTabGroup from '../TabGroup'
-import ToolbarButton from '../TabGroup/Tab'
 import { EventBus } from '~/utils/EventBus'
 export default {
   components: {
     ToolbarTabGroup,
-    ToolbarButton
   },
   watch: {
     drawer() {
-      EventBus.$emit('toolbar-to-drawer', { drawer: this.drawer, tabs: this.tabs })
+      EventBus.$emit('toolbar-to-drawer', { drawer: this.drawer, tabs: this.tabs.basic })
     }
   },
   props: {
@@ -99,16 +99,6 @@ export default {
         {
           text: '질문게시판',
           to: '#',
-          items: [
-            {
-              text: '3',
-              to: '/'
-            },
-            {
-              text: 'About',
-              href: '#about'
-            }
-          ]
         },
         {
           text: '자유게시판',
@@ -119,7 +109,7 @@ export default {
         plain: [
           {
             text: '회원가입',
-            to: '#'
+            to: '/auth/signup'
           },
           {
             text: '로그인',

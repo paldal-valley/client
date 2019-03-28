@@ -67,7 +67,6 @@ export default {
   }),
   mounted() {
     EventBus.$on('toolbar-to-drawer', data => {
-      console.log(data)
       this.drawer = data.drawer
       this.tabs = data.tabs
     })
