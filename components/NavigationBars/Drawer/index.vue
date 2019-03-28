@@ -51,6 +51,7 @@ import { EventBus } from '~/utils/EventBus'
 export default {
   watch: {
     drawer() {
+      // test
       EventBus.$emit('drawer-to-toolbar', { drawer: this.drawer })
     }
   },
@@ -66,7 +67,6 @@ export default {
   }),
   mounted() {
     EventBus.$on('toolbar-to-drawer', data => {
-      console.log(data)
       this.drawer = data.drawer
       this.tabs = data.tabs
     })

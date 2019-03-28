@@ -24,37 +24,21 @@
           class="mt-3 ml-0 mr-5"
           @click="$router.push('/')">AJOU COIN</v-toolbar-title>
 
-        <v-menu
-          :open-on-hover="menuHover"
-          :transition="menuTransition"
-          offset-y
-          bottom
-          right
-          v-for="(tab, i) in tabs"
-          :key="i">
 
-          <template
-            #activator="{ on }">
-            <v-btn
-              :to="tab.to"
-              class="hidden-sm-and-down"
-              flat
-              v-on="on">
-              {{ tab.text }}
-            </v-btn>
-          </template>
+        <!-- 툴바 메인 탭 -->
+        <toolbar-tab-group
+          v-for="tab in tabs.basic"
+          :key="tab.text"
+          :tab="tab"/>
 
-          <v-list>
-            <v-list-tile
-              v-for="(item, i) in tab.items"
-              :key="i"
-              @click="">
-
-              <v-list-tile-title>{{ item.text }}</v-list-tile-title>
-            </v-list-tile>
-          </v-list>
-        </v-menu>
         <v-spacer></v-spacer>
+
+        <!-- 툴바 오른쪽 탭 -->
+        <toolbar-tab-group
+          v-for="tab in conditionalTab"
+          :key="tab.text"
+          :tab="tab"/>
+
         <v-toolbar-side-icon
           class="hidden-md-and-up"
           @click="drawer = !drawer"/>
@@ -65,11 +49,15 @@
 </template>
 
 <script>
+import ToolbarTabGroup from '../TabGroup'
 import { EventBus } from '~/utils/EventBus'
 export default {
+  components: {
+    ToolbarTabGroup,
+  },
   watch: {
     drawer() {
-      EventBus.$emit('toolbar-to-drawer', { drawer: this.drawer, tabs: this.tabs })
+      EventBus.$emit('toolbar-to-drawer', { drawer: this.drawer, tabs: this.tabs.basic })
     }
   },
   props: {
@@ -84,72 +72,77 @@ export default {
     toolbarColor: {
       type: String,
       default: 'gray'
-    },
-    menuHover: {
-      type: Boolean,
-      default: false
-    },
-    menuTransition: {
-      type: String,
-      default: 'slide-x-transition'
     }
   },
   data: () => ({
     drawer: false,
-    tabs: [
-      {
-        text: '수기게시판',
-        to: '#',
-        items: [
+    tabs: {
+      basic: [
+        {
+          text: '수기게시판',
+          to: '#',
+          items: [
+            {
+              text: '취업수기',
+              to: '/'
+            },
+            {
+              text: '진학수기',
+              href: '#about'
+            },
+            {
+              text: '대외활동',
+              href: '#about'
+            }
+          ]
+        },
+        {
+          text: '질문게시판',
+          to: '#',
+        },
+        {
+          text: '자유게시판',
+          to: '#'
+        },
+      ],
+      conditional: {
+        plain: [
           {
-            text: '취업수기',
-            to: '/'
+            text: '회원가입',
+            to: '/auth/signup'
           },
           {
-            text: '진학수기',
-            href: '#about'
-          },
-          {
-            text: '대외활동',
-            href: '#about'
+            text: '로그인',
+            to: '#'
           }
-        ]
-      },
-      {
-        text: '자유게시판',
-        to: '#',
-        items: [
+        ],
+        authorized: [
           {
-            text: '2',
-            to: '/'
+            text: '마이페이지',
+            to: '#'
           },
           {
-            text: '3',
-            href: '#about'
-          }
-        ]
-      },
-      {
-        text: '질문게시판',
-        to: '#',
-        items: [
-          {
-            text: '3',
-            to: '/'
-          },
-          {
-            text: 'About',
-            href: '#about'
+            text: '로그아웃',
+            to: '#'
           }
         ]
       }
-    ],
+    },
+
+    tmpIsLoggedIn: false,
   }),
   mounted() {
     EventBus.$on('drawer-to-toolbar', data => {
       this.drawer = data.drawer
     })
   },
+  computed: {
+    conditionalTab() {
+      return this.tmpIsLoggedIn
+        ? this.tabs.conditional.authorized
+        : this.tabs.conditional.plain
+    }
+  }
 }
 </script>
 
