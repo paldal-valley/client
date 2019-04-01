@@ -2,7 +2,8 @@
   <div id="app">
     <vue-toolbar
       toolbar-fixed
-      toolbar-color="gray"
+      toolbar-flat
+      toolbar-color="#f0eded"
       menu-hover
       menu-transition="slide-x-transition"/>
     <vue-drawer/>
