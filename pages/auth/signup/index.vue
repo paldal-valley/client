@@ -71,7 +71,7 @@
         </form>
       </v-card>
       <v-btn color="#eeeeee" @click="clear">초기화</v-btn>
-      <v-btn class="next" color="ac-blue" @click="e6 = 3">다음 단계</v-btn>
+      <v-btn class="next" :disabled="!valid" color="ac-blue" @click="validate">다음 단계</v-btn>
     </v-stepper-content>
 
     <v-stepper-step :complete="e6 > 3" step="3" color="ac-blue">이용 약관</v-stepper-step>
@@ -113,8 +113,8 @@
   import Vue from 'vue'
   import VeeValidate from 'vee-validate'
 
-  // 한글화 노가다 말고 'ko' locale 이용해서 해보기
-/*   import ko from 'vee-validate/dist/locale/ko.js'
+/* 한글화 노가다 말고 'ko' locale 이용해서 해볼것
+  import ko from 'vee-validate/dist/locale/ko.js'
 
   const config = {
     locale: 'ko',
@@ -133,6 +133,7 @@
 
     data: () => ({
       e6: 1,
+      valid: true,
       form: {
         id: '',
         email: '',
@@ -198,7 +199,16 @@
         this.walletAddress = ''
         this.major = null
         this.$validator.reset()
-      }
+      },
+      validate () {
+        this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.e6 = 3;
+        } else{
+          alert('모든 필수정보를 입력해주세요.');
+        }
+      });
+      },
     }
   }
 </script>
