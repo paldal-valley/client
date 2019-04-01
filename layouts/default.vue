@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <v-app>
     <vue-toolbar
       toolbar-fixed
       toolbar-color="gray"
@@ -21,7 +21,7 @@
         </v-layout>
       </v-container>
     </v-content>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -34,3 +34,11 @@ export default {
   },
 }
 </script>
+
+<style>
+ .ac-blue{
+    background-color: rgb(5, 77, 149) !important;
+    border-color: rgb(5, 77, 149) !important;
+    color: white !important;
+ }
+</style>

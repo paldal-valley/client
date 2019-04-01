@@ -2,6 +2,10 @@ import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
 import colors from 'vuetify/es5/util/colors'
 
+console.log(colors.blue)
+console.log(colors.amber)
+
+
 Vue.use(Vuetify, {
   theme: {
     primary: colors.blue.darken2,
