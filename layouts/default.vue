@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <v-app>
     <vue-toolbar
       toolbar-fixed
       toolbar-flat
@@ -22,7 +22,7 @@
         </v-layout>
       </v-container>
     </v-content>
-  </div>
+  </v-app>
 </template>
 
 <script>
