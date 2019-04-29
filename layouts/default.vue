@@ -35,3 +35,11 @@ export default {
   },
 }
 </script>
+
+<style>
+ .ac-blue{
+    background-color: rgb(5, 77, 149) !important;
+    border-color: rgb(5, 77, 149) !important;
+    color: white !important;
+ }
+</style>

@@ -12,12 +12,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
     "cross-env": "^5.2.0",
-    "nuxt": "^2.4.0",
     "express": "^4.16.4",
-    "vuetify": "^1.5.5",
-    "vuetify-loader": "^1.2.1",
-    "@nuxtjs/axios": "^5.3.6"
+    "nuxt": "^2.4.0",
+    "vee-validate": "^2.2.0",
+    "vuetify": "^1.5.8",
+    "vuetify-loader": "^1.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.9",
