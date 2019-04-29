@@ -84,25 +84,25 @@ export default {
           items: [
             {
               text: '취업수기',
-              to: '/'
+              to: '/board/jobreview',
             },
             {
               text: '진학수기',
-              href: '#about'
+              href: '/board/schoolreview',
             },
             {
               text: '대외활동',
-              href: '#about'
+              href: '/board/extrareview',
             }
           ]
         },
         {
           text: '질문게시판',
-          to: '#',
+          to: '/board/qna',
         },
         {
           text: '자유게시판',
-          to: '/board/free'
+          to: '/board/free',
         },
       ],
       conditional: {
