@@ -102,7 +102,7 @@ export default {
         },
         {
           text: '자유게시판',
-          to: '#'
+          to: '/board/free'
         },
       ],
       conditional: {
