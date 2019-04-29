@@ -98,7 +98,7 @@ export default {
         },
         {
           text: '질문게시판',
-          to: '#',
+          to: '/board/qna',
         },
         {
           text: '자유게시판',
