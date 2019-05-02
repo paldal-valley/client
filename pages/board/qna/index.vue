@@ -37,7 +37,9 @@
      <div class="text-xs-center pt-2">
       <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
     </div>
-    <v-btn round color="primary" dark @click="onclick();">글쓰기</v-btn>
+      <div style="float:right">
+      <v-btn round color="primary" dark @click="onclick();">글쓰기</v-btn>
+    </div>
   </v-card>
       
 </template>
