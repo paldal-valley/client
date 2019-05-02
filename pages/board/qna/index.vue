@@ -36,7 +36,7 @@
      <div class="text-xs-center pt-2">
       <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
     </div>
-    <v-btn round color="primary" dark @click="onclick">글쓰기</v-btn>
+    <v-btn round color="primary" dark @click="onclick();">글쓰기</v-btn>
   </v-card>
       
 </template>
@@ -154,9 +154,10 @@ export default {
       return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
     }
   },
+
   methods: {
     onclick() {
-      this.$router.go('./qna/post')
+      window.location='./qna/post';
     }
   }
 }
