@@ -13,19 +13,20 @@
     </v-card-title>
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="posts"
       :search="search"
       hide-actions
       :pagination.sync="pagination"
       class="elevation-1"
     >
       <template v-slot:items="props">
-        <td>{{ props.item.name }}</td>
-        <td class="text-xs-right">{{ props.item.calories }}</td>
-        <td class="text-xs-right">{{ props.item.fat }}</td>
-        <td class="text-xs-right">{{ props.item.carbs }}</td>
-        <td class="text-xs-right">{{ props.item.protein }}</td>
-        <td class="text-xs-right">{{ props.item.iron }}</td>
+        <!-- <td>{{ props.item.name }}</td> -->
+        <td class="text-xs-center">{{ props.item.title }}</td>
+        <td class="text-xs-center">{{ props.item.writer }}</td>
+        <td class="text-xs-center">{{ props.item.createdDate }}</td>
+        <td class="text-xs-center">{{ props.item.answer }}</td>
+        <td class="text-xs-center">{{ props.item.recommend }}</td>
+        <td class="text-xs-center">{{ props.item.view }}</td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -50,98 +51,44 @@ export default {
       selected: [],
       headers: [
         {
-          text: 'Dessert (100g serving)',
-          align: 'left',
+          text: '제목',
+          align: 'center',
           sortable: false,
-          value: 'name'
+          value: 'title'
         },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' }
+        { text: '작성자', value: 'writer', sortable: false, align: 'center'},
+        { text: '작성일자', value: 'createdDate', align: 'center' },
+        { text: '답변수', value: 'answer', sortable: false, align: 'center' },
+        { text: '추천수', value: 'recommend', align: 'center' },
+        { text: '조회수', value: 'view', align: 'center' },
+
       ],
-      desserts: [
+      posts: [
         {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: '1%'
+          title: '취업꿀팁',
+          writer: 'jane',
+          createdDate: 2019,
+          answer: 6,
+          recommend: 24,
+          view: 12
         },
         {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: '1%'
+          title: '삼성가즈아',
+          writer: 'arren',
+          createdDate: 2019,
+          answer: 2,
+          recommend: 10,
+          view: 11
         },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: '7%'
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: '8%'
-        },
-        {
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: '16%'
-        },
-        {
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: '0%'
-        },
-        {
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: '2%'
-        },
-        {
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: '45%'
-        },
-        {
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: '22%'
-        },
-        {
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: '6%'
+                {
+          title: 'hello현대',
+          writer: '하이루',
+          createdDate: 2019,
+          answer: 10,
+          recommend: 2,
+          view: 2
         }
+
       ]
     }
   },
