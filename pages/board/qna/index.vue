@@ -36,7 +36,9 @@
      <div class="text-xs-center pt-2">
       <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
     </div>
+    <v-btn round color="primary" dark onclick="window.open('./qna/post');">글쓰기</v-btn>
   </v-card>
+      
 </template>
 
 <script>
