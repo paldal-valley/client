@@ -106,7 +106,7 @@ export default {
 
   methods: {
     onclick() {
-      window.location='./qna/post';
+      window.location='./qna/writepost';
     }
   }
 }
