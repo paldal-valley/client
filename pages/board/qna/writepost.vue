@@ -43,7 +43,8 @@
     },
   methods: {
   onclick() {
-      window.location='./';
+    
+      this.$router.go(-1);
       }
     }
 }
