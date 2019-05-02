@@ -1,16 +1,5 @@
 <template>
-  <v-card>
-    <v-card-title>
-      Q&A
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="search"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-    </v-card-title>
+  <div>
     <v-data-table
       :headers="headers"
       :items="desserts"
@@ -27,18 +16,11 @@
         <td class="text-xs-right">{{ props.item.protein }}</td>
         <td class="text-xs-right">{{ props.item.iron }}</td>
       </template>
-      <template v-slot:no-results>
-        <v-alert :value="true" color="error" icon="warning">
-          Your search for "{{ search }}" found no results.
-        </v-alert>
-      </template>
     </v-data-table>
-     <div class="text-xs-center pt-2">
+    <div class="text-xs-center pt-2">
       <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
     </div>
-    <v-btn round color="primary" dark @click="onclick">글쓰기</v-btn>
-  </v-card>
-      
+  </div>
 </template>
 
 <script>
@@ -152,11 +134,6 @@ export default {
       ) return 0
 
       return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
-    }
-  },
-  methods: {
-    onclick() {
-      this.$router.go('./qna/post')
     }
   }
 }

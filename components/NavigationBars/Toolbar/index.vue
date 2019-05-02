@@ -101,10 +101,6 @@ export default {
           to: '/board/qna',
         },
         {
-          text: '질문게시판',
-          to: '/board/qna/post',
-        },
-        {
           text: '자유게시판',
           to: '/board/free',
         },
