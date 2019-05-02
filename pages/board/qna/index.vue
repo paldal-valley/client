@@ -21,7 +21,7 @@
     >
       <template v-slot:items="props">
         <!-- <td>{{ props.item.name }}</td> -->
-        <td class="text-xs-center">{{ props.item.title }}</td>
+        <td class="text-xs-center"  @click="onReadClick();">{{ props.item.title }}</td>
         <td class="text-xs-center">{{ props.item.writer }}</td>
         <td class="text-xs-center">{{ props.item.createdDate }}</td>
         <td class="text-xs-center">{{ props.item.answer }}</td>
@@ -38,7 +38,7 @@
       <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
     </div>
       <div style="float:right">
-      <v-btn round color="primary" dark @click="onclick();">글쓰기</v-btn>
+      <v-btn round color="primary" dark @click="onWriteClick();">글쓰기</v-btn>
     </div>
   </v-card>
       
@@ -56,7 +56,7 @@ export default {
           text: '제목',
           align: 'center',
           sortable: false,
-          value: 'title'
+          value: 'title',
         },
         { text: '작성자', value: 'writer', sortable: false, align: 'center'},
         { text: '작성일자', value: 'createdDate', align: 'center' },
@@ -67,7 +67,7 @@ export default {
       ],
       posts: [
         {
-          title: '취업꿀팁',
+          title: '취업꿀팁', 
           writer: 'jane',
           createdDate: 2019,
           answer: 6,
@@ -105,8 +105,11 @@ export default {
   },
 
   methods: {
-    onclick() {
-      window.location='./qna/post';
+    onWriteClick() {
+      window.location='./qna/writepost';
+    },
+    onReadClick() {
+      window.location='./qna/readpost';
     }
   }
 }
