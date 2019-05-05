@@ -4,7 +4,7 @@ node_js:
 after_success:
   - npm run coveralls
 before_deploy:
-  - rm -rf node_modules
+#  - rm -rf node_modules
   - zip -r paldalvalley-client .
   - mkdir -p deploy
   - mv paldalvalley-client.zip deploy/paldalvalley-client.zip
