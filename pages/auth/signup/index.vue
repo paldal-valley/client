@@ -1,6 +1,6 @@
 <template>
   <v-stepper v-model="e6" vertical>
-    <v-stepper-step :complete="e6 > 1" step="1" color="ac-blue">
+    <v-stepper-step :complete="e6 > 1" step="1" color="primary">
       이메일 인증
       <small>아주대학교 이메일을 인증해주세요.</small>
     </v-stepper-step>
@@ -9,6 +9,7 @@
       <v-container>
         <v-text-field
           outline
+          :disabled= "email_send"
           v-model="form.email"
           v-validate="'required|email'"
           :error-messages="errors.collect('email')"
@@ -23,12 +24,26 @@
             <v-icon style="vertical-align: middle">email</v-icon>
           </template>
         </v-text-field>
+        <v-text-field
+          v-if= "email_send"
+          v-model= "token_input"
+          label="위 이메일로 전송된 인증메일의 코드를 입력해주세요."
+          data-vv-name="token"
+          required
+          loading
+        >
+         <template v-slot:append>
+            <v-btn color="primary" dark @click="check_token">인증하기
+              <v-icon dark right>check_circle</v-icon>
+            </v-btn>
+          </template>
+        </v-text-field>
       </v-container>
-      <v-btn class="next" color="ac-blue" :disabled="!email_confirm" @click="e6 = 2">다음 단계</v-btn>
+      <v-btn class="next" color="primary" :disabled="!email_confirm" @click="e6 = 2">다음 단계</v-btn>
       <v-btn flat>취소</v-btn>
     </v-stepper-content>
 
-    <v-stepper-step :complete="e6 > 2" step="2" color="ac-blue">기본정보 입력</v-stepper-step>
+    <v-stepper-step :complete="e6 > 2" step="2" color="primary">기본정보 입력</v-stepper-step>
 
     <v-stepper-content step="2">
       <v-card color="lighten-1" class="mb-5" height="500px">
@@ -67,7 +82,7 @@
           ></v-text-field>
           <v-text-field
             v-model="form.walletAddress"
-            v-validate="'min:42|max:42'"
+            v-validate="'length:42'"
             :counter="42"
             :error-messages="errors.collect('walletAddress')"
             label="Wallet Address"
@@ -75,19 +90,22 @@
           ></v-text-field>
           <v-select
             v-model="form.majorId"
+            v-validate="'required'"
             :items="majors"
-            :rules="[v => !!v || '필수 정보입니다.']"
+            :error-messages="errors.collect('majorId')"
+            :state="null"
             label="전공"
+            placeholder="전공 선택"
             data-vv-name="majorId"
             required
           ></v-select>
         </form>
       </v-card>
       <v-btn color="#eeeeee" @click="clear">초기화</v-btn>
-      <v-btn class="next" :disabled="!valid" color="ac-blue" @click="validate">다음 단계</v-btn>
+      <v-btn class="next" :disabled="!valid" color="primary" @click="validate">다음 단계</v-btn>
     </v-stepper-content>
 
-    <v-stepper-step :complete="e6 > 3" step="3" color="ac-blue">이용 약관</v-stepper-step>
+    <v-stepper-step :complete="e6 > 3" step="3" color="primary">이용 약관</v-stepper-step>
 
     <v-stepper-content step="3">
       <v-card color="lighten-1" class="mb-5" height="200px">
@@ -98,7 +116,7 @@
         </v-layout>
       </v-card>
       <v-btn class="before" color="#eeeeee" @click="e6 = 2">이전 단계</v-btn>
-      <v-btn class="next" color="ac-blue" :disabled="!enabled" @click="e6 = 1">완료</v-btn>
+      <v-btn class="next" color="primary" :disabled="!enabled" @click="e6 = 1">완료</v-btn>
     </v-stepper-content>
   </v-stepper>
 </template>
@@ -130,6 +148,9 @@
       valid: true,
       show1: false,
       show2: false,
+      token: '',
+      token_input: '',
+      email_send: false,
       form: {
         id: '',
         email: '',
@@ -175,6 +196,9 @@
             required: () => '필수 정보입니다.',
             min: '지갑주소는 42자 입니다.',
             min: '지갑주소는 42자 입니다.'
+          },
+          majorId:{
+            required: () => '필수 정보입니다.'
           }
         }
       }
@@ -206,29 +230,25 @@
         }
       });
       },
-      email_validate () {
-        this.$validator.validateAll().then((result) => {
-        if (result) {
-          this.e6 = 3;
-        } else{
-          alert('모든 필수정보를 입력해주세요.');
-        }
-      });
-      },
       send_email() {
-        this.$validator.fields.find({name: 'email'}).then(valid => {
+        this.$validator.validate('email').then(valid => {
           if (valid) {
-            console.log("들어옴");
-            this.email_confirm = true;
-          }else{
-            console.log("들어옴2");
+            this.token = Math.random().toString(36).substring(2, 8);
+            console.log(this.token);
+            this.email_send = true;
+            this.$axios.$post('/email', { // 경로확인
+              email: this.form.email,
+              token: this.token
+            }).then((res)=>{
+              console.log(res)
+            })
           }
         });
-        // this.$axios.$post('/email', { // 경로확인
-        //   email: this.form.email
-        // }).then((res)=>{
-        //   console.log(res)
-        // })
+      },
+      check_token() {
+        if(this.token == this.token_input){
+          this.email_confirm = true;
+        }
       },
       send_user_info() {
         this.email_confirm = true;
