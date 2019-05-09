@@ -8,6 +8,7 @@
 <script>
 import VueBoardCardGroup from '~/components/common/cards/board/group'
 
+
 export default {
   components: {
     VueBoardCardGroup
