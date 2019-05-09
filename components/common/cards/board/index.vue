@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    to="/asdf"
+    :to="to"
     class="card-link">
     <img
       :src="imgSrc"
@@ -26,6 +26,10 @@ export default {
     imgSrc: {
       type: String,
       default: ''
+    },
+    to: {
+      type: String,
+      default: '#'
     }
   }
 }

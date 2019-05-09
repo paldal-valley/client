@@ -5,7 +5,8 @@
       :key="bc.title"
       :title="bc.title"
       :content="bc.content"
-      :img-src="bc.imgSrc"/>
+      :img-src="bc.imgSrc"
+      :to="bc.to"/>
   </div>
 </template>
 
