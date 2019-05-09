@@ -6,8 +6,25 @@
     </v-stepper-step>
 
     <v-stepper-content step="1">
-      <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-      <v-btn class="next" color="ac-blue" @click="e6 = 2">다음 단계</v-btn>
+      <v-container>
+        <v-text-field
+          outline
+          v-model="form.email"
+          v-validate="'required|email'"
+          :error-messages="errors.collect('email')"
+          label="E-mail"
+          data-vv-name="email"
+          required
+          append-icon="send"
+          @click:append="send_email"
+        >
+          <template v-slot:label>
+            <strong>이메일</strong> 입력
+            <v-icon style="vertical-align: middle">email</v-icon>
+          </template>
+        </v-text-field>
+      </v-container>
+      <v-btn class="next" color="ac-blue" :disabled="!email_confirm" @click="e6 = 2">다음 단계</v-btn>
       <v-btn flat>취소</v-btn>
     </v-stepper-content>
 
@@ -17,7 +34,7 @@
       <v-card color="lighten-1" class="mb-5" height="500px">
         <form>
           <v-text-field
-            v-model="id"
+            v-model="form.id"
             v-validate="'required|min:6|max:20'"
             :counter="20"
             :error-messages="errors.collect('id')"
@@ -26,8 +43,10 @@
             required
           ></v-text-field>
           <v-text-field
-            v-model="password"
+            v-model="form.password"
             v-validate="'required|min:6|max:15'"
+            :append-icon="show1 ? 'visibility' : 'visibility_off'"
+            :type="show1 ? 'text' : 'password'"
             :counter="15"
             :error-messages="errors.collect('password')"
             ref="password"
@@ -36,8 +55,10 @@
             required
           ></v-text-field>
           <v-text-field
-            v-model="password_confirm"
+            v-model="form.password_confirm"
             v-validate="'required|confirmed:password'"
+            :append-icon="show2 ? 'visibility' : 'visibility_off'"
+            :type="show2 ? 'text' : 'password'"
             :counter="15"
             :error-messages="errors.collect('password_confirm')"
             label="비밀번호 확인"
@@ -45,15 +66,7 @@
             required
           ></v-text-field>
           <v-text-field
-            v-model="email"
-            v-validate="'required|email'"
-            :error-messages="errors.collect('email')"
-            label="E-mail"
-            data-vv-name="email"
-            required
-          ></v-text-field>
-           <v-text-field
-            v-model="walletAddress"
+            v-model="form.walletAddress"
             v-validate="'min:42|max:42'"
             :counter="42"
             :error-messages="errors.collect('walletAddress')"
@@ -61,7 +74,7 @@
             data-vv-name="walletAddress"
           ></v-text-field>
           <v-select
-            v-model="majorId"
+            v-model="form.majorId"
             :items="majors"
             :rules="[v => !!v || '필수 정보입니다.']"
             label="전공"
@@ -78,33 +91,14 @@
 
     <v-stepper-content step="3">
       <v-card color="lighten-1" class="mb-5" height="200px">
-        <v-card-title
-          class="headline grey lighten-2"
-          primary-title
-        >
-          이용약관
-        </v-card-title>
-          <v-card-text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </v-card-text>
-          <v-layout align-center>
-            <v-checkbox
-              v-model="enabled"
-              label="동의"
-              color="primary"
-              hide-details
-            ></v-checkbox>
-          </v-layout>
+        <v-card-title class="headline grey lighten-2" primary-title>이용약관</v-card-title>
+        <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</v-card-text>
+        <v-layout align-center>
+          <v-checkbox v-model="enabled" label="동의" color="primary" hide-details></v-checkbox>
+        </v-layout>
       </v-card>
       <v-btn class="before" color="#eeeeee" @click="e6 = 2">이전 단계</v-btn>
-      <v-btn class="next" color="ac-blue" :disabled="!enabled" @click="e6 = 4">다음 단계</v-btn>
-    </v-stepper-content>
-
-    <v-stepper-step step="4" color="ac-blue">View setup instructions</v-stepper-step>
-    <v-stepper-content step="4">
-      <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-      <v-btn class="next" color="ac-blue" @click="e6 = 1">완료</v-btn>
-      <v-btn flat>취소</v-btn>
+      <v-btn class="next" color="ac-blue" :disabled="!enabled" @click="e6 = 1">완료</v-btn>
     </v-stepper-content>
   </v-stepper>
 </template>
@@ -134,6 +128,8 @@
     data: () => ({
       e6: 1,
       valid: true,
+      show1: false,
+      show2: false,
       form: {
         id: '',
         email: '',
@@ -153,6 +149,7 @@
         '어쩌구저쩌구학과'
       ],
       enabled: false,
+      email_confirm: false,
       dictionary: {
         attributes: {
           email: 'E-mail Address',
@@ -192,12 +189,12 @@
         this.$validator.validateAll()
       },
       clear () {
-        this.id = ''
-        this.password = ''
-        this.password_confirm = ''
-        this.email = ''
-        this.walletAddress = ''
-        this.major = null
+        this.form.id = ''
+        this.form.password = ''
+        this.form.password_confirm = ''
+        this.form.email = ''
+        this.form.walletAddress = ''
+        this.form.major = null
         this.$validator.reset()
       },
       validate () {
@@ -208,6 +205,35 @@
           alert('모든 필수정보를 입력해주세요.');
         }
       });
+      },
+      email_validate () {
+        this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.e6 = 3;
+        } else{
+          alert('모든 필수정보를 입력해주세요.');
+        }
+      });
+      },
+      send_email() {
+        this.email_confirm = true;
+        this.$axios.$post('/email', { // 경로확인
+          email: this.form.email
+        }).then((res)=>{
+          console.log(res)
+        })
+      },
+      send_user_info() {
+        this.email_confirm = true;
+        this.$axios.$post('/signup', { // 경로확인
+          username: this.form.name,
+          password: this.form.password,
+          email: this.form.email,
+          nickname: this.form.nickname,
+          major: this.form.major
+        }).then((res)=>{
+          console.log(res)
+        })
       },
     }
   }
