@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import ToolbarTabGroup from '../TabGroup'
+import ToolbarTabGroup from '../tab/group'
 import { EventBus } from '~/utils/EventBus'
 export default {
   components: {
