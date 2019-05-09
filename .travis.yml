@@ -1,0 +1,44 @@
+language: node_js
+node_js:
+  - stable
+script: # run the build script.
+  - npm test
+  - npm run build
+after_success:
+  - npm run coveralls
+before_deploy:
+  - rm -rf node_modules
+  - zip -r paldalvalley-client .
+  - mkdir -p deploy
+  - mv paldalvalley-client.zip deploy/paldalvalley-client.zip
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: "paldalvalley-ci-cd" # S3에 생성한 버킷
+    region: ap-northeast-2
+    skip_cleanup: true
+    local_dir: deploy # deploy 디렉터리에 있는 파일을 s3로 업로드 하겠다는 의미
+    wait-until-deployed: true
+    on:
+      repo: paldal-valley/client #Github 주소
+      branch: master
+    dot_match: true
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: "paldalvalley-ci-cd" # AWS CodeDeploy가 다운로드 받은 버킷
+    key: paldalvalley-client.zip # 해당 버킷에 저장되어 있는 파일 이름
+    bundle_type: zip # 버킷에 저장되어 있는 파일의 확장자
+    application: paldalvalley-ci-cd-codeDeploy-service # AWS 배포 애플리케이션
+    deployment_group: paldalvalley-ci-cd-group # AWS 배포 애플리케이션에 만들어져 있는 배포 그룹
+    region: ap-northeast-2
+    wait-until-deployed: true
+    on:
+      repo: paldal-valley/client
+      branch: master
+notifications:
+  email:
+    recipients:
+      - qwaserdf@ajou.ac.kr
+      - makehoney3@gmail.com

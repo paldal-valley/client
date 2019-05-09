@@ -23,7 +23,6 @@ module.exports = {
       }
     ]
   },
-
   /*
   ** Customize the progress-bar color
   */
@@ -33,7 +32,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/style/app.styl'
+    '@/assets/scss/index.scss'
   ],
 
   /*
@@ -49,8 +48,14 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    // scss: [
+    //   'assets/scss/file/_path.scss',
+    //   'assets/scss/file/_path-two.scss'
+    // ]
+  },
   /*
   ** Axios module configuration
   */
