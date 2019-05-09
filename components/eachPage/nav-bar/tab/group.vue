@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import ToolbarTab from './index'
+import ToolbarTab from '.'
 export default {
   components: {
     ToolbarTab

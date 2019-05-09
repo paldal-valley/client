@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import VueToolbar from '~/components/common/nav-bar/toolbar'
-import VueDrawer from '~/components/common/nav-bar/drawer'
+import VueToolbar from '~/components/eachPage/nav-bar/toolbar'
+import VueDrawer from '~/components/eachPage/nav-bar/drawer'
 export default {
   components: {
     VueToolbar,
