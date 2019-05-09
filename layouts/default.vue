@@ -1,32 +1,35 @@
 <template>
   <v-app>
-    <vue-toolbar
-      toolbar-fixed
-      toolbar-color="gray"
-      menu-hover
-      menu-transition="slide-x-transition"/>
-    <vue-drawer/>
+    <div class="foo-layout-container">
+      <vue-toolbar
+        toolbar-fixed
+        toolbar-flat
+        toolbar-color="#f0eded"
+        menu-hover
+        menu-transition="slide-x-transition"/>
+      <vue-drawer/>
 
-    <!-- 추후 리팩토링 필요함 -->
-    <v-content>
-      <v-container fluid fill-height>
-        <v-layout
-          justify-center
-          align-center>
-          <v-flex text-xs-center>
+      <!-- 추후 리팩토링 필요함 -->
+      <v-content>
+        <v-container fluid fill-height>
+          <v-layout
+            justify-center
+            align-center>
+            <v-flex text-xs-center>
 
-            <nuxt/>
+              <nuxt/>
 
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-content>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-content>
+    </div>
   </v-app>
 </template>
 
 <script>
-import VueToolbar from '~/components/NavigationBars/Toolbar'
-import VueDrawer from '~/components/NavigationBars/Drawer'
+import VueToolbar from '~/components/eachPage/nav-bar/toolbar'
+import VueDrawer from '~/components/eachPage/nav-bar/drawer'
 export default {
   components: {
     VueToolbar,
@@ -35,10 +38,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
  .ac-blue{
     background-color: rgb(5, 77, 149) !important;
     border-color: rgb(5, 77, 149) !important;
     color: white !important;
  }
+  .foo-layout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 20%;
+    margin-left: 20%;
+  }
 </style>

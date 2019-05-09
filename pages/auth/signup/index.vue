@@ -216,12 +216,19 @@
       });
       },
       send_email() {
-        this.email_confirm = true;
-        this.$axios.$post('/email', { // 경로확인
-          email: this.form.email
-        }).then((res)=>{
-          console.log(res)
-        })
+        this.$validator.fields.find({name: 'email'}).then(valid => {
+          if (valid) {
+            console.log("들어옴");
+            this.email_confirm = true;
+          }else{
+            console.log("들어옴2");
+          }
+        });
+        // this.$axios.$post('/email', { // 경로확인
+        //   email: this.form.email
+        // }).then((res)=>{
+        //   console.log(res)
+        // })
       },
       send_user_info() {
         this.email_confirm = true;
