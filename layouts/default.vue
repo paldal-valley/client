@@ -23,17 +23,20 @@
           </v-layout>
         </v-container>
       </v-content>
+      <vue-footer/>
     </div>
   </v-app>
 </template>
 
 <script>
-import VueToolbar from '~/components/eachPage/nav-bar/toolbar'
-import VueDrawer from '~/components/eachPage/nav-bar/drawer'
+import VueToolbar from '~/components/nav-bar/toolbar'
+import VueDrawer from '~/components/nav-bar/drawer'
+import VueFooter from '~/components/footer'
 export default {
   components: {
     VueToolbar,
-    VueDrawer
+    VueDrawer,
+    VueFooter
   },
 }
 </script>

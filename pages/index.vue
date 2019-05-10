@@ -56,11 +56,6 @@ export default {
       }
     ]
   }),
-  methods: {
-    foo() {
-      console.log('hi')
-    }
-  }
 }
 </script>
 
