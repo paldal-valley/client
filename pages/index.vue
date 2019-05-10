@@ -1,16 +1,19 @@
 <template>
   <div>
+    <vue-carousel
+      :items="bannerItems"/>
     <vue-board-card-group
       :board-cards="boardCards"/>
   </div>
 </template>
 
 <script>
+import VueCarousel from '~/components/common/carousel'
 import VueBoardCardGroup from '~/components/common/cards/board/group'
-
 
 export default {
   components: {
+    VueCarousel,
     VueBoardCardGroup
   },
   data: () => ({
@@ -33,8 +36,31 @@ export default {
         imgSrc: require('@/assets/images/consult.png'),
         to: '/board/review'
       }
+    ],
+    bannerItems: [
+      {
+        src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+        to: '#'
+      },
+      {
+        src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+        to: '#'
+      },
+      {
+        src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+        to: '#'
+      },
+      {
+        src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+        to: '#'
+      }
     ]
-  })
+  }),
+  methods: {
+    foo() {
+      console.log('hi')
+    }
+  }
 }
 </script>
 
