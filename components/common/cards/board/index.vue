@@ -56,7 +56,7 @@ export default {
     0 8px 40px 0 rgba(0, 0, 0, 0.04);
     &:hover {
       .card__title {
-        color: #4936ff;
+        color: $ac-green;
       }
       transform:scale(1.04);             /*  default */
       -webkit-transform:scale(1.04);     /*  크롬 */
@@ -65,10 +65,10 @@ export default {
     }
   }
   .card__title {
-    color: #406fe9
+    color: $ac-green2;
   }
   .card__content {
-    color: #6488d1;
+    color: $ac-green3;
   }
   .card__img {
     position: absolute;

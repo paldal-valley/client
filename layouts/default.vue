@@ -3,8 +3,7 @@
     <div class="foo-layout-container">
       <vue-toolbar
         toolbar-fixed
-        toolbar-flat
-        toolbar-color="#f0eded"
+        toolbar-color="white"
         menu-hover
         menu-transition="slide-x-transition"/>
       <vue-drawer/>
@@ -36,22 +35,23 @@ export default {
   components: {
     VueToolbar,
     VueDrawer,
-    VueFooter
+    VueFooter,
   },
 }
 </script>
 
 <style lang="scss" scoped>
- .ac-blue{
-    background-color: rgb(5, 77, 149) !important;
-    border-color: rgb(5, 77, 149) !important;
-    color: white !important;
- }
-  .foo-layout-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-right: 20%;
-    margin-left: 20%;
-  }
+@import '~assets/scss/index';
+.ac-blue{
+  background-color: rgb(5, 77, 149) !important;
+  border-color: rgb(5, 77, 149) !important;
+  color: white !important;
+}
+.foo-layout-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20%;
+  margin-left: 20%;
+}
 </style>
