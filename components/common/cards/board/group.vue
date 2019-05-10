@@ -32,6 +32,7 @@ export default {
     /*background-color: red;*/
     display: flex;
     flex-wrap: wrap;
+    margin-top: 20px;
     margin-left: -1%;
     margin-right: -1%;
   }
