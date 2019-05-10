@@ -56,11 +56,11 @@ export default {
     0 8px 40px 0 rgba(0, 0, 0, 0.04);
     &:hover {
       .card__title {
-        color: #1c22ff;
+        color: #4936ff;
       }
-      transform:scale(1.02);             /*  default */
-      -webkit-transform:scale(1.02);     /*  크롬 */
-      -moz-transform:scale(1.02);       /* FireFox */
+      transform:scale(1.04);             /*  default */
+      -webkit-transform:scale(1.04);     /*  크롬 */
+      -moz-transform:scale(1.04);       /* FireFox */
       transition: all 0.1s ease-in-out;
     }
   }
