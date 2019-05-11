@@ -33,8 +33,9 @@
           loading
         >
          <template v-slot:append>
-            <v-btn color="primary" dark @click="check_token">인증하기
-              <v-icon dark right>check_circle</v-icon>
+            <v-btn color="primary" dark @click="check_token">
+              <p class="mb-0">{{buttons.text}}</p>
+              <v-icon dark right v-bind:class="{none: !isActive}">check_circle</v-icon>
             </v-btn>
           </template>
         </v-text-field>
@@ -46,7 +47,6 @@
     <v-stepper-step :complete="e6 > 2" step="2" color="primary">기본정보 입력</v-stepper-step>
 
     <v-stepper-content step="2">
-      <v-card color="lighten-1" class="mb-5" height="500px">
         <form>
           <v-text-field
             v-model="form.id"
@@ -100,7 +100,6 @@
             required
           ></v-select>
         </form>
-      </v-card>
       <v-btn color="#eeeeee" @click="clear">초기화</v-btn>
       <v-btn class="next" :disabled="!valid" color="primary" @click="validate">다음 단계</v-btn>
     </v-stepper-content>
@@ -145,6 +144,7 @@
 
     data: () => ({
       e6: 1,
+      isActive: false,
       valid: true,
       show1: false,
       show2: false,
@@ -163,6 +163,9 @@
         createdDate: '',
         lastModifiedDate: ''
       }, 
+      buttons:{
+        text: '인증하기'
+      },
       majors: [
         '소프트웨어학과',
         '미디어학과',
@@ -218,7 +221,7 @@
         this.form.password_confirm = ''
         this.form.email = ''
         this.form.walletAddress = ''
-        this.form.major = null
+        this.form.majorId = null
         this.$validator.reset()
       },
       validate () {
@@ -248,6 +251,8 @@
       check_token() {
         if(this.token == this.token_input){
           this.email_confirm = true;
+          this.isActive = true;
+          this.buttons.text = "인증완료";
         }
       },
       send_user_info() {
