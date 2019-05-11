@@ -1,2 +1,10 @@
 @import '~vuetify-scss';
 @import './colors';
+
+.none{
+    display: none !important;
+}
+
+.mb-0{
+    margin-bottom: 0px;
+}
