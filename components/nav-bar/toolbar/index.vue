@@ -5,11 +5,11 @@
     :fixed="toolbarFixed"
     :color="toolbarColor">
 
-
-    <v-container mx-auto py-0>
+    <v-container
+      class="nav-container" py-0>
       <v-layout>
         <v-img
-          :src="require('@/assets/logo.png')"
+          :src="require('@/assets/ac-logo.png')"
           style="cursor: pointer;"
           class="mr-3"
           contain
@@ -20,8 +20,7 @@
 
 
         <v-toolbar-title
-          style="cursor: pointer;"
-          class="mt-3 ml-0 mr-5"
+          class="nav-home"
           @click="$router.push('/')">AJOU COIN</v-toolbar-title>
 
 
@@ -49,7 +48,7 @@
 </template>
 
 <script>
-import ToolbarTabGroup from '../TabGroup'
+import ToolbarTabGroup from '../tab/group'
 import { EventBus } from '~/utils/EventBus'
 export default {
   components: {
@@ -146,6 +145,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.nav-container {
+  margin-left: 20%;
+  margin-right: 20%;
 
+  .nav-home {
+    margin-left: -5px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #4E98A4;
+  }
+}
 </style>

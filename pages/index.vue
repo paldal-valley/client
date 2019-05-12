@@ -1,15 +1,61 @@
 <template>
-  <h1>Test Landing Page</h1>
+  <div>
+    <vue-carousel
+      :items="bannerItems"/>
+    <vue-board-card-group
+      :board-cards="boardCards"/>
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import VueCarousel from '~/components/common/carousel'
+import VueBoardCardGroup from '~/components/common/cards/board/group'
 
 export default {
   components: {
-    Logo,
-    VuetifyLogo
-  }
+    VueCarousel,
+    VueBoardCardGroup
+  },
+  data: () => ({
+    boardCards: [
+      {
+        title: '자유게시판',
+        content: '선후배간 자유롭게 대화하세요!',
+        imgSrc: require('@/assets/images/free.png'),
+        to: '/board/free'
+      },
+      {
+        title: 'QnA 게시판',
+        content: '질문과 답변을 올려보세요!',
+        imgSrc: require('@/assets/images/qna.png'),
+        to: '/board/qna'
+      },
+      {
+        title: '수기게시판',
+        content: '취업한 선배들의 꿀팁!',
+        imgSrc: require('@/assets/images/consult.png'),
+        to: '/board/review'
+      }
+    ],
+    bannerItems: [
+      {
+        src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+        to: '#'
+      },
+      {
+        src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+        to: '#'
+      },
+      {
+        src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+        to: '#'
+      },
+      {
+        src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+        to: '#'
+      }
+    ]
+  }),
 }
 </script>
+
