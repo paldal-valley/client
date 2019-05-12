@@ -115,7 +115,7 @@
         </v-layout>
       </v-card>
       <v-btn class="before" color="#eeeeee" @click="e6 = 2">이전 단계</v-btn>
-      <v-btn class="next" color="primary" :disabled="!enabled" @click="e6 = 1">완료</v-btn>
+      <v-btn class="next" color="primary" :disabled="!enabled" @click="send_user_info">완료</v-btn>
     </v-stepper-content>
   </v-stepper>
 </template>
@@ -257,14 +257,22 @@
       },
       send_user_info() {
         this.email_confirm = true;
-        this.$axios.$post('/signup', { // 경로확인
-          username: this.form.name,
+        this.$axios.$post('/users', { // 경로확인
+          userId: this.form.id,
           password: this.form.password,
           email: this.form.email,
-          nickname: this.form.nickname,
-          major: this.form.major
+          walletAddress: this.form.walletAddress,
+          majorId: this.form.majorId
         }).then((res)=>{
-          console.log(res)
+          if (res == "ER_DUP_ENTRY"){
+            alert("이미 존재하는 아이디 입니다.")
+          } else {
+            alert("회원가입이 완료되었습니다.")
+            this.$router.push('/')
+            }
+        }).catch(err => {
+          alert(err)
+          console.log(err)
         })
       },
     }
