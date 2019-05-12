@@ -67,31 +67,30 @@ export default {
 
       ],
       posts: [
-        {
-          title: '취업꿀팁', 
-          writer: 'jane',
-          createdDate: 2019,
-          answer: 6,
-          recommend: 24,
-          view: 12
-        },
-        {
-          title: '삼성가즈아',
-          writer: 'arren',
-          createdDate: 2019,
-          answer: 2,
-          recommend: 10,
-          view: 11
-        },
-                {
-          title: 'hello현대',
-          writer: '하이루',
-          createdDate: 2019,
-          answer: 10,
-          recommend: 2,
-          view: 2
-        }
-        
+        // {
+        //   title: '취업꿀팁', 
+        //   writer: 'jane',
+        //   createdDate: 2019,
+        //   answer: 6,
+        //   recommend: 24,
+        //   view: 12
+        // },
+        // {
+        //   title: '삼성가즈아',
+        //   writer: 'arren',
+        //   createdDate: 2019,
+        //   answer: 2,
+        //   recommend: 10,
+        //   view: 11
+        // },
+        //         {
+        //   title: 'hello현대',
+        //   writer: '하이루',
+        //   createdDate: 2019,
+        //   answer: 10,
+        //   recommend: 2,
+        //   view: 2
+        // }
       ]
     }
   },
@@ -107,8 +106,16 @@ export default {
 
   methods: {
     onWriteClick() {
-      this.$router.push('./qna/writepost');
+      //this.$router.push('./qna/writepost');
+      // this.$axios.get('/qna')
+      // .then((response) => {
+      // })
+      alert(this.posts[0].title)
+      //this.headers[0].text = 제목
+      //this.headers[0].text = 작성자
+      //this.posts[0].title = 취업꿀팁
       //window.location='./qna/writepost';
+      
     },
     onReadClick() {
       this.$router.push('./qna/readpost');
