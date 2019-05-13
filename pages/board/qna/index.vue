@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { ServerResponse } from 'http';
 export default {
   //middleware : 'search',
   data () {
@@ -107,27 +108,22 @@ export default {
 
   methods: {
     onWriteClick() {
-      this.$router.push('./qna/writepost');
-      
-      
-      
-      // this.$axios.$get('/boards')
-      // .then((response) => {
-      //   //this.posts[0].title = response.data
-      //   this.posts[0].title = response
-      //   //alert(response.data)
-      // })
-
-
-
-      //alert(this.posts[0].title)
-      //this.headers[0].text = 제목
-      //this.headers[0].text = 작성자
+      //this.$router.push('./qna/writepost');
+      this.$axios.$get('/boards').then((response) => {
+        this.posts[0].title = response
+        //this.posts[0].title = response.data
+      })
       //this.posts[0].title = 취업꿀팁
       //window.location='./qna/writepost';
     },
     onReadClick() {
-      this.$router.push('./qna/readpost');
+      //this.$router.push('./qna/readpost');
+      this.$axios.$post('/boards', {
+        id : '37',
+        title : '한국어교육학과'
+      }).then(function (response) {
+        console.log(response)
+      })
       //window.location='./qna/readpost';
     }
   }
