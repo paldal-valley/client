@@ -41,7 +41,6 @@
         </v-text-field>
       </v-container>
       <v-btn class="next" color="primary" :disabled="!email_confirm" @click="e6 = 2">다음 단계</v-btn>
-      <v-btn flat>취소</v-btn>
     </v-stepper-content>
 
     <v-stepper-step :complete="e6 > 2" step="2" color="primary">기본정보 입력</v-stepper-step>
