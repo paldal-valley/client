@@ -4,14 +4,14 @@
             <div data category>
                 <!-- 글 카테고리 -->
                 <span class = "category">
-                    "취업"
+                    취업
                 </span>
             </div>
             <h2 class = "title">
                 <span class = "text-primary">
                     Q.
                 </span>
-                "취뽀하는 방법 없나요?"
+                취뽀하는 방법 없나요?
             </h2>
             <p class = "question-info">
                 <span class = "writer">
@@ -24,9 +24,18 @@
                     조회수 33
                 </span>
             </p>
-            <hr>
+            <hr>          
         </header>
-
+        <div class = "question-body">
+            <div class = "editor">
+                <p>아하하하하 그러게요</p>
+            </div>
+        </div>
+        <div class = "question-actions">
+            <div class = "box-contents">
+                
+            </div>
+        </div>
     </div>
 
 </template>
