@@ -30,7 +30,7 @@
         rows = 13px;
       ></v-textarea>
     </v-form>
-   <v-btn block color="#054d95" class="white--text">
+   <v-btn v-on:click = "writePost" block color="#054d95" class="white--text">
      <strong>질문 등록</strong>
     </v-btn>
   </v-card>
@@ -41,6 +41,13 @@
     data () {
       return {
         
+      }
+    },
+    methods : {
+      writePost: function(event) {
+        alert("질문이 등록되었습니다");
+        this.$router.push('./');
+        //window.location='./qna/writepost';
       }
     }
   }
