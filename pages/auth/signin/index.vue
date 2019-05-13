@@ -4,11 +4,13 @@
         <v-form>
             <v-text-field
             label="ID"
+            v-model="id"
             outline
             required            
           ></v-text-field>
             <v-text-field
             ref="password"
+            v-model="password"
             :type="'password'"
             label="PASSWORD"
             outline
@@ -27,22 +29,23 @@
 export default {
     layout: 'empty',
     data: () => ({
+        id:'',
+        password:''
     }),
-
-    computed: {
-      
-    },
-
-    watch: {
-      name () {
-        this.errorMessages = ''
-      }
-    },
 
     methods: {
         submit(){
-            this.$router.push('/');
+            this.$axios.$post('/users/login', { // 경로확인
+                userId: this.id,
+                password: this.password,
+                }).then((res)=>{
+                    this.$router.push('/');
+                    console.log(res);                    
+                }).catch(err => {
+                    alert(err)
+                    console.log(err)
+                })
         }
     }
-  }
+}
 </script>
