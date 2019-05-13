@@ -1,6 +1,6 @@
 <template>
-  <v-layout justify-center>
-    <v-flex xs12 sm10 md8 lg6>
+  <v-layout justify-center class="mt-3">
+    <v-flex xs12 sm10 md10 lg6>
         <v-form>
             <v-text-field
             label="ID"
@@ -16,10 +16,23 @@
             outline
             required
           ></v-text-field>
-        <v-divider class="mt-5"></v-divider>
-          <v-btn flat>Cancel</v-btn>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" flat @click="submit">Submit</v-btn>
+          <v-btn color="primary" large block @click="submit">Login</v-btn>
+          <v-layout row wrap>
+          <v-flex xs12 sm4 md4>
+            <v-checkbox
+              v-model="check"
+              label="Remember"
+              color="primary"
+              value="primary"
+              hide-details
+            ></v-checkbox>
+          </v-flex>
+        <v-flex xs12 sm4 md4>
+        </v-flex>
+        <v-flex xs12 sm4 md4>
+            <v-btn color="primary" flat class="mt-3">비밀번호 찾기</v-btn>
+        </v-flex>
+        </v-layout>
       </v-form>
     </v-flex>
   </v-layout>
@@ -30,7 +43,8 @@ export default {
     layout: 'empty',
     data: () => ({
         id:'',
-        password:''
+        password:'',
+        check: false,
     }),
 
     methods: {

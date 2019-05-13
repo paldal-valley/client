@@ -263,16 +263,13 @@
               email: this.form.email,
               token: this.token
             }).then((res)=>{
-              if(res.msg == "email_dup"){
-                this.snackbar.text = "이미 인증된 이메일 주소입니다."
-                this.snackbar.open = true
-              }
-              else{
-                console.log(this.token);
-                this.email_send = true;
-                this.snackbar.text = "정상적으로 이메일이 전송 되었습니다."
-                this.snackbar.open = true
-              }
+              console.log(this.token);
+              this.email_send = true;
+              this.snackbar.text = "정상적으로 이메일이 전송 되었습니다."
+              this.snackbar.open = true
+            }).catch(err=>{
+              this.snackbar.text = "이미 인증된 이메일 주소입니다."
+              this.snackbar.open = true
             })
           }
         });
@@ -293,17 +290,12 @@
           walletAddress: this.form.walletAddress,
           majorId: this.form.majorId
         }).then((res)=>{
-          if (res == "ER_DUP_ENTRY"){
-            this.snackbar.text = "이미 존재하는 아이디 입니다."
-            this.snackbar.open = true
-          } else {
-            this.snackbar.text = "회원가입이 정상적으로 되었습니다."
-            this.snackbar.open = true
-            this.$router.push('/')
-            }
+          this.snackbar.text = "회원가입이 정상적으로 되었습니다."
+          this.snackbar.open = true
+          this.$router.push('/')
         }).catch(err => {
-          alert(err)
-          console.log(err)
+          this.snackbar.text = "이미 존재하는 아이디 입니다."
+          this.snackbar.open = true
         })
       },
     }
