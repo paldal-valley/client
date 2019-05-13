@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/paldal-valley/client/badge.svg?branch=master)](https://coveralls.io/github/paldal-valley/client?branch=master)
 # ajou-coin
 
 > capstone project
