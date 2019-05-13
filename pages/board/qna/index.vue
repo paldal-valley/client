@@ -107,13 +107,19 @@ export default {
 
   methods: {
     onWriteClick() {
-      //this.$router.push('./qna/writepost');
-      this.$axios.$get('/boards')
-      .then((response) => {
-        //this.posts[0].title = response.data
-        this.posts[0].title = response
-        //alert(response.data)
-      })
+      this.$router.push('./qna/writepost');
+      
+      
+      
+      // this.$axios.$get('/boards')
+      // .then((response) => {
+      //   //this.posts[0].title = response.data
+      //   this.posts[0].title = response
+      //   //alert(response.data)
+      // })
+
+
+
       //alert(this.posts[0].title)
       //this.headers[0].text = 제목
       //this.headers[0].text = 작성자

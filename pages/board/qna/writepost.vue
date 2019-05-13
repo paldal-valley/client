@@ -44,9 +44,20 @@
       }
     },
     methods : {
+      
       writePost: function(event) {
-        alert("질문이 등록되었습니다");
-        this.$router.push('./');
+        this.$axios.post('http://localhoast:3000/', {
+            name: this.name,
+            description: this.description
+        })
+        alert("질문이 등록되었습니다")
+        this.$router.push('./')
+        this.$axios.$post('/boards')
+        .then((response) => {
+          // this.posts[2].title = response.data
+          this.posts[0].title = response
+          alert(response.data)
+        })
         //window.location='./qna/writepost';
       }
     }
