@@ -117,6 +117,19 @@
       <v-btn class="before" color="#eeeeee" @click="e6 = 2">이전 단계</v-btn>
       <v-btn class="next" color="primary" :disabled="!enabled" @click="send_user_info">완료</v-btn>
     </v-stepper-content>
+        <v-snackbar
+      v-model="snackbar.open"
+      :timeout="snackbar.timeout"
+    >
+      {{ snackbar.text }}
+      <v-btn
+        color="pink"
+        flat
+        @click="snackbar.open = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
   </v-stepper>
 </template>
 
@@ -172,6 +185,11 @@
         '블라블라학과',
         '어쩌구저쩌구학과'
       ],
+      snackbar: {
+        open: false,
+        text: '',
+        timeout: 4000,
+      },
       enabled: false,
       email_confirm: false,
       dictionary: {
@@ -237,13 +255,20 @@
         this.$validator.validate('email').then(valid => {
           if (valid) {
             this.token = Math.random().toString(36).substring(2, 8);
-            console.log(this.token);
-            this.email_send = true;
             this.$axios.$post('/email', { // 경로확인
               email: this.form.email,
               token: this.token
             }).then((res)=>{
-              console.log(res)
+              if(res.msg == "email_dup"){
+                this.snackbar.text = "이미 인증된 이메일 주소입니다."
+                this.snackbar.open = true
+              }
+              else{
+                console.log(this.token);
+                this.email_send = true;
+                this.snackbar.text = "정상적으로 이메일이 전송 되었습니다."
+                this.snackbar.open = true
+              }
             })
           }
         });
@@ -265,7 +290,8 @@
           majorId: this.form.majorId
         }).then((res)=>{
           if (res == "ER_DUP_ENTRY"){
-            alert("이미 존재하는 아이디 입니다.")
+            this.snackbar.text = "이미 존재하는 아이디 입니다."
+            this.snackbar.open = true
           } else {
             alert("회원가입이 완료되었습니다.")
             this.$router.push('/')
