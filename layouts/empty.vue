@@ -1,0 +1,43 @@
+<template>
+  <v-app>
+    <div class="foo-layout-container">
+      <v-content>
+        <v-container fluid fill-height>
+          <v-layout
+            justify-center
+            align-center>
+            <v-flex text-xs-center>
+            <img
+            class="footer-logo-img"
+            src="~assets/ac-logo.png">
+            
+              <nuxt/>
+
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-content>
+    </div>
+  </v-app>
+</template>
+
+<script>
+export default {
+}
+</script>
+
+<style lang="scss" scoped>
+@import '~assets/scss/index';
+.ac-blue{
+  background-color: rgb(5, 77, 149) !important;
+  border-color: rgb(5, 77, 149) !important;
+  color: white !important;
+}
+.foo-layout-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20%;
+  margin-left: 20%;
+}
+</style>

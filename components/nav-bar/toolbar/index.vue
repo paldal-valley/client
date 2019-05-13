@@ -112,7 +112,7 @@ export default {
           },
           {
             text: '로그인',
-            to: '#'
+            to: '/auth/signin'
           }
         ],
         authorized: [
