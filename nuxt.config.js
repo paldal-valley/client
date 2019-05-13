@@ -23,7 +23,6 @@ module.exports = {
       }
     ]
   },
-
   /*
   ** Customize the progress-bar color
   */
@@ -33,7 +32,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/style/app.styl'
+    '@/assets/scss/index.scss'
   ],
 
   /*
@@ -49,12 +48,21 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    // scss: [
+    //   'assets/scss/file/_path.scss',
+    //   'assets/scss/file/_path-two.scss'
+    // ]
+  },
   /*
   ** Axios module configuration
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    baseURL:
+     process.env.NODE_ENV == 'production' ? 'https://54.180.144.27:8000' : 'http://localhost:8000/'
   },
 
   /*
@@ -73,5 +81,9 @@ module.exports = {
     */
     extend(config, ctx) {
     }
-  }
+  },
+
+  // serverMiddleware: [
+  //   '~/api/index.js'
+  // ]
 }

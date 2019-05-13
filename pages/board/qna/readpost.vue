@@ -1,47 +1,57 @@
 <template>
-    <div class = "question">
+<v-card>
+    <v-form>
+    <div class = "question" >
         <header class = "question-show-box">
             <div data category>
                 <!-- 글 카테고리 -->
-                <span class = "category">
+                <span class = "category" style="float:left; margin-top:10px; margin-left:5px;">
                     취업
                 </span>
-            </div>
-            <h2 class = "title">
+            </div><br><br>
+            <h2 class = "title" style="float:left; margin-top:8px; margin-left:10px;">
                 <span class = "text-primary">
                     Q.
                 </span>
                 취뽀하는 방법 없나요?
-            </h2>
-            <p class = "question-info">
+            </h2><br><br>
+            <p class = "question-info" style="margin-top:5px; margin-left:20px;">
                 <span class = "writer">
-                    <strong class = "nickname">HaHa</strong>
+                    <strong class = "nickname" style="float:left;">HaHa</strong>
                 </span>
-                <span class = "date">
+                <span class = "date" style="float:left; margin-left:10px; color:gray;">
                     2019. 05. 02.
                 </span>
-                <span class = "view">
+                <span class = "view" style="float:left; margin-left:10px; color:gray;">
                     조회수 33
                 </span>
             </p>
-            <hr>          
+            <br><hr>
         </header>
-        <div class = "question-body">
-            <div class = "editor">
-                <p>아하하하하 그러게요</p>
-            </div>
-        </div>
-        <div class = "question-actions">
-            <div class = "box-contents">
-                
-            </div>
-        </div>
     </div>
-
+    <v-textarea
+        v-model="title"
+        label="내용"
+        counter
+        full-width
+        single-line
+        disabled
+        rows = 10px;
+      ></v-textarea>
+    </v-form>
+    <div class="text-xs-right pt-2">
+    <v-btn outline large fab color="red">
+      <v-icon>thumb_up</v-icon>
+    </v-btn></div>
+    <v-btn block color="#054d95" class="white--text">
+        <strong>답변하기</strong>
+    </v-btn>
+    </v-card>
 </template>
 
 <script>
 </script>
 
 <style>
+
 </style>
