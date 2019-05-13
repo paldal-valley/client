@@ -11,7 +11,7 @@
           outline
           :disabled= "email_send"
           v-model="form.email"
-          v-validate="'required|email'"
+          v-validate="'required|ajouEmail'"
           :error-messages="errors.collect('email')"
           label="E-mail"
           data-vv-name="email"
@@ -117,7 +117,7 @@
       <v-btn class="before" color="#eeeeee" @click="e6 = 2">이전 단계</v-btn>
       <v-btn class="next" color="primary" :disabled="!enabled" @click="send_user_info">완료</v-btn>
     </v-stepper-content>
-        <v-snackbar
+    <v-snackbar
       v-model="snackbar.open"
       :timeout="snackbar.timeout"
     >
@@ -136,6 +136,7 @@
 <script>
   import Vue from 'vue'
   import VeeValidate from 'vee-validate'
+  import { AjouEmailRule } from '@/validates/AjouEmailValidates'
 
 /* 한글화 노가다 말고 'ko' locale 이용해서 해볼것
   import ko from 'vee-validate/dist/locale/ko.js'
@@ -148,6 +149,7 @@
   }
 
   Vue.use(VeeValidate, config)*/
+  VeeValidate.Validator.extend('ajouEmail', AjouEmailRule);
   Vue.use(VeeValidate)
 
   export default {
@@ -164,6 +166,8 @@
       token: '',
       token_input: '',
       email_send: false,
+      enabled: false,
+      email_confirm: false,
       form: {
         id: '',
         email: '',
@@ -190,8 +194,6 @@
         text: '',
         timeout: 4000,
       },
-      enabled: false,
-      email_confirm: false,
       dictionary: {
         attributes: {
           email: 'E-mail Address',
@@ -219,6 +221,9 @@
             min: '지갑주소는 42자 입니다.'
           },
           majorId:{
+            required: () => '필수 정보입니다.'
+          },
+          email:{
             required: () => '필수 정보입니다.'
           }
         }
@@ -293,7 +298,8 @@
             this.snackbar.text = "이미 존재하는 아이디 입니다."
             this.snackbar.open = true
           } else {
-            alert("회원가입이 완료되었습니다.")
+            this.snackbar.text = "회원가입이 정상적으로 되었습니다."
+            this.snackbar.open = true
             this.$router.push('/')
             }
         }).catch(err => {
