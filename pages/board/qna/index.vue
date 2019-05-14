@@ -119,7 +119,7 @@ export default {
     onReadClick() {
       //this.$router.push('./qna/readpost');
       this.$axios.$post('/boards', {
-        id : '37',
+        id : '37', //AI 라면 id 라는 field 자체를 사용하지 X
         title : '한국어교육학과'
       }).then(function (response) {
         console.log(response)
