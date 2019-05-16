@@ -2,6 +2,7 @@
   <v-app>
     <div class="foo-layout-container">
       <vue-toolbar
+        class="chiheon"
         toolbar-fixed
         toolbar-color="white"
         menu-hover
@@ -9,8 +10,8 @@
       <vue-drawer/>
 
       <!-- 추후 리팩토링 필요함 -->
-      <v-content>
-        <v-container fluid fill-height>
+      <v-content class="pd-0">
+        <v-container fluid fill-height class="pd-0">
           <v-layout
             justify-center
             align-center>
@@ -28,6 +29,8 @@
 </template>
 
 <script>
+import 'expose-loader?$!expose-loader?jQuery!jquery'
+import $ from 'jquery'
 import VueToolbar from '~/components/nav-bar/toolbar'
 import VueDrawer from '~/components/nav-bar/drawer'
 import VueFooter from '~/components/footer'
@@ -36,7 +39,7 @@ export default {
     VueToolbar,
     VueDrawer,
     VueFooter,
-  }
+  },
 }
 </script>
 
@@ -51,7 +54,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-right: 20%;
-  margin-left: 20%;
+}
+.pd-0{
+  padding: 0px !important;
 }
 </style>
