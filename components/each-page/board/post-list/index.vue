@@ -9,7 +9,7 @@
         icon="check_circle"
         outline
       >
-        아주코인 콘텐츠 관리를 준수하지 않는 질문과 답변의 경우 사전 고지 없이 삭제 처리 되며, 신고 누적 시 사용자 계정 비활성화, 토큰 보상 보류 등의 페널티가 있습니다.
+        {{ alertMsg }}
       </v-alert>
     </div>
 
@@ -48,7 +48,18 @@ export default {
   components: {
     VuePostContainer,
     VuePostCard
-  }
+  },
+  props: {
+    apiEndpoint: {
+      type: String,
+      default: '',
+      required: true
+    },
+    alertMsg: {
+      type: String,
+      default: '아주코인 콘텐츠 관리를 준수하지 않는 질문과 답변의 경우 사전 고지 없이 삭제 처리 되며, 신고 누적 시 사용자 계정 비활성화, 토큰 보상 보류 등의 페널티가 있습니다.'
+    }
+  },
 }
 </script>
 

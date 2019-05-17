@@ -13,7 +13,7 @@
     </vue-sidebar-img-container>
 
     <!-- buttons -->
-    <vue-button-group/>
+    <vue-button-group :buttons="buttons"/>
 
   </vue-sidebar-container>
 </template>
@@ -30,6 +30,12 @@ export default {
     VueSidebarContainer,
     VueSidebarImgContainer,
     VueButtonGroup,
+  },
+  props: {
+    buttons: {
+      type: Array,
+      default: () => []
+    }
   }
 }
 </script>
