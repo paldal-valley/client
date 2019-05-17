@@ -12,6 +12,8 @@ export default {
 <style lang="scss" scoped>
   .sidebar-container {
     display: flex;
+    flex: 1 1 250px;
     flex-direction: column;
+    padding: 10px;
   }
 </style>
