@@ -1,13 +1,24 @@
 <template>
   <nuxt-link
-    to="#"
+    :to="to"
     class="underline-btn">
-    버튼테스트
+    {{ text }}
   </nuxt-link>
 </template>
 
 <script>
 export default {
+  // TODO: 현재 페이지와 to가 같으면 underline 활성화 되도록 watch
+  props: {
+    text: {
+      type: String,
+      default: 'button'
+    },
+    to: {
+      type: String,
+      default: '#'
+    }
+  }
 }
 </script>
 
