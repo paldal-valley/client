@@ -1,144 +1,83 @@
 <template>
-  <div>
-    <v-data-table
-      :headers="headers"
-      :items="desserts"
-      :search="search"
-      hide-actions
-      :pagination.sync="pagination"
-      class="elevation-1"
-    >
-      <template v-slot:items="props">
-        <td>{{ props.item.name }}</td>
-        <td class="text-xs-right">{{ props.item.calories }}</td>
-        <td class="text-xs-right">{{ props.item.fat }}</td>
-        <td class="text-xs-right">{{ props.item.carbs }}</td>
-        <td class="text-xs-right">{{ props.item.protein }}</td>
-        <td class="text-xs-right">{{ props.item.iron }}</td>
-      </template>
-    </v-data-table>
-    <div class="text-xs-center pt-2">
-      <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
-    </div>
-  </div>
+  <vue-board-container>
+    <vue-sidebar-container>
+      <div class="asdf">
+        <v-img
+          :src="require('@/assets/images/ethereum.png')"
+          style="cursor: pointer;"
+          contain
+          max-width="180"
+          max-height="120"
+          @click="$router.push('/')"/>
+      </div>
+      <vue-button-group/>
+    </vue-sidebar-container >
+    <vue-post-container>
+      <v-alert
+        class="qwer"
+        :value="true"
+        color="#FF3700"
+        icon="check_circle"
+        outline
+      >
+        아주코인 콘텐츠 관리를 준수하지 않는 질문과 답변의 경우 사전 고지 없이 삭제 처리 되며, 신고 누적 시 사용자 계정 비활성화, 토큰 보상 보류 등의 페널티가 있습니다.
+      </v-alert>
+
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/><vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+      <vue-post-card/>
+
+    </vue-post-container>
+  </vue-board-container>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      search: '',
-      pagination: {},
-      selected: [],
-      headers: [
-        {
-          text: 'Dessert (100g serving)',
-          align: 'left',
-          sortable: false,
-          value: 'name'
-        },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' }
-      ],
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: '1%'
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: '1%'
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: '7%'
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: '8%'
-        },
-        {
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: '16%'
-        },
-        {
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: '0%'
-        },
-        {
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: '2%'
-        },
-        {
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: '45%'
-        },
-        {
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: '22%'
-        },
-        {
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: '6%'
-        }
-      ]
-    }
-  },
-  computed: {
-    pages () {
-      if (this.pagination.rowsPerPage == null ||
-        this.pagination.totalItems == null
-      ) return 0
+// containers
+import VuePostContainer from '~/containers/post'
+import VueSidebarContainer from '~/containers/sidebar/board'
+import VueBoardContainer from '~/containers/board'
 
-      return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
-    }
+// components
+import VuePostCard from '../../../components/common/cards/post'
+import VueButtonGroup from '~/components/common/buttons/underline/group'
+
+export default {
+  components: {
+    VuePostCard,
+    VuePostContainer,
+    VueButtonGroup,
+    VueSidebarContainer,
+    VueBoardContainer
   }
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.asdf {
+  padding: 10px 0 10px 17px;
+  text-align: center;
+  margin-bottom: 10px;
+  background-color: #abb5ff;
+  border-radius: 5px;
+}
+.qwer {
+  width:100%;
+  border-bottom: 20px solid transparent;
+}
 </style>
