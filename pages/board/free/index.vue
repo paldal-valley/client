@@ -2,7 +2,7 @@
   <vue-board-container>
 
     <!-- sidebar -->
-    <vue-board-sidebar/>
+    <vue-board-sidebar :buttons="buttons"/>
 
     <!-- posts -->
     <vue-board-post-list/>
@@ -23,7 +23,27 @@ export default {
     VueBoardContainer,
     VueBoardSidebar,
     VueBoardPostList,
-  }
+  },
+  data: () => ({
+    buttons: [
+      {
+        text: '자유 게시판',
+        to: '#'
+      },
+      {
+        text: '스터디 게시판',
+        to: '#'
+      },
+      {
+        text: '취업 게시판',
+        to: '#'
+      },
+      {
+        text: '맛집 게시판',
+        to: '#'
+      }
+    ]
+  })
 }
 </script>
 
