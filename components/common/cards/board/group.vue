@@ -1,6 +1,6 @@
 <template>
   <div class="category-group">
-    <h2>AC 광장</h2>
+    <h2>게시판</h2>
     <hr class="line-separator"/>
     <div class="category-card-container">
       <vue-board-card

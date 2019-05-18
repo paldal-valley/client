@@ -5,7 +5,9 @@
     <vue-board-sidebar :buttons="buttons"/>
 
     <!-- posts -->
-    <vue-board-post-list/>
+    <vue-board-post-list
+      api-endpoint="posts/plaza"
+      alertMsg="플라자 자유게시판 페이지입니다."/>
 
   </vue-board-container>
 </template>
@@ -28,19 +30,19 @@ export default {
     buttons: [
       {
         text: '자유 게시판',
-        to: '#'
+        to: '/board/plaza/free'
       },
       {
         text: '스터디 게시판',
-        to: '#'
+        to: '/board/plaza/study'
       },
       {
         text: '취업 게시판',
-        to: '#'
+        to: '/board/plaza/job'
       },
       {
         text: '맛집 게시판',
-        to: '#'
+        to: '/board/plaza/food'
       }
     ]
   })

@@ -130,16 +130,11 @@ export default {
     }
   },
   async created(){
-    // const { data } = await this.$axios.get('/posts_questions')
-    // this.posts = data
-    // console.log(data)
-      // this.$axios.$get('/boards').then((response) => {
-      //   this.posts.title = response
-      //   this.posts[0].createdDate = response[0].createdDate
-      //   console.log(this.posts[0].createdDate)
-      //   //this.posts[0].title = response.data
-      // })
-
+    const postId = this.$route.params.id || ''
+    //alert(postId) 
+    const { data } = await this.$axios.get(`/posts/readQ/${postId}`)
+    this.posts = data
+    //alert(this.posts)
 
   },
   methods: {
