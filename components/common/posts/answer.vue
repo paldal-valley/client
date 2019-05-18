@@ -77,11 +77,11 @@ import { interpreterDirective } from '@babel/types';
                 default: ''
             },
             view: {
-                type: String,
+                type: Number,
                 default: ''
             },
             recommend: {
-                type: String,
+                type: Number,
                 default: ''
             }
 

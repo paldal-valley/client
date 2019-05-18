@@ -1,6 +1,3 @@
-
-
-
 <template>
 <div>
 
@@ -31,7 +28,7 @@ export default {
   },
   data () {
     return {
-    posts: [
+    posts: 
         {
           title: '', //제목
           content: '', //내용
