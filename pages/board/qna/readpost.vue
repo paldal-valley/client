@@ -59,7 +59,7 @@ export default {
     }
   },
   async created(){
-    const { data } = await this.$axios.get('/boards')
+    const { data } = await this.$axios.get('/posts/question')
     this.posts = data
 
   },

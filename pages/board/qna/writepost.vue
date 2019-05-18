@@ -3,7 +3,7 @@
     <v-form>
       <!-- 아이템 중복 허용 옵션 muptiple -->
        <v-autocomplete
-        v-model="selected"
+        v-model="posts.type"
         :items="['취업', '진학','대외활동','기타']"
         chips
         label="질문 카테고리를 선택하세요"
@@ -54,7 +54,8 @@
           createdDate: '', //작성일
           lastModifiedDate: '', //최종 수정일
           isPending: '', 
-          isDeleted: ''          
+          isDeleted: '',    
+          type: ''      
         }
       }
     },
@@ -68,7 +69,8 @@
         this.$axios.$post('/posts', {
           userId: 28, // 로그인 기능 구현 후 modify
           title : this.posts.title,
-          content: this.posts.content
+          content: this.posts.content,
+          type: this.posts.type
 
       }).then(function (response) {
         console.log(response)

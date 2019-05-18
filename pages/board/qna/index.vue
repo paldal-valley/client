@@ -20,13 +20,21 @@
       class="elevation-1"
     >
       <template v-slot:items="props" >
+        <!-- <div 
+          v-for="post in posts"
+          :key="post.id">
+            {{post.title}}
+        </div> -->
         <!-- <td>{{ props.item.name }}</td> -->
-        <td class="text-xs-center"  @click="onReadClick();">{{ props.item.title }}</td>
+        <td class="text-sx_center" v-for="post in posts"
+        :key="post.id" @click="onReadClick(post);">{{ post.title }}</td>
+        <!-- <td class="text-xs-center" @click="onReadClick(post);">{{ props.item.title }}</td>
         <td class="text-xs-center">{{ props.item.writer }}</td>
         <td class="text-xs-center">{{ props.item.createdDate }}</td>
         <td class="text-xs-center">{{ props.item.answer }}</td>
         <td class="text-xs-center">{{ props.item.recommend }}</td>
-        <td class="text-xs-center">{{ props.item.view }}</td>
+        <td class="text-xs-center">{{ props.item.view }}</td> -->
+       
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -54,12 +62,7 @@ export default {
       pagination: {},
       selected: [],
       headers: [
-        {
-          text: '제목',
-          align: 'center',
-          sortable: false,
-          value: 'title',
-        },
+        { text: '제목', value: 'title', sortable: false, align: 'center' },
         { text: '작성자', value: 'writer', sortable: false, align: 'center'},
         { text: '작성일자', value: 'createdDate', align: 'center' },
         { text: '답변수', value: 'answer', align: 'center' },
@@ -84,9 +87,9 @@ export default {
 
             
     // })
-    const { data } = await this.$axios.get('/boards')
+    const { data } = await this.$axios.get('/posts')
     this.posts = data
-
+  
   },
   computed: {
     pages () {
@@ -109,8 +112,10 @@ export default {
       //this.posts[0].title = 취업꿀팁
       //window.location='./qna/writepost';
     },
-    onReadClick() {
-      this.$router.push('./qna/readpost');
+    onReadClick(post) {
+      const routerid = post.id
+      this.$router.push('./answer/'+post.id)
+      //this.$router.push({ path: './answers/:id?', params : { postId : routerid }})
       // this.$axios.$post('/boards', {
       //   id : '37',
       //   title : '한국어교육학과'
