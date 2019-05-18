@@ -5,7 +5,9 @@
     <vue-board-sidebar :buttons="buttons"/>
 
     <!-- posts -->
-    <vue-board-post-list/>
+    <vue-board-post-list
+      api-endpoint="posts/plaza"
+      alertMsg="아주코인"/>
 
   </vue-board-container>
 </template>
