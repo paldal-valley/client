@@ -12,6 +12,7 @@
 <script>
 import VueCarousel from '~/components/common/carousel'
 import VueBoardCardGroup from '~/components/common/cards/board/group'
+import { EventBus } from '~/utils/EventBus'
 
 export default {
   layout: 'main',
@@ -70,13 +71,16 @@ export default {
   },
   beforeMount(){
     $('nav').addClass('hide_background')
+    this.$store.dispatch('login_check')
+    .then((check)=>{
+      EventBus.$emit('isLogin', check)
+    })
   },
   mounted(){
     $('nav').addClass('hide_background')
     document.addEventListener('scroll', this.handleScroll);
   },
   destroyed(){
-    console.log('destroyed');
     document.removeEventListener('scroll', this.handleScroll);
     $('nav').removeClass('hide_background')    
   }

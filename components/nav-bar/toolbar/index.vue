@@ -121,6 +121,7 @@ export default {
             to: '#'
           },
           {
+            customid: 'logout_btn',
             text: '로그아웃',
             to: '#'
           }
@@ -134,12 +135,23 @@ export default {
     EventBus.$on('drawer-to-toolbar', data => {
       this.drawer = data.drawer
     })
+    this.isAuthenticated()
   },
   computed: {
     conditionalTab() {
       return this.tmpIsLoggedIn
         ? this.tabs.conditional.authorized
         : this.tabs.conditional.plain
+    }
+  },
+  methods: {
+    isAuthenticated () {
+      this.$store.dispatch('login_check').then(check => {
+        this.tmpIsLoggedIn = check
+      })
+    },
+    logout() {
+      this.$store.dispatch('logout')
     }
   }
 }

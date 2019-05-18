@@ -26,6 +26,10 @@
 
 <script>
 export default {
+  // created 시점에서는 localStorage 생성이 안되어있음
+  beforeMount(){
+    this.$store.dispatch('enhanceAccessToken')
+  }
 }
 </script>
 

@@ -32,11 +32,22 @@ import VueToolbar from '~/components/nav-bar/toolbar'
 import VueDrawer from '~/components/nav-bar/drawer'
 import VueFooter from '~/components/footer'
 export default {
+  // created 시점에서는 localStorage 생성이 안되어있음
+  beforeMount(){
+    this.$store.dispatch('enhanceAccessToken')
+    this.$store.dispatch('login_check')
+    .then((res)=>{
+      if(!res) {
+        alert("로그인이 필요합니다.")
+        this.$router.push('/auth/signin/?returnPath=' + this.$router.currentRoute.path)
+      }
+    })
+  },
   components: {
     VueToolbar,
     VueDrawer,
     VueFooter,
-  }
+  },
 }
 </script>
 

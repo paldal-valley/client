@@ -39,6 +39,9 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+import { EventBus } from '~/utils/EventBus'
+
 export default {
     layout: 'empty',
     data: () => ({
@@ -49,16 +52,15 @@ export default {
 
     methods: {
         submit(){
-            this.$axios.$post('/users/login', { // 경로확인
-                userId: this.id,
-                password: this.password,
-                }).then((res)=>{
-                    this.$router.push('/');
-                    console.log(res);                    
-                }).catch(err => {
-                    alert(err)
-                    console.log(err)
-                })
+          this.$store.dispatch('login', {userId: this.id, password: this.password})
+            .then(() => {
+              EventBus.$emit('login', true)
+              this.$router.push('/')
+            })
+            .catch(err => {
+              console.log(err)
+              alert(err)
+            })
         }
     }
 }

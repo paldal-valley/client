@@ -9,9 +9,11 @@
     <template
       #activator="{ on }">
       <v-btn
+        :id="customid"
         :to="to"
         class="hidden-sm-and-down"
         flat
+       @click.native="click"
         v-on="on">
         {{ text }}
       </v-btn>
@@ -21,8 +23,7 @@
       v-if="items.length">
       <v-list-tile
         v-for="(item, i) in items"
-        :key="i"
-        @click="">
+        :key="i">
 
         <v-list-tile-title>{{ item.text }}</v-list-tile-title>
       </v-list-tile>
@@ -52,6 +53,14 @@ export default {
     transition: {
       type: String,
       default: 'slide-x-transition'
+    },
+    click: {
+      type: Function,
+      default: () => {}
+    },
+    customid: {
+      type: String,
+      defalut: null
     }
   }
 }

@@ -2,7 +2,6 @@
   <v-app>
     <div class="foo-layout-container">
       <vue-toolbar
-        class="chiheon"
         toolbar-fixed
         toolbar-color="white"
         menu-hover
@@ -29,12 +28,15 @@
 </template>
 
 <script>
-import 'expose-loader?$!expose-loader?jQuery!jquery'
 import $ from 'jquery'
 import VueToolbar from '~/components/nav-bar/toolbar'
 import VueDrawer from '~/components/nav-bar/drawer'
 import VueFooter from '~/components/footer'
 export default {
+  // created 시점에서는 localStorage 생성이 안되어있음
+  beforeMount(){
+    this.$store.dispatch('enhanceAccessToken')
+  },
   components: {
     VueToolbar,
     VueDrawer,
