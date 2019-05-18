@@ -4,30 +4,39 @@
 <template>
 <div>
 
-<vue-question
+<vue-post
   :title="posts.title"
   :content="posts.content"
   :createdDate="posts.createdDate"
   :view="posts.view"
-  
-  ></vue-question>
+  :hasAnswerBtn = true
+  ></vue-post>
 
+<h4 class = "answer">
+    1개의 답변이 있습니다.
+</h4>
 
-
-<vue-answer></vue-answer>
+<vue-post
+  class="answer"
+  :title="posts.title"
+  :content="posts.content"
+  :createdDate="posts.createdDate"
+  :view="posts.view"
+  :hasSelectBtn = true
+  :hasTitle = false
+></vue-post>
 
 <!-- 답변 시작 -->
 </div>  
 </template>
 
 <script>
-import VueAnswer from "~/components/common/posts/answer" ;
-import VueQuestion from "~/components/common/posts/index" ;
+
+import VuePost from "~/components/common/posts/index" ;
 export default {
   //middleware : 'search',
   components: {
-    VueAnswer,
-    VueQuestion
+    VuePost
   },
   data () {
     return {
@@ -85,5 +94,8 @@ export default {
 </script>
 
 <style>
+.answer{
+  margin-top:20px;
 
+}
 </style>
