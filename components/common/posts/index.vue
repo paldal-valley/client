@@ -83,8 +83,8 @@ export default {
       default: ''
     },
     view: {
-      type: Number,
-      default: 0
+      type: String,
+      default: ''
     },
     hasAnswerBtn: {
       type: Boolean,

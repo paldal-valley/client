@@ -17,11 +17,11 @@
 </h4>
 
 <vue-post
+  v-for="answer in answers"
+  :key="answer.id"
   class="answer"
-  :title="posts.title"
-  :content="posts.content"
-  :createdDate="posts.createdDate"
-  :view="posts.view"
+  :content="answer.content"
+  :createdDate="answer.createdDate"
   :hasSelectBtn = true
   :hasTitle = false
 ></vue-post>
@@ -52,19 +52,22 @@ export default {
           isPending: '', 
           isDeleted: '',
           type: ''          
-
       },
+        answers: [],
      // postId: ''
     }
   },
-  async created(){
+  async mounted(){
 
     const postId = this.$route.params.id || ''
     //alert(postId) 
     const { data } = await this.$axios.get(`/posts/readQ/${postId}`)
     this.posts = data[0]
-  
 
+    const ans = (await this.$axios.get(`/posts/readA/9`)).data
+    // this.$axios.$get('/posts/readA/질문id(dynamic)')
+    this.answers = ans
+  
   },
   methods: {
 
