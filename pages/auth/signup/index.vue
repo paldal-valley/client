@@ -11,7 +11,7 @@
           outline
           :disabled= "email_send"
           v-model="form.email"
-          v-validate="'required|email'"
+          v-validate="'required|ajouEmail'"
           :error-messages="errors.collect('email')"
           label="E-mail"
           data-vv-name="email"
@@ -41,7 +41,6 @@
         </v-text-field>
       </v-container>
       <v-btn class="next" color="primary" :disabled="!email_confirm" @click="e6 = 2">다음 단계</v-btn>
-      <v-btn flat>취소</v-btn>
     </v-stepper-content>
 
     <v-stepper-step :complete="e6 > 2" step="2" color="primary">기본정보 입력</v-stepper-step>
@@ -117,12 +116,26 @@
       <v-btn class="before" color="#eeeeee" @click="e6 = 2">이전 단계</v-btn>
       <v-btn class="next" color="primary" :disabled="!enabled" @click="send_user_info">완료</v-btn>
     </v-stepper-content>
+    <v-snackbar
+      v-model="snackbar.open"
+      :timeout="snackbar.timeout"
+    >
+      {{ snackbar.text }}
+      <v-btn
+        color="pink"
+        flat
+        @click="snackbar.open = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
   </v-stepper>
 </template>
 
 <script>
   import Vue from 'vue'
   import VeeValidate from 'vee-validate'
+  import { AjouEmailRule } from '@/validates/AjouEmailValidates'
 
 /* 한글화 노가다 말고 'ko' locale 이용해서 해볼것
   import ko from 'vee-validate/dist/locale/ko.js'
@@ -135,6 +148,7 @@
   }
 
   Vue.use(VeeValidate, config)*/
+  VeeValidate.Validator.extend('ajouEmail', AjouEmailRule);
   Vue.use(VeeValidate)
 
   export default {
@@ -151,6 +165,8 @@
       token: '',
       token_input: '',
       email_send: false,
+      enabled: false,
+      email_confirm: false,
       form: {
         id: '',
         email: '',
@@ -172,8 +188,11 @@
         '블라블라학과',
         '어쩌구저쩌구학과'
       ],
-      enabled: false,
-      email_confirm: false,
+      snackbar: {
+        open: false,
+        text: '',
+        timeout: 4000,
+      },
       dictionary: {
         attributes: {
           email: 'E-mail Address',
@@ -201,6 +220,9 @@
             min: '지갑주소는 42자 입니다.'
           },
           majorId:{
+            required: () => '필수 정보입니다.'
+          },
+          email:{
             required: () => '필수 정보입니다.'
           }
         }
@@ -237,13 +259,20 @@
         this.$validator.validate('email').then(valid => {
           if (valid) {
             this.token = Math.random().toString(36).substring(2, 8);
-            console.log(this.token);
-            this.email_send = true;
             this.$axios.$post('/email', { // 경로확인
               email: this.form.email,
               token: this.token
             }).then((res)=>{
-              console.log(res)
+              if(res.msg == "email_dup"){
+                this.snackbar.text = "이미 인증된 이메일 주소입니다."
+                this.snackbar.open = true
+              }
+              else{
+                console.log(this.token);
+                this.email_send = true;
+                this.snackbar.text = "정상적으로 이메일이 전송 되었습니다."
+                this.snackbar.open = true
+              }
             })
           }
         });
@@ -265,9 +294,11 @@
           majorId: this.form.majorId
         }).then((res)=>{
           if (res == "ER_DUP_ENTRY"){
-            alert("이미 존재하는 아이디 입니다.")
+            this.snackbar.text = "이미 존재하는 아이디 입니다."
+            this.snackbar.open = true
           } else {
-            alert("회원가입이 완료되었습니다.")
+            this.snackbar.text = "회원가입이 정상적으로 되었습니다."
+            this.snackbar.open = true
             this.$router.push('/')
             }
         }).catch(err => {
