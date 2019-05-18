@@ -66,7 +66,7 @@
         //   //this.posts[0].title = response.data
         // })
         this.$axios.$post('/boards', {
-          userId: 28, // 로그인 기능 구현 후 modify
+          userId: 36, // 로그인 기능 구현 후 modify
           title : this.posts.title,
           content: this.posts.content
 
@@ -77,7 +77,7 @@
       .catch(err => {
           console.log(err)
         })
-        this.$router.push('./');
+        this.$router.go(-1);
       }
     }
   }
