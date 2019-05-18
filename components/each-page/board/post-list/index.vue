@@ -13,6 +13,13 @@
       </v-alert>
     </div>
 
+    <div class="float-add-post-btn">
+      <v-btn fab dark large color="#4E98A4">
+        <v-icon dark>edit</v-icon>
+      </v-btn>
+      <h3>글쓰기</h3>
+    </div>
+
     <!-- posts -->
     <vue-post-card
       v-for="post in posts"
@@ -97,5 +104,10 @@ export default {
 .append-btn-container {
   height: 100px;
   margin: 10px 3px 0 3px;
+}
+.float-add-post-btn {
+  position: fixed;
+  margin-left: 46%;
+  margin-top: 10%;
 }
 </style>
