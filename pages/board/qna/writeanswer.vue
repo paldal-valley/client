@@ -75,6 +75,8 @@
         //   this.posts[0].title = response
         //   //this.posts[0].title = response.data
         // })
+       // const postId = 9 || ''
+        this.$axios.$get(`/posts/readA/9`)
         this.$axios.$post('/posts/answer', {
           userId: 35, //답변 단 사람 id
           content: this.posts.content,
