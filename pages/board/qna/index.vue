@@ -1,3 +1,5 @@
+
+
 <template>
   <v-card>
     <v-card-title>
@@ -6,7 +8,7 @@
       <v-text-field
         v-model="search"
         append-icon="search"
-        label="Search"
+        label="제목, 작성자, 내용으로 검색하세요"
         single-line
         hide-details
       ></v-text-field>
@@ -19,14 +21,18 @@
       :pagination.sync="pagination"
       class="elevation-1"
     >
-      <template v-slot:items="props">
+
+      <template v-slot:items="props" > 
         <!-- <td>{{ props.item.name }}</td> -->
-        <td class="text-xs-center"  @click="onReadClick();">{{ props.item.title }}</td>
+        <td class="text-sx_center" v-for="post in posts"
+        :key="post.id" @click="onReadClick(post);">{{ post.title }}</td>
+        <!-- <td class="text-xs-center" @click="onReadClick(post);">{{ props.item.title }}</td>
         <td class="text-xs-center">{{ props.item.writer }}</td>
         <td class="text-xs-center">{{ props.item.createdDate }}</td>
         <td class="text-xs-center">{{ props.item.answer }}</td>
         <td class="text-xs-center">{{ props.item.recommend }}</td>
-        <td class="text-xs-center">{{ props.item.view }}</td>
+        <td class="text-xs-center">{{ props.item.view }}</td> -->
+       
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -45,6 +51,7 @@
 </template>
 
 <script>
+import { ServerResponse } from 'http';
 export default {
   //middleware : 'search',
   data () {
@@ -53,47 +60,35 @@ export default {
       pagination: {},
       selected: [],
       headers: [
-        {
-          text: '제목',
-          align: 'center',
-          sortable: false,
-          value: 'title',
-        },
+        { text: '제목', value: 'title', sortable: false, align: 'center' },
         { text: '작성자', value: 'writer', sortable: false, align: 'center'},
         { text: '작성일자', value: 'createdDate', align: 'center' },
-        { text: '답변수', value: 'answer', sortable: false, align: 'center' },
+        { text: '답변수', value: 'answer', align: 'center' },
         { text: '추천수', value: 'recommend', align: 'center' },
         { text: '조회수', value: 'view', align: 'center' },
 
       ],
-      posts: [
+    posts: [
         {
-          title: '취업꿀팁', 
-          writer: 'jane',
-          createdDate: 2019,
-          answer: 6,
-          recommend: 24,
-          view: 12
-        },
-        {
-          title: '삼성가즈아',
-          writer: 'arren',
-          createdDate: 2019,
-          answer: 2,
-          recommend: 10,
-          view: 11
-        },
-                {
-          title: 'hello현대',
-          writer: '하이루',
-          createdDate: 2019,
-          answer: 10,
-          recommend: 2,
-          view: 2
+          title: '', //제목
+          content: '', //내용
+          writer: '', // userId
+          view: '', // 조회수
+          recommended: '', // 추천수
+          createdDate: '', //작성일
+          lastModifiedDate: '', //최종 수정일
+          isPending: '', 
+          isDeleted: '',
+          type: ''          
         }
-        
-      ]
+    ]
     }
+  },
+  async created(){
+
+    const { data } = await this.$axios.get('/posts')
+    this.posts = data
+  
   },
   computed: {
     pages () {
@@ -106,12 +101,20 @@ export default {
   },
 
   methods: {
+
     onWriteClick() {
       this.$router.push('./qna/writepost');
-      //window.location='./qna/writepost';
     },
-    onReadClick() {
-      this.$router.push('./qna/readpost');
+    onReadClick(post) {
+      const routerid = post.id
+      this.$router.push(`./answer/${routerid}`)
+      //this.$router.push({ path: './answers/:id?', params : { postId : routerid }})
+      // this.$axios.$post('/boards', {
+      //   id : '37',
+      //   title : '한국어교육학과'
+      // }).then(function (response) {
+      //   console.log(response)
+      // })
       //window.location='./qna/readpost';
     }
   }
