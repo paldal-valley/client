@@ -85,19 +85,7 @@ export default {
     }
   },
   async created(){
-    // this.$axios.$get('/boards')
-    // .then((response)=>{
-    //     // this.posts[0].title = response
-    //       var i =0
-    //      //ISO->UTC 시간 변환
-    //         var UTCDate = new Date(response[i].createdDate).toUTCString()
-    //         // response.json
-    //         this.posts[i].title = response[i].title
-    //         this.posts[i].writer = response[i].userId //향후 user 테이블에서 실제 아이디 가져와야 함.
-    //         this.posts[i].createdDate = UTCDate
 
-            
-    // })
     const { data } = await this.$axios.get('/posts')
     this.posts = data
   
