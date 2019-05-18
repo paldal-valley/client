@@ -54,14 +54,27 @@ export default {
         submit(){
           this.$store.dispatch('login', {userId: this.id, password: this.password})
             .then(() => {
-              EventBus.$emit('login', true)
-              this.$router.push('/')
+              this.redirect()
             })
             .catch(err => {
               console.log(err)
               alert(err)
             })
-        }
+        },
+        redirect () {
+          const {search} = window.location
+          const tokens = search.replace(/^\?/, '').split('&')
+          let {returnPath} = tokens.reduce((qs, tkn) => {
+            const pair = tkn.split('=')
+            qs[pair[0]] = decodeURIComponent(pair[1])
+            return qs
+          }, {})
+          if (!returnPath) {
+            returnPath = '/'
+          }
+          // 리다이렉트 처리
+          this.$router.push(returnPath)
+        },
     }
 }
 </script>

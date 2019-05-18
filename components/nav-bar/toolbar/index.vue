@@ -121,7 +121,6 @@ export default {
             to: '#'
           },
           {
-            customid: 'logout_btn',
             text: '로그아웃',
             to: '#'
           }

@@ -9,11 +9,19 @@
     <template
       #activator="{ on }">
       <v-btn
-        :id="customid"
+        v-if="text === '로그아웃'"
         :to="to"
         class="hidden-sm-and-down"
         flat
-       @click.native="click"
+       @click.native="logout"
+        v-on="on">
+        {{ text }}
+      </v-btn>
+        <v-btn
+        v-else
+        :to="to"
+        class="hidden-sm-and-down"
+        flat
         v-on="on">
         {{ text }}
       </v-btn>
@@ -53,14 +61,14 @@ export default {
     transition: {
       type: String,
       default: 'slide-x-transition'
-    },
-    click: {
-      type: Function,
-      default: () => {}
-    },
-    customid: {
-      type: String,
-      defalut: null
+    }
+  },
+  methods:{
+    logout(){
+      this.$store.dispatch('logout').then(()=>{
+        this.$router.push('/')
+        location.reload()
+      })
     }
   }
 }
