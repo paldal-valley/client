@@ -19,13 +19,13 @@ export default {
   data: () => ({
     boardCards: [
       {
-        title: '자유게시판',
+        title: 'AC 광장',
         content: '선후배간 자유롭게 대화하세요!',
         imgSrc: require('@/assets/images/free.png'),
-        to: '/board/free'
+        to: '/board/plaza/free'
       },
       {
-        title: 'QnA 게시판',
+        title: 'Q&A 게시판',
         content: '질문과 답변을 올려보세요!',
         imgSrc: require('@/assets/images/qna.png'),
         to: '/board/qna'
