@@ -54,8 +54,8 @@
           createdDate: '', //작성일
           lastModifiedDate: '', //최종 수정일
           isPending: '', 
-          isDeleted: '',    
-          type: ''      
+          isDeleted: '',
+          type: ''          
         }
       }
     },
@@ -72,17 +72,24 @@
           content: this.posts.content,
           type: this.posts.type
 
-      }).then(function (response) {
+      }).
+      then(function (response) {
+        // save_post_question_db()
+        
         console.log(response)
         alert("질문이 등록되었습니다")
       })
       .catch(err => {
           console.log(err)
         })
-        this.$router.go(-1)
+        this.$router.go(-1);
       }
+
+
+      }
+
     }
-  }
+  
 </script>
 
 <style scoped>

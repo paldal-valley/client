@@ -1,3 +1,5 @@
+
+
 <template>
   <v-card>
     <v-card-title>
@@ -19,12 +21,8 @@
       :pagination.sync="pagination"
       class="elevation-1"
     >
-      <template v-slot:items="props" >
-        <!-- <div 
-          v-for="post in posts"
-          :key="post.id">
-            {{post.title}}
-        </div> -->
+
+      <template v-slot:items="props" > 
         <!-- <td>{{ props.item.name }}</td> -->
         <td class="text-sx_center" v-for="post in posts"
         :key="post.id" @click="onReadClick(post);">{{ post.title }}</td>
@@ -70,7 +68,20 @@ export default {
         { text: '조회수', value: 'view', align: 'center' },
 
       ],
-      posts: []
+    posts: [
+        {
+          title: '', //제목
+          content: '', //내용
+          writer: '', // userId
+          view: '', // 조회수
+          recommended: '', // 추천수
+          createdDate: '', //작성일
+          lastModifiedDate: '', //최종 수정일
+          isPending: '', 
+          isDeleted: '',
+          type: ''          
+        }
+    ]
     }
   },
   async created(){
