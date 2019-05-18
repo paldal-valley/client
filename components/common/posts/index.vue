@@ -9,7 +9,9 @@
             </span>
             <br><br>
           </div>
-          <h2 class="title">
+          <h2 
+          v-if="hasTitle"
+          class="title">
             {{ title }}
           </h2>
           <br><br>
@@ -38,6 +40,11 @@
       <div></div>
     </v-form>
     <div class="text-xs-right pt-2">
+       <v-btn 
+        v-if="hasSelectBtn"
+        outline large fab color="blue">
+          <v-icon>check</v-icon>
+      </v-btn>
       <v-btn outline large fab color="red">
         <v-icon>thumb_up</v-icon>
       </v-btn>
@@ -82,7 +89,16 @@ export default {
     hasAnswerBtn: {
       type: Boolean,
       default: false
+    },
+    hasSelectBtn: {
+      type: Boolean,
+      default: false
+    },
+    hasTitle:{
+      type: Boolean,
+      default: true
     }
+
   },
 }
 </script>
