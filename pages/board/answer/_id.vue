@@ -7,7 +7,7 @@
   :createdDate="posts.createdDate"
   :view="posts.view"
   :hasAnswerBtn = true
-  :questionId="posts.id"
+  :questionId="posts.postId"
   ></vue-post>
 
 <h4 class = "answer">
