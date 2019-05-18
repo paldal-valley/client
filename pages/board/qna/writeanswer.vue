@@ -1,27 +1,37 @@
 <template>
   <v-card>
     <v-form>
-      <!-- 아이템 중복 허용 옵션 muptiple -->
-       <v-autocomplete
-        v-model="selected"
-        :items="['취업', '진학','대외활동','기타']"
-        chips
-        label="질문 카테고리를 선택하세요"
-        full-width
-        hide-details
-        hide-no-data
-        hide-selected
-        single-line
-      ></v-autocomplete>
-      <v-divider></v-divider>
-      <v-text-field
-        class="title"
-        v-model="posts.title"
-        label="Q. 물음표로 끝나는 제목을 입력해보세요"     
-        single-line
-        full-width
-        hide-details
-      ></v-text-field>
+          <div class = "question" >
+        <header class = "question-show-box">
+            <div data category>
+                <!-- 글 카테고리 -->
+                <span class = "category" style="float:left; margin-top:10px; margin-left:5px;">
+                    취업
+                </span>
+            </div><br><br>
+            <h2 class = "title" style="float:left; margin-top:8px; margin-left:10px;">
+                <span class = "text-primary">
+                    Q.
+                </span>
+                취뽀하는 방법 없나요?
+            </h2><br><br>
+            <p class = "question-info" style="margin-top:5px; margin-left:20px;">
+                <span class = "writer">
+                    <strong class = "nickname" style="float:left;">HaHa</strong>
+                </span>
+                <span class = "date" style="float:left; margin-left:10px; color:gray;">
+                    2019. 05. 02.
+                </span>
+                <span class = "view" style="float:left; margin-left:10px; color:gray;">
+                    조회수 33
+                </span>
+            </p>
+            <br>
+            <p class = "content"> 내용</p>
+            <br><hr>
+        </header>
+    </div>
+    <!-- 답변 내용 text area -->
       <v-divider></v-divider>
       <v-textarea
         class = "content"
@@ -34,7 +44,7 @@
       ></v-textarea>
     </v-form>
    <v-btn v-on:click = "save_post_db" block color="#054d95" class="white--text">
-     <strong>질문 등록</strong>
+     <strong>답변 등록</strong>
     </v-btn>
   </v-card>
 
@@ -59,7 +69,7 @@
       }
     },
     methods : {
-
+      
       save_post_db: function(event) {
         // this.$axios.$get('/boards').then((response) => {
         //   this.posts[0].title = response
