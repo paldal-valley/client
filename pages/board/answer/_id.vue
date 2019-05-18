@@ -10,7 +10,7 @@
   ></vue-post>
 
 <h4 class = "answer">
-    1개의 답변이 있습니다.
+    {{answers.length}}개의 답변이 있습니다.
 </h4>
 
 <vue-post
@@ -61,13 +61,12 @@ export default {
     const { data } = await this.$axios.get(`/posts/readQ/${postId}`)
     this.posts = data[0]
 
-    const ans = (await this.$axios.get(`/posts/readA/9`)).data
+    const ans = (await this.$axios.get(`/posts/readA/${this.posts.id}`)).data
     // this.$axios.$get('/posts/readA/질문id(dynamic)')
     this.answers = ans
-  
+
   },
   methods: {
-
 
   }
 }
