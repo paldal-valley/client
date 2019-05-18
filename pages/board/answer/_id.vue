@@ -1,20 +1,33 @@
+
+
+
 <template>
-  <div>
-    <vue-post
-      title="타이틀"
-      content="내용"
-      category="카테고리"
-      user-name="이병헌"
-      created-date="2019. 01. 01"
-      view="34"/>
-  </div>
+<div>
+
+<vue-question
+  :title="posts.title"
+  :content="posts.content"
+  :createdDate="posts.createdDate"
+  :view="posts.view"
+  
+  ></vue-question>
+
+
+
+<vue-answer></vue-answer>
+
+<!-- 답변 시작 -->
+</div>  
 </template>
 
 <script>
-import VuePost from '~/components/common/posts'
+import VueAnswer from "~/components/common/posts/answer" ;
+import VueQuestion from "~/components/common/posts/index" ;
 export default {
+  //middleware : 'search',
   components: {
-    VuePost
+    VueAnswer,
+    VueQuestion
   },
   data () {
     return {
@@ -30,16 +43,18 @@ export default {
           isPending: '', 
           isDeleted: '',
           type: ''          
-        }
-    ]
+
+      },
+     // postId: ''
     }
   },
   async created(){
+
     const postId = this.$route.params.id || ''
     //alert(postId) 
     const { data } = await this.$axios.get(`/posts/readQ/${postId}`)
-    this.posts = data
-    //alert(this.posts[0].title)
+    this.posts = data[0]
+  
 
   },
   methods: {
