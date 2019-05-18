@@ -6,8 +6,8 @@
 
     <!-- posts -->
     <vue-board-post-list
-      api-endpoint="posts/plaza"
-      alertMsg="플라자 자유게시판 페이지입니다."/>
+      api-endpoint="posts/plaza?category=1"
+      alert-msg="플라자 자유게시판 페이지입니다."/>
 
   </vue-board-container>
 </template>

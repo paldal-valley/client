@@ -1,11 +1,11 @@
 <template>
   <div>
     <vue-post
-      title="타이틀"
-      content="내용"
+      :title="post.title"
+      :content="post.content"
       category="카테고리"
       user-name="이병헌"
-      created-date="2019. 01. 01"
+      :created-date="post.createdDate"
       view="34"/>
   </div>
 </template>
@@ -16,9 +16,27 @@ export default {
   components: {
     VuePost
   },
+  data: () => ({
+    postId: '',
+    post: {}
+
+  }),
+  mounted() {
+    this.postId = this.$route.params.postId
+    this.fetchPost()
+  },
   methods: {
     async fetchPost() {
-
+      try {
+        const options = {
+          url: `posts/plaza/${this.postId}`,
+          method: 'get'
+        }
+        const { data } = await this.$axios(options)
+        this.post = data
+      } catch (err) {
+        console.error(err)
+      }
     }
   }
 }
