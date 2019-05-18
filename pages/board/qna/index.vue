@@ -6,7 +6,7 @@
       <v-text-field
         v-model="search"
         append-icon="search"
-        label="Search"
+        label="제목, 작성자, 내용으로 검색하세요"
         single-line
         hide-details
       ></v-text-field>
@@ -19,7 +19,7 @@
       :pagination.sync="pagination"
       class="elevation-1"
     >
-      <template v-slot:items="props">
+      <template v-slot:items="props" >
         <!-- <td>{{ props.item.name }}</td> -->
         <td class="text-xs-center"  @click="onReadClick();">{{ props.item.title }}</td>
         <td class="text-xs-center">{{ props.item.writer }}</td>
@@ -62,39 +62,31 @@ export default {
         },
         { text: '작성자', value: 'writer', sortable: false, align: 'center'},
         { text: '작성일자', value: 'createdDate', align: 'center' },
-        { text: '답변수', value: 'answer', sortable: false, align: 'center' },
+        { text: '답변수', value: 'answer', align: 'center' },
         { text: '추천수', value: 'recommend', align: 'center' },
         { text: '조회수', value: 'view', align: 'center' },
 
       ],
-      posts: [
-        {
-          title: '취업꿀팁', 
-          writer: 'jane',
-          createdDate: 2019,
-          answer: 6,
-          recommend: 24,
-          view: 12
-        }
-        ,
-        {
-          title: '삼성가즈아',
-          writer: 'arren',
-          createdDate: 2019,
-          answer: 2,
-          recommend: 10,
-          view: 11
-        },
-                {
-          title: 'hello현대',
-          writer: '하이루',
-          createdDate: 2019,
-          answer: 10,
-          recommend: 2,
-          view: 2
-        }
-      ]
+      posts: []
     }
+  },
+  async created(){
+    // this.$axios.$get('/boards')
+    // .then((response)=>{
+    //     // this.posts[0].title = response
+    //       var i =0
+    //      //ISO->UTC 시간 변환
+    //         var UTCDate = new Date(response[i].createdDate).toUTCString()
+    //         // response.json
+    //         this.posts[i].title = response[i].title
+    //         this.posts[i].writer = response[i].userId //향후 user 테이블에서 실제 아이디 가져와야 함.
+    //         this.posts[i].createdDate = UTCDate
+
+            
+    // })
+    const { data } = await this.$axios.get('/boards')
+    this.posts = data
+
   },
   computed: {
     pages () {
@@ -107,6 +99,7 @@ export default {
   },
 
   methods: {
+
     onWriteClick() {
       this.$router.push('./qna/writepost');
       // this.$axios.$get('/boards').then((response) => {

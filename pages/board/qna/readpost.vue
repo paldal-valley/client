@@ -43,13 +43,50 @@
     <v-btn outline large fab color="red">
       <v-icon>thumb_up</v-icon>
     </v-btn></div>
-    <v-btn block color="#054d95" class="white--text">
+    <v-btn block color="#054d95" class="white--text" @click="onWriteClick();">
         <strong>답변하기</strong>
     </v-btn>
     </v-card>
 </template>
 
 <script>
+import { ServerResponse } from 'http';
+export default {
+  //middleware : 'search',
+  data () {
+    return {
+      posts: []
+    }
+  },
+  async created(){
+    const { data } = await this.$axios.get('/boards')
+    this.posts = data
+
+  },
+  methods: {
+
+    onWriteClick() {
+      this.$router.push('./writeanswer');
+      // this.$axios.$get('/boards').then((response) => {
+      //   this.posts[0].title = response
+      //   //this.posts[0].title = response.data
+      // })
+      //this.posts[0].title = 취업꿀팁
+      //window.location='./qna/writepost';
+    },
+    onReadClick() {
+      this.$router.push('./qna/readpost');
+      // this.$axios.$post('/boards', {
+      //   id : '37',
+      //   title : '한국어교육학과'
+      // }).then(function (response) {
+      //   console.log(response)
+      // })
+      //window.location='./qna/readpost';
+    }
+  }
+}
+
 </script>
 
 <style>
