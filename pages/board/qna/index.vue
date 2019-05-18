@@ -1,3 +1,5 @@
+
+
 <template>
   <v-card>
     <v-card-title>
@@ -19,7 +21,8 @@
       :pagination.sync="pagination"
       class="elevation-1"
     >
-      <template v-slot:items="props" >
+
+      <template v-slot:items="props" > 
         <!-- <td>{{ props.item.name }}</td> -->
         <td class="text-xs-center"  @click="onReadClick();">{{ props.item.title }}</td>
         <td class="text-xs-center">{{ props.item.writer }}</td>
@@ -67,7 +70,20 @@ export default {
         { text: '조회수', value: 'view', align: 'center' },
 
       ],
-      posts: []
+    posts: [
+        {
+          title: '', //제목
+          content: '', //내용
+          writer: '', // userId
+          view: '', // 조회수
+          recommended: '', // 추천수
+          createdDate: '', //작성일
+          lastModifiedDate: '', //최종 수정일
+          isPending: '', 
+          isDeleted: '',
+          type: ''          
+        }
+    ]
     }
   },
   async created(){
@@ -84,7 +100,7 @@ export default {
 
             
     // })
-    const { data } = await this.$axios.get('/boards')
+    const { data } = await this.$axios.get('/posts')
     this.posts = data
 
   },
@@ -109,7 +125,7 @@ export default {
       //this.posts[0].title = 취업꿀팁
       //window.location='./qna/writepost';
     },
-    onReadClick() {
+    async onReadClick() {
       this.$router.push('./qna/readpost');
       // this.$axios.$post('/boards', {
       //   id : '37',

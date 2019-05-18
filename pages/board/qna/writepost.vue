@@ -3,7 +3,7 @@
     <v-form>
       <!-- 아이템 중복 허용 옵션 muptiple -->
        <v-autocomplete
-        v-model="selected"
+        v-model="posts.type"
         :items="['취업', '진학','대외활동','기타']"
         chips
         label="질문 카테고리를 선택하세요"
@@ -54,23 +54,24 @@
           createdDate: '', //작성일
           lastModifiedDate: '', //최종 수정일
           isPending: '', 
-          isDeleted: ''          
+          isDeleted: '',
+          type: ''          
         }
       }
     },
     methods : {
 
       save_post_db: function(event) {
-        // this.$axios.$get('/boards').then((response) => {
-        //   this.posts[0].title = response
-        //   //this.posts[0].title = response.data
-        // })
-        this.$axios.$post('/boards', {
+        this.$axios.$post('/posts', {
           userId: 36, // 로그인 기능 구현 후 modify
           title : this.posts.title,
-          content: this.posts.content
+          content: this.posts.content,
+          type: this.posts.type
 
-      }).then(function (response) {
+      }).
+      then(function (response) {
+        // save_post_question_db()
+        
         console.log(response)
         alert("질문이 등록되었습니다")
       })
@@ -79,8 +80,12 @@
         })
         this.$router.go(-1);
       }
+
+
+      }
+
     }
-  }
+  
 </script>
 
 <style scoped>

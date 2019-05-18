@@ -27,7 +27,6 @@
                 </span>
             </p>
             <br>
-            <p class = "content"> 내용</p>
             <br><hr>
         </header>
     </div>
@@ -64,7 +63,8 @@
           createdDate: '', //작성일
           lastModifiedDate: '', //최종 수정일
           isPending: '', 
-          isDeleted: ''          
+          isDeleted: '',
+          postId: '' // 해당하는 질문의 id          
         }
       }
     },
@@ -75,19 +75,19 @@
         //   this.posts[0].title = response
         //   //this.posts[0].title = response.data
         // })
-        this.$axios.$post('/boards', {
-          userId: 28, // 로그인 기능 구현 후 modify
-          title : this.posts.title,
-          content: this.posts.content
+        this.$axios.$post('/posts/answer', {
+          userId: 35, //답변 단 사람 id
+          content: this.posts.content,
+          postId: 9 // 질문의 포스트 아이디
 
       }).then(function (response) {
         console.log(response)
-        alert("질문이 등록되었습니다")
+        alert("답변이 등록되었습니다")
       })
       .catch(err => {
           console.log(err)
         })
-        this.$router.push('./');
+        this.$router.go('-1');
       }
     }
   }

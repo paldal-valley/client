@@ -60,22 +60,9 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-<<<<<<< HEAD
     // See https://github.com/nuxt-community/axios-module#options
     baseURL:
      process.env.NODE_ENV == 'production' ? 'https://54.180.144.27:8000' : 'http://localhost:8000/'
-=======
-    baseURL:
-      process.env.NODE_ENV == 'production' ? 'https://54.180.144.27:8000' : 'http://localhost:8000/',
-    // credentials: true,
-    // proxy: false,
-    // debug: false, // ture시 콘솔에 모든 데이터 다 찍힘
-    // requestInterceptor: (config, { store }) => {
-    //   config.headers.common['Authorization'] = ''
-    //   config.headers.common['Content-Type'] = 'application/x-www-form-urlencoded;application/json'
-    //   return config
-    // }
->>>>>>> 18afb6d5abdd78ae11202b5dd255b5c51b2c5265
   },
 
   /*
