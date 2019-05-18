@@ -53,7 +53,7 @@
       v-if="hasAnswerBtn"
       block
       color="#054d95"
-      class="white--text">
+      class="white--text" @click="onWriteClick();">
       <strong>답변하기</strong>
     </v-btn>
   </v-card>
@@ -97,9 +97,28 @@ export default {
     hasTitle:{
       type: Boolean,
       default: true
+    },
+    questionId:{
+      type: String,
+      default: ''
+
     }
 
   },
+   methods: {
+
+    onWriteClick() {
+      const routerid = this.questionId
+      this.$router.push('./qna/${routerid}');
+      // this.$axios.$get('/boards').then((response) => {
+      //   this.posts[0].title = response
+      //   //this.posts[0].title = response.data
+      // })
+      //this.posts[0].title = 취업꿀팁
+      //window.location='./qna/writepost';
+    }
+}
+
 }
 </script>
 
