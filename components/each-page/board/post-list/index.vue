@@ -14,27 +14,19 @@
     </div>
 
     <!-- posts -->
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-    <vue-post-card/>
-
+    <vue-post-card
+      v-for="post in posts"
+      :key="post.id"
+      :post="post"
+      :to="`/board/plaza/${post.id}`"/>
+    <div class="append-btn-container">
+      <v-btn
+        block
+        round
+        color="gray"
+        style="font-weight: bold;"
+        @click="appendPost">더 보기</v-btn>
+    </div>
   </vue-post-container>
 </template>
 
@@ -49,6 +41,10 @@ export default {
     VuePostContainer,
     VuePostCard
   },
+  data: () => ({
+    postCnt: 5,
+    posts: []
+  }),
   props: {
     apiEndpoint: {
       type: String,
@@ -60,6 +56,34 @@ export default {
       default: '아주코인 콘텐츠 관리를 준수하지 않는 질문과 답변의 경우 사전 고지 없이 삭제 처리 되며, 신고 누적 시 사용자 계정 비활성화, 토큰 보상 보류 등의 페널티가 있습니다.'
     }
   },
+  watch: {
+    '$route.query'() {
+      this.fetchPostList()
+    }
+  },
+  async mounted() {
+    this.fetchPostList()
+  },
+  methods: {
+    async fetchPostList() {
+      const query = this.$route.query || {}
+      const options = {
+        url: this.apiEndpoint,
+        method: 'get',
+        params: query
+      }
+      try {
+        const { data } = await this.$axios(options)
+        this.posts = data
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    appendPost() {
+      const payload = { limit: this.postCnt += 5 }
+      this.$updateQuerystring(payload)
+    }
+  }
 }
 </script>
 
@@ -69,5 +93,9 @@ export default {
   .post-alert {
     width: 100%;
   }
+}
+.append-btn-container {
+  height: 100px;
+  margin: 10px 3px 0 3px;
 }
 </style>

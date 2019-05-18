@@ -1,24 +1,30 @@
 <template>
   <nuxt-link
-    to="#"
+    :to="to"
     class="card-link">
     <div class="card-container">
-      <h2 class="card__title">{{ title }}</h2>
-      <p class="card__content">{{ content }}</p>
+      <h2 class="card__title">{{ post.title }}</h2>
+      <p class="card__content">{{ post.content }}</p>
     </div>
   </nuxt-link>
 </template>
 
 <script>
+// props
+// exist: title, view, id, recommended, content
+// need: createdDate, tag, category
 export default {
   name: 'index',
-  data: () => ({
-    title: '테스트',
-    content: '내용',
-    category: '카테고리',
-    tag: '# hashtag',
-    createdDate: ''
-  })
+  props: {
+    post: {
+      type: Object,
+      default: () => ({})
+    },
+    to: {
+      type: String,
+      default: '#'
+    }
+  }
 }
 </script>
 
@@ -38,16 +44,18 @@ export default {
 
     position: relative;
     list-style: none;
-    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.07), 0 5px 20px 0 rgba(0, 0, 0, 0.06),
-    0 8px 40px 0 rgba(0, 0, 0, 0.04);
+    box-shadow: $box-shadow;
     &:hover {
       .card__title {
-        color: $ac-green;
+        color: $ac-green2;
+      }
+      .card__content {
+        color: $ac-green2;
       }
     }
   }
   .card__title {
-    color: $ac-green2;
+    color: black;
   }
   .card__content {
     color: $ac-green3;
