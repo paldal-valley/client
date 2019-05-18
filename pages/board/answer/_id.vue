@@ -17,11 +17,10 @@ export default {
   },
   async created(){
     const postId = this.$route.params.id || ''
-    //alert(postId)
-    const { data } = await this.$axios.get(`/posts/readQ/${postId}`)
-    this.posts = data
-
-
+    //alert(postId) 
+     const { data } = await this.$axios.get(`/posts/readQ/${postId}`)
+     this.posts = data
+     //alert(this.posts)
   },
   methods: {
 

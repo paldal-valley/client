@@ -114,7 +114,7 @@ export default {
     },
     onReadClick(post) {
       const routerid = post.id
-      this.$router.push('./answer/'+post.id)
+      this.$router.push(`./answer/${routerid}`)
       //this.$router.push({ path: './answers/:id?', params : { postId : routerid }})
       // this.$axios.$post('/boards', {
       //   id : '37',
