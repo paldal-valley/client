@@ -1,12 +1,56 @@
 <template>
-  <vue-question></vue-question>
+  <v-card>
+    <v-form>
+       <v-autocomplete
+        v-if="hasCategory"
+        v-model="posts.type"
+        :items="['취업', '진학','대외활동','기타']"
+        chips
+        label="질문 카테고리를 선택하세요"
+        full-width
+        hide-details
+        hide-no-data
+        hide-selected
+        single-line
+      ></v-autocomplete>
+      <v-divider></v-divider>
+      <v-text-field
+        v-if="hasTitle"
+        class="title"
+        v-model="posts.title"
+        label="Q. 제목을 입력하세요"     
+        single-line
+        full-width
+        hide-details
+      ></v-text-field>
+      <v-divider></v-divider>
+      <v-textarea
+        class = "content"
+        v-model="posts.content"
+        label="내용"
+        counter
+        full-width
+        single-line
+        rows = 13px;
+      ></v-textarea>
+    </v-form>
+   <v-btn v-on:click = "save_post_db" block color="#054d95" class="white--text">
+     <strong>질문 등록</strong>
+    </v-btn>
+  </v-card>
 </template>
 
 <script>
-  import VueQuestion from "~/components/common/posts/write";
   export default {
-    components: {
-      VueQuestion
+    props: {
+        hasCategory: {
+            type: Boolean,
+            default: true
+        },
+        hasTitle: {
+            type: Boolean,
+            default: true
+        }
     },
     data () {
       return {
