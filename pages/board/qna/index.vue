@@ -104,12 +104,6 @@ export default {
 
     onWriteClick() {
       this.$router.push('./qna/writepost');
-      // this.$axios.$get('/boards').then((response) => {
-      //   this.posts[0].title = response
-      //   //this.posts[0].title = response.data
-      // })
-      //this.posts[0].title = 취업꿀팁
-      //window.location='./qna/writepost';
     },
     onReadClick(post) {
       const routerid = post.id

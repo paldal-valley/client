@@ -109,7 +109,7 @@ export default {
 
     onWriteClick() {
       const routerid = this.questionId
-      this.$router.push('./qna/${routerid}');
+      this.$router.push(`../qna/${routerid}`);
       // this.$axios.$get('/boards').then((response) => {
       //   this.posts[0].title = response
       //   //this.posts[0].title = response.data
