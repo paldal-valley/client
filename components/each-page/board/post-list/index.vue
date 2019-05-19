@@ -25,7 +25,7 @@
       v-for="post in posts"
       :key="post.id"
       :post="post"
-      :to="`/board/plaza/${post.id}`"/>
+      :to="`${postLinkPrefix}${post.id}`"/>
     <div class="append-btn-container">
       <v-btn
         block
@@ -54,6 +54,11 @@ export default {
   }),
   props: {
     apiEndpoint: {
+      type: String,
+      default: '',
+      required: true
+    },
+    postLinkPrefix: {
       type: String,
       default: '',
       required: true
