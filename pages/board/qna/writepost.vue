@@ -1,5 +1,10 @@
 <template>
+<div>
   <vue-question></vue-question>
+    <v-btn v-on:click = "save_post_db" block color="#054d95" class="white--text">
+    <strong>질문 등록</strong>
+   </v-btn>
+</div>
 </template>
 
 <script>

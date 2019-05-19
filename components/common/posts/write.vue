@@ -34,9 +34,6 @@
        rows = 13px;
      ></v-textarea>
    </v-form>
-  <v-btn v-on:click = "save_post_db" block color="#054d95" class="white--text">
-    <strong>질문 등록</strong>
-   </v-btn>
  </v-card>
 </template>
 
@@ -68,41 +65,10 @@
          type: ''
        }
      }
-   },
-   methods : {
-
-     save_post_db: function(event) {
-       // this.$axios.$get('/boards').then((response) => {
-       //   this.posts[0].title = response
-       //   //this.posts[0].title = response.data
-       // })
-       this.$axios.$post('/posts', {
-         userId: 28, // 로그인 기능 구현 후 modify
-         title : this.posts.title,
-         content: this.posts.content,
-         type: this.posts.type
-
-     }).
-     then(function (response) {
-       // save_post_question_db()
-
-       console.log(response)
-       alert("질문이 등록되었습니다")
-     })
-     .catch(err => {
-         console.log(err)
-       })
-       this.$router.go(-1);
-     }
-
-
-     }
-
+   }
    }
 
 </script>
 
 <style scoped>
-
-
 </style>
