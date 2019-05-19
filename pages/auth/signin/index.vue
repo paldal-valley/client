@@ -6,7 +6,7 @@
             label="ID"
             v-model="id"
             outline
-            required            
+            required
           ></v-text-field>
             <v-text-field
             ref="password"
@@ -43,7 +43,7 @@ import { mapMutations } from 'vuex'
 import { EventBus } from '~/utils/EventBus'
 
 export default {
-    layout: 'empty',
+    layout: 'login',
     data: () => ({
         id:'',
         password:'',
