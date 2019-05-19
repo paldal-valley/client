@@ -46,30 +46,6 @@ export default {
         }
       }
     },
-    methods: {
-
-      //글쓰기에 연동되는 부분. 해당 부분 수정하면 답변 달릴 듯.
-      save_post_db: function(event) {
-        this.$axios.$post('/posts', {
-          userId: 28, // 로그인 기능 구현 후 modify
-          title : this.posts.title,
-          content: this.posts.content,
-          type: this.posts.type
-
-      }).
-      then(function (response) {
-        // save_post_question_db()
-        
-        console.log(response)
-        alert("질문이 등록되었습니다")
-      })
-      .catch(err => {
-          console.log(err)
-        })
-        this.$router.go(-1);
-      }
-
-    }
 
 }
 </script>
