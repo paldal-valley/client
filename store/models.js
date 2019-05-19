@@ -28,6 +28,7 @@ export const actions = {
       const { data } = await this.$axios(options)
       return commit('SET_STATICS', data)
     } catch (err) {
+      console.error(err)
       throw console.error('error in actions: [models/FETCH_STATICS]')
     }
   }

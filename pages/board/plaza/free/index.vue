@@ -62,11 +62,11 @@ export default {
         to: '/board/plaza/free'
       },
       {
-        text: 'Q&A 게시판',
+        text: 'Q&A',
         to: '/board/qna/job'
       },
       {
-        text: '수기게시판',
+        text: '수기',
         to: '/board/review/jobreview'
       }
     ]

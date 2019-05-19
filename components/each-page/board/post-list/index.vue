@@ -35,7 +35,8 @@
       <v-btn
         block
         round
-        color="gray"
+        class="append-btn"
+        color="#4E98A4"
         style="font-weight: bold;"
         @click="appendPost"
         >더 보기</v-btn
@@ -118,6 +119,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~assets/scss/index';
 .alert-container {
   margin: -4px 3px 0 3px;
   .post-alert {
@@ -127,7 +129,11 @@ export default {
 .append-btn-container {
   height: 100px;
   margin: 10px 3px 0 3px;
+  .append-btn {
+    color: white !important;
+  }
 }
+
 // .float-add-post-btn {
 //   position: fixed;
 //   margin-left: 46%;
