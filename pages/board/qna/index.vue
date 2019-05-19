@@ -1,5 +1,3 @@
-
-
 <template>
   <v-card>
     <v-card-title>
@@ -21,18 +19,22 @@
       :pagination.sync="pagination"
       class="elevation-1"
     >
-
-      <template v-slot:items="props" > 
+      <template v-slot:items="props">
         <!-- <td>{{ props.item.name }}</td> -->
-        <td class="text-sx_center" v-for="post in posts"
-        :key="post.id" @click="onReadClick(post);">{{ post.title }}</td>
+        <td
+          class="text-sx_center"
+          v-for="post in posts"
+          :key="post.id"
+          @click="onReadClick(post)"
+        >
+          {{ post.title }}
+        </td>
         <!-- <td class="text-xs-center" @click="onReadClick(post);">{{ props.item.title }}</td>
         <td class="text-xs-center">{{ props.item.writer }}</td>
         <td class="text-xs-center">{{ props.item.createdDate }}</td>
         <td class="text-xs-center">{{ props.item.answer }}</td>
         <td class="text-xs-center">{{ props.item.recommend }}</td>
         <td class="text-xs-center">{{ props.item.view }}</td> -->
-       
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -40,35 +42,33 @@
         </v-alert>
       </template>
     </v-data-table>
-     <div class="text-xs-center pt-2">
+    <div class="text-xs-center pt-2">
       <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
     </div>
     <div style="float:right;">
-    <v-btn round color="primary" dark @click="onWriteClick();">글쓰기</v-btn>
+      <v-btn round color="primary" dark @click="onWriteClick()">글쓰기</v-btn>
     </div>
   </v-card>
-      
 </template>
 
 <script>
-import { ServerResponse } from 'http';
+import { ServerResponse } from 'http'
 export default {
   //middleware : 'search',
-  data () {
+  data() {
     return {
       search: '',
       pagination: {},
       selected: [],
       headers: [
         { text: '제목', value: 'title', sortable: false, align: 'center' },
-        { text: '작성자', value: 'writer', sortable: false, align: 'center'},
+        { text: '작성자', value: 'writer', sortable: false, align: 'center' },
         { text: '작성일자', value: 'createdDate', align: 'center' },
         { text: '답변수', value: 'answer', align: 'center' },
         { text: '추천수', value: 'recommend', align: 'center' },
-        { text: '조회수', value: 'view', align: 'center' },
-
+        { text: '조회수', value: 'view', align: 'center' }
       ],
-    posts: [
+      posts: [
         {
           title: '', //제목
           content: '', //내용
@@ -77,33 +77,32 @@ export default {
           recommended: '', // 추천수
           createdDate: '', //작성일
           lastModifiedDate: '', //최종 수정일
-          isPending: '', 
+          isPending: '',
           isDeleted: '',
-          type: ''          
+          type: ''
         }
-    ]
+      ]
     }
   },
-  async created(){
-
+  async created() {
     const { data } = await this.$axios.get('/posts')
     this.posts = data
-  
   },
   computed: {
-    pages () {
-      if (this.pagination.rowsPerPage == null ||
+    pages() {
+      if (
+        this.pagination.rowsPerPage == null ||
         this.pagination.totalItems == null
-      ) return 0
+      )
+        return 0
 
       return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
     }
   },
 
   methods: {
-
     onWriteClick() {
-      this.$router.push('./qna/writepost');
+      this.$router.push('./qna/writepost')
     },
     onReadClick(post) {
       const routerid = post.id
@@ -121,6 +120,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

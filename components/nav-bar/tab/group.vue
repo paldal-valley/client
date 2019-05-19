@@ -5,11 +5,9 @@
       open-on-hover
       :items="tab.items"
       :text="tab.text"
-      :to="tab.to"/>
-    <toolbar-tab
-      v-else
-      :text="tab.text"
-      :to="tab.to"/>
+      :to="tab.to"
+    />
+    <toolbar-tab v-else :text="tab.text" :to="tab.to" />
   </div>
 </template>
 
@@ -28,6 +26,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

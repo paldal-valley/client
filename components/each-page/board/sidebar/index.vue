@@ -1,20 +1,16 @@
 <template>
   <vue-sidebar-container>
-
     <!-- images -->
     <vue-sidebar-img-container>
       <nuxt-link to="/">
         <div class="tmp-img-container">
-          <img
-            class="tmp-img"
-            src="~assets/images/ethereum.png">
+          <img class="tmp-img" src="~assets/images/ethereum.png" />
         </div>
       </nuxt-link>
     </vue-sidebar-img-container>
 
     <!-- buttons -->
-    <vue-button-group :buttons="buttons"/>
-
+    <vue-button-group :buttons="buttons" />
   </vue-sidebar-container>
 </template>
 
@@ -29,7 +25,7 @@ export default {
   components: {
     VueSidebarContainer,
     VueSidebarImgContainer,
-    VueButtonGroup,
+    VueButtonGroup
   },
   props: {
     buttons: {
@@ -42,8 +38,9 @@ export default {
 
 <style lang="scss" scoped>
 .tmp-img-container {
-  background-color: #abb5ff;
+  background-color: white;
   border-radius: 5px;
+  padding: 10px;
   .tmp-img {
     max-width: 180px;
     max-height: 120px;
