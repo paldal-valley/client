@@ -6,6 +6,7 @@
 
     <!-- posts -->
     <vue-board-post-list
+      :buttons="icon_buttons"
       api-endpoint="posts/plaza?category=1"
       post-link-prefix="/board/plaza/"
       alert-msg="플라자 자유게시판 페이지입니다."/>
@@ -44,6 +45,20 @@ export default {
       {
         text: '맛집 게시판',
         to: '/board/plaza/food'
+      }
+    ],
+    icon_buttons: [
+      {
+        text: 'AC 광장',
+        to: '/board/plaza/free'
+      },
+      {
+        text: 'Q&A 게시판',
+        to: '/board/qna'
+      },
+      {
+        text: '수기게시판',
+        to: '/board/review'
       }
     ]
   })

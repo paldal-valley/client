@@ -1,5 +1,5 @@
 export const state = {
-  categories: [],
+  categories: []
 }
 
 export const getters = {
@@ -7,7 +7,7 @@ export const getters = {
 }
 
 export const mutations = {
-  SET_STATICS (state, payload) {
+  SET_STATICS(state, payload) {
     const { categories } = payload
 
     state.categories = categories
@@ -15,7 +15,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async FETCH_STATICS ({ commit }) {
+  async FETCH_STATICS({ commit }) {
     const options = {
       method: 'get',
       url: 'model/statics'

@@ -1,10 +1,8 @@
 <template>
   <div>
-    <vue-carousel
-      :items="bannerItems"/>
+    <vue-carousel :items="bannerItems" />
     <div class="base-container">
-        <vue-board-card-group
-          :board-cards="boardCards"/>
+      <vue-board-card-group :board-cards="boardCards" />
     </div>
   </div>
 </template>
@@ -61,36 +59,34 @@ export default {
     ]
   }),
   methods: {
-    handleScroll () {
-      if(window.scrollY!=0){
+    handleScroll() {
+      if (window.scrollY != 0) {
         $('nav').removeClass('hide_background')
-      }else{
+      } else {
         $('nav').addClass('hide_background')
       }
     }
   },
-  beforeMount(){
+  beforeMount() {
     $('nav').addClass('hide_background')
-    this.$store.dispatch('login_check')
-    .then((check)=>{
+    this.$store.dispatch('login_check').then(check => {
       EventBus.$emit('isLogin', check)
     })
   },
-  mounted(){
+  mounted() {
     $('nav').addClass('hide_background')
-    document.addEventListener('scroll', this.handleScroll);
+    document.addEventListener('scroll', this.handleScroll)
   },
-  destroyed(){
-    document.removeEventListener('scroll', this.handleScroll);
-    $('nav').removeClass('hide_background')    
+  destroyed() {
+    document.removeEventListener('scroll', this.handleScroll)
+    $('nav').removeClass('hide_background')
   }
 }
 </script>
 <style lang="scss" scoped>
- .base-container{
-   padding: 1.5rem;
-   margin-left: 20%;
-   margin-right: 20%;
- }
+.base-container {
+  padding: 1.5rem;
+  margin-left: 20%;
+  margin-right: 20%;
+}
 </style>
-

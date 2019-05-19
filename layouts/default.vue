@@ -5,24 +5,21 @@
         toolbar-fixed
         toolbar-color="white"
         menu-hover
-        menu-transition="slide-x-transition"/>
-      <vue-drawer/>
+        menu-transition="slide-x-transition"
+      />
+      <vue-drawer />
 
       <!-- 추후 리팩토링 필요함 -->
       <v-content>
         <v-container fluid fill-height>
-          <v-layout
-            justify-center
-            align-center>
+          <v-layout justify-center align-center>
             <v-flex text-xs-center>
-
-              <nuxt/>
-
+              <nuxt />
             </v-flex>
           </v-layout>
         </v-container>
       </v-content>
-      <vue-footer/>
+      <vue-footer />
     </div>
   </v-app>
 </template>
@@ -33,14 +30,15 @@ import VueDrawer from '~/components/nav-bar/drawer'
 import VueFooter from '~/components/footer'
 export default {
   // created 시점에서는 localStorage 생성이 안되어있음
-  beforeMount(){
-    if(this.$router.currentRoute.path != "/auth/signup"){
+  beforeMount() {
+    if (this.$router.currentRoute.path != '/auth/signup') {
       this.$store.dispatch('enhanceAccessToken')
-      this.$store.dispatch('login_check')
-      .then((res)=>{
-        if(!res) {
-          alert("로그인이 필요합니다.")
-          this.$router.push('/auth/signin/?returnPath=' + this.$router.currentRoute.path)
+      this.$store.dispatch('login_check').then(res => {
+        if (!res) {
+          alert('로그인이 필요합니다.')
+          this.$router.push(
+            '/auth/signin/?returnPath=' + this.$router.currentRoute.path
+          )
         }
       })
     }
@@ -48,14 +46,14 @@ export default {
   components: {
     VueToolbar,
     VueDrawer,
-    VueFooter,
-  },
+    VueFooter
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '~assets/scss/index';
-.ac-blue{
+.ac-blue {
   background-color: rgb(5, 77, 149) !important;
   border-color: rgb(5, 77, 149) !important;
   color: white !important;
