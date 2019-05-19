@@ -7,6 +7,7 @@
     <!-- posts -->
     <vue-board-post-list
       api-endpoint="posts/plaza?category=4"
+      post-link-prefix="/board/plaza/"
       alert-msg="플라자 맛집 페이지입니다."/>
 
   </vue-board-container>
