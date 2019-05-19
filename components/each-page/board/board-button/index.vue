@@ -1,9 +1,7 @@
 <template>
   <vue-sidebar-container>
-
     <!-- buttons -->
-    <vue-button-group :buttons="buttons"/>
-
+    <vue-button-group :buttons="buttons" />
   </vue-sidebar-container>
 </template>
 
@@ -14,7 +12,7 @@ export default {
   components: {
     VueSidebarContainer,
     VueSidebarImgContainer,
-    VueButtonGroup,
+    VueButtonGroup
   },
   props: {
     buttons: {

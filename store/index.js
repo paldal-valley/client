@@ -8,13 +8,13 @@ export const getters = {
 }
 
 export const mutations = {
-  LOGIN (state, {accessToken, userId}) {
+  LOGIN(state, { accessToken, userId }) {
     state.accessToken = accessToken
     state.userId = userId
     localStorage.accessToken = accessToken
     localStorage.userId = userId
   },
-  LOGOUT (state) {
+  LOGOUT(state) {
     state.accessToken = null
     state.userId = null
     delete localStorage.accessToken
@@ -23,32 +23,39 @@ export const mutations = {
 }
 
 export const actions = {
-  enhanceAccessToken ({ commit }) {
+  enhanceAccessToken({ commit }) {
     if (localStorage.accessToken) {
       commit('LOGIN', localStorage)
-      this.$axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.accessToken}`
+      this.$axios.defaults.headers.common['Authorization'] = `Bearer ${
+        localStorage.accessToken
+      }`
     }
   },
-  login_check () {
+  login_check() {
     // If the user is not authenticated
     if (!localStorage.accessToken) {
       return false
     }
     return true
   },
-  login ({ commit }, { userId, password }) {
-    return this.$axios.$post('/login', { // 경로확인
-      userId: userId,
-      password: password,
-    })
-      .then((res) => {
+  login({ commit }, { userId, password }) {
+    return this.$axios
+      .$post('/login', {
+        // 경로확인
+        userId: userId,
+        password: password
+      })
+      .then(res => {
         commit('LOGIN', res)
-        this.$axios.defaults.headers.common['Authorization'] = `Bearer ${res.accessToken}`
-      }).catch(err=>{
+        this.$axios.defaults.headers.common['Authorization'] = `Bearer ${
+          res.accessToken
+        }`
+      })
+      .catch(err => {
         alert(err)
       })
   },
-  logout ({ commit }) {
+  logout({ commit }) {
     this.$axios.defaults.headers.common['Authorization'] = undefined
     commit('LOGOUT')
     console.log('logout')

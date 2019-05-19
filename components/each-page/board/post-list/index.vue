@@ -14,14 +14,14 @@
     </div> -->
 
     <!-- button-group -->
-    <vue-button-group :buttons="buttons"/>
+    <vue-button-group :buttons="buttons" />
 
-    <div class="float-add-post-btn">
+    <!-- <div class="float-add-post-btn">
       <v-btn fab dark large color="#4E98A4">
         <v-icon dark>edit</v-icon>
       </v-btn>
       <h3>글쓰기</h3>
-    </div>
+    </div> -->
 
     <!-- posts -->
     <vue-post-card
@@ -29,14 +29,17 @@
       :board-title="boardTitle"
       :key="post.id"
       :post="post"
-      :to="`${postLinkPrefix}${post.id}`"/>
+      :to="`${postLinkPrefix}${post.id}`"
+    />
     <div class="append-btn-container">
       <v-btn
         block
         round
         color="gray"
         style="font-weight: bold;"
-        @click="appendPost">더 보기</v-btn>
+        @click="appendPost"
+        >더 보기</v-btn
+      >
     </div>
   </vue-post-container>
 </template>
@@ -71,7 +74,8 @@ export default {
     },
     alertMsg: {
       type: String,
-      default: '아주코인 콘텐츠 관리를 준수하지 않는 질문과 답변의 경우 사전 고지 없이 삭제 처리 되며, 신고 누적 시 사용자 계정 비활성화, 토큰 보상 보류 등의 페널티가 있습니다.'
+      default:
+        '아주코인 콘텐츠 관리를 준수하지 않는 질문과 답변의 경우 사전 고지 없이 삭제 처리 되며, 신고 누적 시 사용자 계정 비활성화, 토큰 보상 보류 등의 페널티가 있습니다.'
     },
     buttons: {
       type: Array,
@@ -79,7 +83,7 @@ export default {
     },
     boardTitle: {
       type: String,
-      default: '',
+      default: ''
     }
   },
   watch: {
@@ -106,7 +110,7 @@ export default {
       }
     },
     appendPost() {
-      const payload = { limit: this.postCnt += 5 }
+      const payload = { limit: (this.postCnt += 5) }
       this.$updateQuerystring(payload)
     }
   }
@@ -124,9 +128,9 @@ export default {
   height: 100px;
   margin: 10px 3px 0 3px;
 }
-.float-add-post-btn {
-  position: fixed;
-  margin-left: 46%;
-  margin-top: 10%;
-}
+// .float-add-post-btn {
+//   position: fixed;
+//   margin-left: 46%;
+//   margin-top: 10%;
+// }
 </style>

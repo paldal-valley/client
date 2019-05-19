@@ -6,7 +6,8 @@
       category="카테고리"
       user-name="이병헌"
       :created-date="post.createdDate"
-      view="34"/>
+      view="34"
+    />
   </div>
 </template>
 
@@ -19,7 +20,6 @@ export default {
   data: () => ({
     postId: '',
     post: {}
-
   }),
   mounted() {
     this.postId = this.$route.params.postId
@@ -42,5 +42,4 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

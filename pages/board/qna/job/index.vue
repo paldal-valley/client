@@ -1,8 +1,7 @@
 <template>
   <vue-board-container>
-
     <!-- sidebar -->
-    <vue-board-sidebar :buttons="buttons"/>
+    <vue-board-sidebar :buttons="buttons" />
 
     <!-- posts -->
     <vue-board-post-list
@@ -10,8 +9,9 @@
       board-title="qna"
       api-endpoint="posts/qna?categoryId=1"
       post-link-prefix="/board/qna/"
-      alert-msg="취업 관련 질문 페이지입니다."/>
-
+      alert-msg="취업 관련 질문 페이지입니다."
+    />
+    <vue-btn></vue-btn>
   </vue-board-container>
 </template>
 
@@ -21,13 +21,15 @@ import VueBoardContainer from '~/containers/board'
 
 // components
 import VueBoardSidebar from '~/components/each-page/board/sidebar'
-import VueBoardPostList from '~/components/each-page/board/post-list'
+import VueBoardPostList from '~/components/each-page/board/post-list/index'
+import VueBtn from '~/components/each-page/board/post-list/writeBtn'
 
 export default {
   components: {
     VueBoardContainer,
     VueBoardSidebar,
     VueBoardPostList,
+    VueBtn
   },
   data: () => ({
     buttons: [
@@ -66,5 +68,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
