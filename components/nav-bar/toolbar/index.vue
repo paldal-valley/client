@@ -79,21 +79,21 @@ export default {
       basic: [
         {
           text: '수기게시판',
-          to: '#',
-          items: [
-            {
-              text: '취업수기',
-              to: '/board/jobreview',
-            },
-            {
-              text: '진학수기',
-              href: '/board/schoolreview',
-            },
-            {
-              text: '대외활동',
-              href: '/board/extrareview',
-            }
-          ]
+          to: 'board/review',
+          // items: [
+          //   {
+          //     text: '취업수기',
+          //     to: '/board/jobreview',
+          //   },
+          //   {
+          //     text: '진학수기',
+          //     href: '/board/schoolreview',
+          //   },
+          //   {
+          //     text: '대외활동',
+          //     href: '/board/extrareview',
+          //   }
+          // ]
         },
         {
           text: '질문게시판',
@@ -103,6 +103,7 @@ export default {
           text: '자유게시판',
           to: '/board/free',
         },
+        
       ],
       conditional: {
         plain: [
