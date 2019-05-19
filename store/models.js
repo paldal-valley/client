@@ -1,6 +1,9 @@
-export const state = {
-  categories: [],
-}
+export const state = () => ({
+  categories: {
+    plaza: [],
+    qna: [],
+  },
+})
 
 export const getters = {
   GET_CATEGORIES: state => state.categories
@@ -8,17 +11,27 @@ export const getters = {
 
 export const mutations = {
   SET_STATICS (state, payload) {
-    const { categories } = payload
+    const {
+      postPlazaTypes,
+      postQnaTypes
+    } = payload
 
-    state.categories = categories
+    state.categories.plaza = postPlazaTypes
+    state.categories.qna = postQnaTypes
   }
 }
 
 export const actions = {
   async FETCH_STATICS ({ commit }) {
-    const options = {
-      method: 'get',
-      url: 'model/statics'
+    try {
+      const options = {
+        method: 'get',
+        url: 'statics'
+      }
+      const { data } = await this.$axios(options)
+      return commit('SET_STATICS', data)
+    } catch (err) {
+      throw console.error('error in actions: [models/FETCH_STATICS]')
     }
   }
 }
