@@ -6,6 +6,7 @@
 
     <!-- posts -->
     <vue-board-post-list
+      :buttons="icon_buttons"
       board-title="qna"
       api-endpoint="posts/qna?categoryId=1"
       post-link-prefix="/board/qna/"
@@ -45,6 +46,20 @@ export default {
       {
         text: '기타 질문게시판',
         to: '/board/qna/etc'
+      }
+    ],
+    icon_buttons: [
+      {
+        text: 'AC 광장',
+        to: '/board/plaza/free'
+      },
+      {
+        text: 'Q&A 게시판',
+        to: '/board/qna/job'
+      },
+      {
+        text: '수기게시판',
+        to: '/board/review/jobreview'
       }
     ]
   })

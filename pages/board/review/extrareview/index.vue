@@ -6,6 +6,7 @@
 
     <!-- posts -->
     <vue-board-post-list
+      :buttons="icon_buttons"
       board-title="review"
       api-endpoint="posts/review?categoryId=1"
       post-link-prefix="/board/review/"
@@ -41,6 +42,20 @@ export default {
       {
         text: '대외활동 게시판',
         to: '/board/review/extrareview'
+      }
+    ],
+    icon_buttons: [
+      {
+        text: 'AC 광장',
+        to: '/board/plaza/free'
+      },
+      {
+        text: 'Q&A 게시판',
+        to: '/board/qna/job'
+      },
+      {
+        text: '수기게시판',
+        to: '/board/review/jobreview'
       }
     ]
   })

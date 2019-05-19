@@ -6,6 +6,7 @@
 
     <!-- posts -->
     <vue-board-post-list
+      :buttons="icon_buttons"
       board-title="plaza"
       api-endpoint="posts/plaza?categoryId=4"
       post-link-prefix="/board/plaza/"
@@ -54,11 +55,11 @@ export default {
       },
       {
         text: 'Q&A 게시판',
-        to: '/board/qna'
+        to: '/board/qna/job'
       },
       {
         text: '수기게시판',
-        to: '/board/review'
+        to: '/board/review/jobreview'
       }
     ]
   })

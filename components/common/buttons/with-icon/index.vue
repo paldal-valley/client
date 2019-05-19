@@ -41,7 +41,7 @@ export default {
     }
   }),
   methods:{
-      getLongerCommonStr(input1, input2){
+      getLongerCommonStr(input1, input2){ 
         var shorter = (input1.length <= input2.length)? input1 : input2;
         var longer = (input1.length > input2.length)? input1 : input2;
 

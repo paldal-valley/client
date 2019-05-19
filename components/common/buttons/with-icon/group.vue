@@ -1,5 +1,5 @@
 <template>
-  <v-layout row class="px-0 py-0">
+  <v-layout row class="px-0 py-0 mb-3">
     <vue-button
       v-for="(btn, i) in buttons"
       :key="i"

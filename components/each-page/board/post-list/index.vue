@@ -1,7 +1,7 @@
 <template>
   <vue-post-container>
     <!-- alert -->
-    <div class="alert-container">
+    <!-- <div class="alert-container">
       <v-alert
         class="post-alert"
         :value="true"
@@ -11,7 +11,7 @@
       >
         {{ alertMsg }}
       </v-alert>
-    </div>
+    </div> -->
 
     <!-- button-group -->
     <vue-button-group :buttons="buttons"/>

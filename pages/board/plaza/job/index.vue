@@ -6,6 +6,7 @@
 
     <!-- posts -->
     <vue-board-post-list
+      :buttons="icon_buttons"
       board-title="plaza"
       api-endpoint="posts/plaza?categoryId=3"
       post-link-prefix="/board/plaza/"
@@ -45,6 +46,20 @@ export default {
       {
         text: '맛집 게시판',
         to: '/board/plaza/food'
+      }
+    ],
+    icon_buttons: [
+      {
+        text: 'AC 광장',
+        to: '/board/plaza/free'
+      },
+      {
+        text: 'Q&A 게시판',
+        to: '/board/qna/job'
+      },
+      {
+        text: '수기게시판',
+        to: '/board/review/jobreview'
       }
     ]
   })
