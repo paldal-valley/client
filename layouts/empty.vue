@@ -1,20 +1,18 @@
 <template>
   <v-app>
     <div class="foo-layout-container">
-      <vue-toolbar
-        toolbar-fixed
-        toolbar-color="white"
-        menu-hover
-        menu-transition="slide-x-transition"/>
-      <vue-drawer/>
-
-      <!-- 추후 리팩토링 필요함 -->
       <v-content>
         <v-container fluid fill-height>
           <v-layout
             justify-center
             align-center>
             <v-flex text-xs-center>
+            <img
+            class="footer-logo-img"
+            src="~assets/ac-logo.png">
+            <p
+          class="logo"
+          @click="$router.push('/')">AJOU COIN</p>
 
               <nuxt/>
 
@@ -22,32 +20,16 @@
           </v-layout>
         </v-container>
       </v-content>
-      <vue-footer/>
     </div>
   </v-app>
 </template>
 
 <script>
-import VueToolbar from '~/components/nav-bar/toolbar'
-import VueDrawer from '~/components/nav-bar/drawer'
-import VueFooter from '~/components/footer'
 export default {
   // created 시점에서는 localStorage 생성이 안되어있음
   beforeMount(){
     this.$store.dispatch('enhanceAccessToken')
-    this.$store.dispatch('login_check')
-    .then((res)=>{
-      if(!res) {
-        alert("로그인이 필요합니다.")
-        this.$router.push('/auth/signin/?returnPath=' + this.$router.currentRoute.path)
-      }
-    })
-  },
-  components: {
-    VueToolbar,
-    VueDrawer,
-    VueFooter,
-  },
+  }
 }
 </script>
 
@@ -62,7 +44,13 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-right: 20%;
-  margin-left: 20%;
+  margin-right: 25%;
+  margin-left: 25%;
+  margin-top: 5%;
 }
+.logo {
+    cursor: pointer;
+    color: #4E98A4;
+    font-size: 30px;
+  }
 </style>

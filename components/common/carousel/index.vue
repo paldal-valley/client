@@ -1,7 +1,7 @@
 <template>
   <v-carousel
     :height="height"
-    :hide-delimiters="hideDelimiters">
+    hide-controls>
     <nuxt-link
       v-for="(item, i) in items"
       :key="i"
@@ -20,16 +20,15 @@ export default {
     },
     height: {
       type: String,
-      default: '300'
+      default: '500'
     },
     hideDelimiters: {
       type: Boolean,
       default: true
     }
-  }
+  },
 }
 </script>
 
 <style scoped>
-
 </style>

@@ -8,3 +8,16 @@
 .mb-0{
     margin-bottom: 0px;
 }
+
+.hide_background{
+    background: transparent !important;
+    box-shadow: none;
+}
+  
+.hide_background .theme--light{
+    color: white !important;
+}
+
+.v-carousel__controls{
+    background: transparent !important;
+}

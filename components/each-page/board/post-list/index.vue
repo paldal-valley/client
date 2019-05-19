@@ -13,12 +13,19 @@
       </v-alert>
     </div>
 
+    <div class="float-add-post-btn">
+      <v-btn fab dark large color="#4E98A4">
+        <v-icon dark>edit</v-icon>
+      </v-btn>
+      <h3>글쓰기</h3>
+    </div>
+
     <!-- posts -->
     <vue-post-card
       v-for="post in posts"
       :key="post.id"
       :post="post"
-      :to="`/board/plaza/${post.id}`"/>
+      :to="`${postLinkPrefix}${post.id}`"/>
     <div class="append-btn-container">
       <v-btn
         block
@@ -47,6 +54,11 @@ export default {
   }),
   props: {
     apiEndpoint: {
+      type: String,
+      default: '',
+      required: true
+    },
+    postLinkPrefix: {
       type: String,
       default: '',
       required: true
@@ -97,5 +109,10 @@ export default {
 .append-btn-container {
   height: 100px;
   margin: 10px 3px 0 3px;
+}
+.float-add-post-btn {
+  position: fixed;
+  margin-left: 46%;
+  margin-top: 10%;
 }
 </style>
