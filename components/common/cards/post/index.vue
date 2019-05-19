@@ -58,27 +58,33 @@ export default {
   position: relative;
   list-style: none;
   box-shadow: $box-shadow;
+
   &:hover {
     .card__title {
       color: $ac-green2;
     }
+
     .card__content {
       color: $ac-green2;
     }
   }
+
   .card__title {
     color: black;
     margin-bottom: 10px;
   }
+
   .card__content {
     color: $ac-green3;
   }
+
   .card__img {
     position: absolute;
     right: -10px;
     bottom: -10px;
     width: 100px;
   }
+
   .card__category {
     display: inline-block;
     box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.2);
@@ -88,7 +94,9 @@ export default {
     margin-bottom: 10px;
     border-radius: 3px;
   }
+
   .card__date {
     text-align: right;
   }
+}
 </style>
