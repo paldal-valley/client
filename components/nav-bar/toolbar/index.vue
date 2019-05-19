@@ -58,7 +58,7 @@ export default {
   props: {
     toolbarFlat: {
       type: Boolean,
-      default: false
+      default: true
     },
     toolbarFixed: {
       type: Boolean,
