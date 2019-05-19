@@ -4,6 +4,7 @@
       <vue-toolbar
         toolbar-fixed
         toolbar-color="white"
+        toolbar-flat
         menu-hover
         menu-transition="slide-x-transition"/>
       <vue-drawer/>
