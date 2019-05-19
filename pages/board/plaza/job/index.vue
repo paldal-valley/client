@@ -6,7 +6,9 @@
 
     <!-- posts -->
     <vue-board-post-list
-      api-endpoint="posts/plaza?category=3"
+      board-title="plaza"
+      api-endpoint="posts/plaza?categoryId=3"
+      post-link-prefix="/board/plaza/"
       alert-msg="플라자 취업 페이지입니다."/>
 
   </vue-board-container>

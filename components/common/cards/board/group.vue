@@ -33,7 +33,7 @@ export default {
 <style lang="scss" scoped>
   @import '~assets/scss/index';
   .category-group {
-    margin-top: 80px;
+    margin-top: 30px;
     text-align: left;
 
     .line-separator {
