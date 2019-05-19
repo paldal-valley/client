@@ -30,7 +30,7 @@ export default {
         title: 'Q&A 게시판',
         content: '질문과 답변을 올려보세요!',
         imgSrc: require('@/assets/images/qna.png'),
-        to: '/board/qna'
+        to: '/board/qna/job'
       },
       {
         title: '수기게시판',

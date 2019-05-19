@@ -6,10 +6,10 @@
 
     <!-- posts -->
     <vue-board-post-list
-      board-title="plaza"
-      api-endpoint="posts/plaza?categoryId=2"
-      post-link-prefix="/board/plaza/"
-      alert-msg="플라자 스터디 페이지입니다."/>
+      board-title="review"
+      api-endpoint="posts/review?categoryId=1"
+      post-link-prefix="/board/review/"
+      alert-msg="수기 게시판입니다."/>
 
   </vue-board-container>
 </template>
@@ -31,20 +31,16 @@ export default {
   data: () => ({
     buttons: [
       {
-        text: '자유 게시판',
-        to: '/board/plaza/free'
-      },
-      {
-        text: '스터디 게시판',
-        to: '/board/plaza/study'
-      },
-      {
         text: '취업 게시판',
-        to: '/board/plaza/job'
+        to: '/board/review/jobreview'
       },
       {
-        text: '맛집 게시판',
-        to: '/board/plaza/food'
+        text: '진학 게시판',
+        to: '/board/review/schoolreview'
+      },
+      {
+        text: '대외활동 게시판',
+        to: '/board/review/extrareview'
       }
     ]
   })

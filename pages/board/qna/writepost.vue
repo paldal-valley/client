@@ -33,10 +33,6 @@
     methods : {
 
       save_post_db: function(event) {
-        // this.$axios.$get('/boards').then((response) => {
-        //   this.posts[0].title = response
-        //   //this.posts[0].title = response.data
-        // })
         this.$axios.$post('/posts', {
           userId: 28, // 로그인 기능 구현 후 modify
           title : this.posts.title,

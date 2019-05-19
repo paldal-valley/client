@@ -6,10 +6,10 @@
 
     <!-- posts -->
     <vue-board-post-list
-      board-title="plaza"
-      api-endpoint="posts/plaza?categoryId=2"
-      post-link-prefix="/board/plaza/"
-      alert-msg="플라자 스터디 페이지입니다."/>
+      board-title="qna"
+      api-endpoint="posts/qna?categoryId=1"
+      post-link-prefix="/board/qna/"
+      alert-msg="취업 관련 질문 페이지입니다."/>
 
   </vue-board-container>
 </template>
@@ -31,20 +31,20 @@ export default {
   data: () => ({
     buttons: [
       {
-        text: '자유 게시판',
-        to: '/board/plaza/free'
+        text: '취업 질문게시판',
+        to: '/board/qna/job'
       },
       {
-        text: '스터디 게시판',
-        to: '/board/plaza/study'
+        text: '진학 질문게시판',
+        to: '/board/qna/school'
       },
       {
-        text: '취업 게시판',
-        to: '/board/plaza/job'
+        text: '대외활동 질문게시판',
+        to: '/board/qna/extra'
       },
       {
-        text: '맛집 게시판',
-        to: '/board/plaza/food'
+        text: '기타 질문게시판',
+        to: '/board/qna/etc'
       }
     ]
   })

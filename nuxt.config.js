@@ -56,7 +56,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/vuetify',
-    { src: '~/plugins/querystring' },
+    { src: '~/plugins/utils' },
   ],
 
   /*

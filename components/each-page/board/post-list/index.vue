@@ -26,6 +26,7 @@
     <!-- posts -->
     <vue-post-card
       v-for="post in posts"
+      :board-title="boardTitle"
       :key="post.id"
       :post="post"
       :to="`${postLinkPrefix}${post.id}`"/>
@@ -75,6 +76,10 @@ export default {
     buttons: {
       type: Array,
       default: () => []
+    },
+    boardTitle: {
+      type: String,
+      default: '',
     }
   },
   watch: {
