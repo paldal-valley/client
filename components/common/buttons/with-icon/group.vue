@@ -4,7 +4,8 @@
       v-for="(btn, i) in buttons"
       :key="i"
       :text="btn.text"
-      :to="btn.to"/>
+      :to="btn.to"
+    />
   </v-layout>
 </template>
 
@@ -12,7 +13,7 @@
 import VueButton from './index'
 export default {
   components: {
-    VueButton,
+    VueButton
   },
   props: {
     buttons: {
@@ -23,5 +24,4 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
