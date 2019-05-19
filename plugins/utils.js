@@ -15,7 +15,11 @@ Plugin.install = Vue => {
         this.$router.push({ query })
       },
       $categoryMapper (board, categoryId) {
-        return this.GET_CATEGORIES[board][categoryId - 1].title
+        const category = this.GET_CATEGORIES[board][categoryId - 1]
+        console.log(this.GET_CATEGORIES[board])
+        if (category) {
+          return category.title
+        }
       }
     }
   })
