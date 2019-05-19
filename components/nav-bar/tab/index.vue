@@ -9,6 +9,16 @@
     <template
       #activator="{ on }">
       <v-btn
+        v-if="text === '로그아웃'"
+        :to="to"
+        class="hidden-sm-and-down"
+        flat
+       @click.native="logout"
+        v-on="on">
+        {{ text }}
+      </v-btn>
+        <v-btn
+        v-else
         :to="to"
         class="hidden-sm-and-down"
         flat
@@ -21,8 +31,7 @@
       v-if="items.length">
       <v-list-tile
         v-for="(item, i) in items"
-        :key="i"
-        @click="">
+        :key="i">
 
         <v-list-tile-title>{{ item.text }}</v-list-tile-title>
       </v-list-tile>
@@ -52,6 +61,14 @@ export default {
     transition: {
       type: String,
       default: 'slide-x-transition'
+    }
+  },
+  methods:{
+    logout(){
+      this.$store.dispatch('logout').then(()=>{
+        this.$router.push('/')
+        location.reload()
+      })
     }
   }
 }

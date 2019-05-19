@@ -35,6 +35,8 @@ export default {
 }
 .footer-flex-box {
   display: flex;
+  margin-left: 20%;
+  margin-right: 20%;
 
   .footer-logo-img {
     width: 50px;
