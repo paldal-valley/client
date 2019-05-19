@@ -6,7 +6,8 @@
 
     <!-- posts -->
     <vue-board-post-list
-      api-endpoint="posts/review?category=2"
+      api-endpoint="posts/review?categoryId=2"
+      post-link-prefix="/board/review/"
       alert-msg="수기 게시판입니다."/>
 
   </vue-board-container>

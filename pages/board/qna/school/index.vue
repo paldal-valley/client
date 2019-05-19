@@ -6,7 +6,8 @@
 
     <!-- posts -->
     <vue-board-post-list
-      api-endpoint="posts/qna?category=2"
+      api-endpoint="posts/qna?categoryId=2"
+      post-link-prefix="/board/qna/"
       alert-msg="진학관련 질문 페이지입니다."/>
 
   </vue-board-container>

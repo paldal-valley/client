@@ -6,7 +6,7 @@
 
     <!-- posts -->
     <vue-board-post-list
-      api-endpoint="posts/qna?category=1"
+      api-endpoint="posts/qna?categoryId=1"
       post-link-prefix="/board/qna/"
       alert-msg="취업 관련 질문 페이지입니다."/>
 
