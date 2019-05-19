@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+// todo: 리팩토링 필요함
 Vue.use(Vuex)
 
 const store = () => new Vuex.Store({
@@ -62,6 +63,14 @@ const store = () => new Vuex.Store({
       this.$axios.defaults.headers.common['Authorization'] = undefined
       commit('LOGOUT')
       console.log('logout')
+    },
+    async initStaticData({ dispatch }) {
+      try {
+  
+      } catch (err) {
+        console.error(err)
+        console.error('static data init error')
+      }
     }
   }
 
