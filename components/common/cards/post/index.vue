@@ -3,8 +3,10 @@
     :to="to"
     class="card-link">
     <div class="card-container">
+      <p v-if="boardTitle">{{ category }}</p>
       <h2 class="card__title">{{ post.title }}</h2>
       <p class="card__content">{{ post.content }}</p>
+      <div> {{ post.createdDate }} </div>
     </div>
   </nuxt-link>
 </template>
@@ -14,7 +16,6 @@
 // exist: title, view, id, recommended, content
 // need: createdDate, tag, category
 export default {
-  name: 'index',
   props: {
     post: {
       type: Object,
@@ -23,8 +24,18 @@ export default {
     to: {
       type: String,
       default: '#'
+    },
+    boardTitle: {
+      type: String,
+      default: ''
     }
-  }
+  },
+  computed: {
+    category() {
+      console.log(this.boardTitle)
+      return this.$categoryMapper(this.boardTitle, this.post.categoryId)
+    }
+  },
 }
 </script>
 
@@ -56,6 +67,7 @@ export default {
   }
   .card__title {
     color: black;
+    margin-bottom: 10px;
   }
   .card__content {
     color: $ac-green3;
