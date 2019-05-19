@@ -1,10 +1,5 @@
 <template>
-  <v-navigation-drawer
-    v-model="drawer"
-    :right="drawerRight"
-    absolute
-    temporary>
-
+  <v-navigation-drawer v-model="drawer" :right="drawerRight" absolute temporary>
     <v-list>
       <v-list-tile>
         <v-list-tile-action>
@@ -13,14 +8,14 @@
         <v-list-tile-title>Home</v-list-tile-title>
       </v-list-tile>
 
-      <v-divider/>
+      <v-divider />
 
       <v-list-group
         prepend-icon="account_circle"
         value="true"
         v-for="tab in tabs"
-        :key="tab.text">
-
+        :key="tab.text"
+      >
         <template #activator>
           <v-list-tile>
             <v-list-tile-title>{{ tab.text }}</v-list-tile-title>
@@ -40,7 +35,6 @@
             </v-list-tile>
           </template>
         </v-list-group>
-
       </v-list-group>
     </v-list>
   </v-navigation-drawer>
@@ -59,7 +53,7 @@ export default {
     drawerRight: {
       type: Boolean,
       default: false
-    },
+    }
   },
   data: () => ({
     drawer: false,
@@ -74,6 +68,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

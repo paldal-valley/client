@@ -1,8 +1,8 @@
 export const state = () => ({
   categories: {
     plaza: [],
-    qna: [],
-  },
+    qna: []
+  }
 })
 
 export const getters = {
@@ -10,11 +10,8 @@ export const getters = {
 }
 
 export const mutations = {
-  SET_STATICS (state, payload) {
-    const {
-      postPlazaTypes,
-      postQnaTypes
-    } = payload
+  SET_STATICS(state, payload) {
+    const { postPlazaTypes, postQnaTypes } = payload
 
     state.categories.plaza = postPlazaTypes
     state.categories.qna = postQnaTypes
@@ -22,7 +19,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async FETCH_STATICS ({ commit }) {
+  async FETCH_STATICS({ commit }) {
     try {
       const options = {
         method: 'get',

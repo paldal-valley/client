@@ -5,8 +5,8 @@ module.exports = {
   mode: 'universal',
 
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     title: pkg.name,
     meta: [
@@ -24,60 +24,56 @@ module.exports = {
     ],
     script: [
       {
-        src: "https://code.jquery.com/jquery-3.3.1.slim.min.js",
-        type: "text/javascript"
+        src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
+        type: 'text/javascript'
       },
       {
         src:
-          "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
-        type: "text/javascript"
+          'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
+        type: 'text/javascript'
       },
       {
         src:
-          "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js",
-        type: "text/javascript"
+          'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js',
+        type: 'text/javascript'
       }
     ]
   },
   /*
-  ** Customize the progress-bar color
-  */
+   ** Customize the progress-bar color
+   */
   loading: { color: '#fff' },
 
   /*
-  ** Global CSS
-  */
-  css: [
-    '@/assets/scss/index.scss'
-  ],
+   ** Global CSS
+   */
+  css: ['@/assets/scss/index.scss'],
 
   /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-    '@/plugins/vuetify',
-    { src: '~/plugins/utils' },
-  ],
+   ** Plugins to load before mounting the App
+   */
+  plugins: ['@/plugins/vuetify', { src: '~/plugins/utils' }],
 
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     [
-      'nuxt-fontawesome', {
+      'nuxt-fontawesome',
+      {
         imports: [
-         {
-           set: '@fortawesome/free-solid-svg-icons',
-           icons: ['fas']
-         },
-         {
-           set:'@fortawesome/free-brands-svg-icons',
-           icons: ['fab']
-         }
-       ]
+          {
+            set: '@fortawesome/free-solid-svg-icons',
+            icons: ['fas']
+          },
+          {
+            set: '@fortawesome/free-brands-svg-icons',
+            icons: ['fab']
+          }
+        ]
       }
     ]
   ],
@@ -88,11 +84,13 @@ module.exports = {
     // ]
   },
   /*
-  ** Axios module configuration
-  */
+   ** Axios module configuration
+   */
   axios: {
     baseURL:
-      process.env.NODE_ENV == 'production' ? 'https://54.180.144.27:8000' : 'http://localhost:8000/',
+      process.env.NODE_ENV == 'production'
+        ? 'https://54.180.144.27:8000'
+        : 'http://localhost:8000/'
     // credentials: true,
     // proxy: false,
     // debug: false, // ture시 콘솔에 모든 데이터 다 찍힘
@@ -104,8 +102,8 @@ module.exports = {
   },
 
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     transpile: ['vuetify/lib'],
     plugins: [new VuetifyLoaderPlugin()],
@@ -115,11 +113,10 @@ module.exports = {
       }
     },
     /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {
-    }
-  },
+     ** You can extend webpack config here
+     */
+    extend(config, ctx) {}
+  }
 
   // serverMiddleware: [
   //   '~/api/index.js'

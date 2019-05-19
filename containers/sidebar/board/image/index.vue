@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-img-container">
-    <slot/>
+    <slot />
   </div>
 </template>
 

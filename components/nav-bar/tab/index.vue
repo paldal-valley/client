@@ -4,35 +4,26 @@
     :transition="transition"
     offset-y
     bottom
-    right>
-
-    <template
-      #activator="{ on }">
+    right
+  >
+    <template #activator="{ on }">
       <v-btn
         v-if="text === '로그아웃'"
         :to="to"
         class="hidden-sm-and-down"
         flat
-       @click.native="logout"
-        v-on="on">
+        @click.native="logout"
+        v-on="on"
+      >
         {{ text }}
       </v-btn>
-        <v-btn
-        v-else
-        :to="to"
-        class="hidden-sm-and-down"
-        flat
-        v-on="on">
+      <v-btn v-else :to="to" class="hidden-sm-and-down" flat v-on="on">
         {{ text }}
       </v-btn>
     </template>
 
-    <v-list
-      v-if="items.length">
-      <v-list-tile
-        v-for="(item, i) in items"
-        :key="i">
-
+    <v-list v-if="items.length">
+      <v-list-tile v-for="(item, i) in items" :key="i">
         <v-list-tile-title>{{ item.text }}</v-list-tile-title>
       </v-list-tile>
     </v-list>
@@ -63,9 +54,9 @@ export default {
       default: 'slide-x-transition'
     }
   },
-  methods:{
-    logout(){
-      this.$store.dispatch('logout').then(()=>{
+  methods: {
+    logout() {
+      this.$store.dispatch('logout').then(() => {
         this.$router.push('/')
         location.reload()
       })
@@ -74,6 +65,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

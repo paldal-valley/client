@@ -1,18 +1,28 @@
 <template>
   <div class="footer-container">
-    <hr class="line-separator">
+    <hr class="line-separator" />
     <div class="footer-flex-box">
-      <img
-        class="footer-logo-img"
-        src="~assets/ac-logo.png">
+      <img class="footer-logo-img" src="~assets/ac-logo.png" />
       <div class="footer-info">
-        <ul style="font-weight: bold;">회사 정보</ul>
+        <ul style="font-weight: bold;">
+          회사 정보
+        </ul>
 
-        <ul>주소: 경기도 수원시 월드컵로 206 아주대학교 팔달관</ul>
-        <ul>대표이사: 팔달밸리</ul>
-        <ul>통신판매업번호: 2019-수원영통-22932</ul>
-        <ul>이메일: contact@paldal.org</ul>
-        <ul class="rights">© 2019 팔달밸리 All rights reserved.</ul>
+        <ul>
+          주소: 경기도 수원시 월드컵로 206 아주대학교 팔달관
+        </ul>
+        <ul>
+          대표이사: 팔달밸리
+        </ul>
+        <ul>
+          통신판매업번호: 2019-수원영통-22932
+        </ul>
+        <ul>
+          이메일: contact@paldal.org
+        </ul>
+        <ul class="rights">
+          © 2019 팔달밸리 All rights reserved.
+        </ul>
       </div>
     </div>
   </div>

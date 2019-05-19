@@ -1,7 +1,5 @@
 <template>
-  <nuxt-link
-    :to="to"
-    class="card-link">
+  <nuxt-link :to="to" class="card-link">
     <div class="card-container">
       <div
         v-if="boardTitle"
@@ -39,34 +37,33 @@ export default {
       console.log(this.boardTitle)
       return this.$categoryMapper(this.boardTitle, this.post.categoryId)
     }
-  },
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-  @import '~assets/scss/index';
-  .card-link {
-    /*flex: 0 0 50%;*/
-    margin: 3px;
-    display: block;
-    padding: 0.875rem;
-    text-align: left;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid transparent;
-    text-decoration: none !important;
-    /*background-color: blue;*/
+@import '~assets/scss/index';
+.card-link {
+  /*flex: 0 0 50%;*/
+  margin: 3px;
+  display: block;
+  padding: 0.875rem;
+  text-align: left;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  text-decoration: none !important;
+  /*background-color: blue;*/
 
-    position: relative;
-    list-style: none;
-    box-shadow: $box-shadow;
-    &:hover {
-      .card__title {
-        color: $ac-green2;
-      }
-      .card__content {
-        color: $ac-green2;
-      }
+  position: relative;
+  list-style: none;
+  box-shadow: $box-shadow;
+  &:hover {
+    .card__title {
+      color: $ac-green2;
+    }
+    .card__content {
+      color: $ac-green2;
     }
   }
   .card__title {

@@ -3,10 +3,9 @@
     app
     :flat="toolbarFlat"
     :fixed="toolbarFixed"
-    :color="toolbarColor">
-
-    <v-container
-      class="nav-container" py-0>
+    :color="toolbarColor"
+  >
+    <v-container class="nav-container" py-0>
       <v-layout>
         <v-img
           :src="require('@/assets/ac-logo.png')"
@@ -16,11 +15,12 @@
           height="48"
           width="48"
           max-width="48"
-          @click="$router.push('/')"/>
+          @click="$router.push('/')"
+        />
 
-        <v-toolbar-title
-          class="nav-home"
-          @click="$router.push('/')">AJOU COIN</v-toolbar-title>
+        <v-toolbar-title class="nav-home" @click="$router.push('/')"
+          >AJOU COIN</v-toolbar-title
+        >
 
         <v-spacer></v-spacer>
 
@@ -28,12 +28,13 @@
         <toolbar-tab-group
           v-for="tab in conditionalTab"
           :key="tab.text"
-          :tab="tab"/>
+          :tab="tab"
+        />
 
         <v-toolbar-side-icon
           class="hidden-md-and-up"
-          @click="drawer = !drawer"/>
-
+          @click="drawer = !drawer"
+        />
       </v-layout>
     </v-container>
   </v-toolbar>
@@ -44,11 +45,14 @@ import ToolbarTabGroup from '../tab/group'
 import { EventBus } from '~/utils/EventBus'
 export default {
   components: {
-    ToolbarTabGroup,
+    ToolbarTabGroup
   },
   watch: {
     drawer() {
-      EventBus.$emit('toolbar-to-drawer', { drawer: this.drawer, tabs: this.tabs.basic })
+      EventBus.$emit('toolbar-to-drawer', {
+        drawer: this.drawer,
+        tabs: this.tabs.basic
+      })
     }
   },
   props: {
@@ -92,7 +96,7 @@ export default {
       }
     },
 
-    tmpIsLoggedIn: false,
+    tmpIsLoggedIn: false
   }),
   mounted() {
     EventBus.$on('drawer-to-toolbar', data => {
@@ -108,7 +112,7 @@ export default {
     }
   },
   methods: {
-    isAuthenticated () {
+    isAuthenticated() {
       this.$store.dispatch('login_check').then(check => {
         this.tmpIsLoggedIn = check
       })
@@ -129,7 +133,7 @@ export default {
     margin-left: -5px;
     margin-top: 10px;
     cursor: pointer;
-    color: #4E98A4;
+    color: #4e98a4;
   }
 }
 </style>

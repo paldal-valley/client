@@ -4,13 +4,11 @@
       v-if="isCurrentPage"
       :to="to"
       :style="highlight"
-      class="underline-btn">
+      class="underline-btn"
+    >
       {{ text }}
     </nuxt-link>
-    <nuxt-link
-      v-else
-      :to="to"
-      class="underline-btn">
+    <nuxt-link v-else :to="to" class="underline-btn">
       {{ text }}
     </nuxt-link>
   </div>
@@ -31,14 +29,14 @@ export default {
   data: () => ({
     highlight: {
       'border-color': '#4E98A4',
-      'color': 'black'
+      color: 'black'
     }
   }),
   computed: {
     isCurrentPage() {
       return this.$route.path === this.to
     }
-  },
+  }
 }
 </script>
 
