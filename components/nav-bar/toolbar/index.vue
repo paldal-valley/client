@@ -18,17 +18,9 @@
           max-width="48"
           @click="$router.push('/')"/>
 
-
         <v-toolbar-title
           class="nav-home"
           @click="$router.push('/')">AJOU COIN</v-toolbar-title>
-
-
-        <!-- 툴바 메인 탭 -->
-        <toolbar-tab-group
-          v-for="tab in tabs.basic"
-          :key="tab.text"
-          :tab="tab"/>
 
         <v-spacer></v-spacer>
 
@@ -76,34 +68,6 @@ export default {
   data: () => ({
     drawer: false,
     tabs: {
-      basic: [
-        {
-          text: '수기게시판',
-          to: '#',
-          items: [
-            {
-              text: '취업수기',
-              to: '/board/jobreview',
-            },
-            {
-              text: '진학수기',
-              href: '/board/schoolreview',
-            },
-            {
-              text: '대외활동',
-              href: '/board/extrareview',
-            }
-          ]
-        },
-        {
-          text: '질문게시판',
-          to: '/board/qna',
-        },
-        {
-          text: '자유게시판',
-          to: '/board/free',
-        },
-      ],
       conditional: {
         plain: [
           {
