@@ -32,6 +32,10 @@ export default {
     VueBtn
   },
   data: () => ({
+    transition: {
+      name: 'test',
+      mode: 'out-in'
+    },
     buttons: [
       {
         text: '자유 게시판',

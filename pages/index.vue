@@ -41,19 +41,19 @@ export default {
     ],
     bannerItems: [
       {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+        src: require('@/assets/images/main_1.png'),
         to: '#'
       },
       {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+        src: require('@/assets/images/main_2.png'),
         to: '#'
       },
       {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+        src: require('@/assets/images/main_3.png'),
         to: '#'
       },
       {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+        src: require('@/assets/images/main_4.png'),
         to: '#'
       }
     ]

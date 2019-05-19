@@ -13,11 +13,13 @@
       <!-- 추후 리팩토링 필요함 -->
       <v-content>
         <v-container fluid fill-height>
+          <transition class="fade" mode="out-in">
           <v-layout justify-center align-center>
             <v-flex text-xs-center>
               <nuxt />
             </v-flex>
           </v-layout>
+          </transition>
         </v-container>
       </v-content>
       <vue-footer />
@@ -65,5 +67,8 @@ export default {
   justify-content: center;
   margin-right: 20%;
   margin-left: 20%;
+}
+.fade{
+  transition: width .2s,opacity .4s;
 }
 </style>

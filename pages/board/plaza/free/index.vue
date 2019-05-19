@@ -1,18 +1,20 @@
 <template>
-  <vue-board-container>
-    <!-- sidebar -->
-    <vue-board-sidebar :buttons="buttons" />
+  <transition name="fade">
+    <vue-board-container>
+      <!-- sidebar -->
+      <vue-board-sidebar :buttons="buttons" />
 
-    <!-- posts -->
-    <vue-board-post-list
-      :buttons="icon_buttons"
-      board-title="plaza"
-      api-endpoint="posts/plaza?categoryId=1"
-      post-link-prefix="/board/plaza/"
-      alert-msg="플라자 자유게시판 페이지입니다."
-    />
-    <vue-btn></vue-btn>
-  </vue-board-container>
+      <!-- posts -->
+      <vue-board-post-list
+        :buttons="icon_buttons"
+        board-title="plaza"
+        api-endpoint="posts/plaza?categoryId=1"
+        post-link-prefix="/board/plaza/"
+        alert-msg="플라자 자유게시판 페이지입니다."
+      />
+      <vue-btn></vue-btn>
+    </vue-board-container>
+  </transition>
 </template>
 
 <script>
@@ -32,6 +34,10 @@ export default {
     VueBtn
   },
   data: () => ({
+    transition: {
+      name: 'test',
+      mode: 'out-in'
+    },
     buttons: [
       {
         text: '자유 게시판',
