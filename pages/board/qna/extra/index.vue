@@ -6,6 +6,7 @@
 
     <!-- posts -->
     <vue-board-post-list
+      board-title="qna"
       api-endpoint="posts/qna?categoryId=3"
       post-link-prefix="/board/qna/"
       alert-msg="대외활동 관련 질문 페이지입니다."/>

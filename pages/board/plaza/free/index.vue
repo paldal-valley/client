@@ -6,6 +6,7 @@
 
     <!-- posts -->
     <vue-board-post-list
+      board-title="plaza"
       api-endpoint="posts/plaza?categoryId=1"
       post-link-prefix="/board/plaza/"
       alert-msg="플라자 자유게시판 페이지입니다."/>
