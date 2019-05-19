@@ -2,16 +2,20 @@
   <div>
     <vue-carousel
       :items="bannerItems"/>
-    <vue-board-card-group
-      :board-cards="boardCards"/>
+    <div class="base-container">
+        <vue-board-card-group
+          :board-cards="boardCards"/>
+    </div>
   </div>
 </template>
 
 <script>
 import VueCarousel from '~/components/common/carousel'
 import VueBoardCardGroup from '~/components/common/cards/board/group'
+import { EventBus } from '~/utils/EventBus'
 
 export default {
+  layout: 'main',
   components: {
     VueCarousel,
     VueBoardCardGroup
@@ -56,6 +60,37 @@ export default {
       }
     ]
   }),
+  methods: {
+    handleScroll () {
+      if(window.scrollY!=0){
+        $('nav').removeClass('hide_background')
+      }else{
+        $('nav').addClass('hide_background')
+      }
+    }
+  },
+  beforeMount(){
+    $('nav').addClass('hide_background')
+    this.$store.dispatch('login_check')
+    .then((check)=>{
+      EventBus.$emit('isLogin', check)
+    })
+  },
+  mounted(){
+    $('nav').addClass('hide_background')
+    document.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed(){
+    document.removeEventListener('scroll', this.handleScroll);
+    $('nav').removeClass('hide_background')    
+  }
 }
 </script>
+<style lang="scss" scoped>
+ .base-container{
+   padding: 1.5rem;
+   margin-left: 20%;
+   margin-right: 20%;
+ }
+</style>
 

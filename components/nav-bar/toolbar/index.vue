@@ -112,7 +112,7 @@ export default {
           },
           {
             text: '로그인',
-            to: '#'
+            to: '/auth/signin'
           }
         ],
         authorized: [
@@ -134,12 +134,23 @@ export default {
     EventBus.$on('drawer-to-toolbar', data => {
       this.drawer = data.drawer
     })
+    this.isAuthenticated()
   },
   computed: {
     conditionalTab() {
       return this.tmpIsLoggedIn
         ? this.tabs.conditional.authorized
         : this.tabs.conditional.plain
+    }
+  },
+  methods: {
+    isAuthenticated () {
+      this.$store.dispatch('login_check').then(check => {
+        this.tmpIsLoggedIn = check
+      })
+    },
+    logout() {
+      this.$store.dispatch('logout')
     }
   }
 }
