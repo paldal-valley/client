@@ -81,7 +81,7 @@ export default {
     color: rgb(78, 152, 164);
     background: rgb(255, 255, 255);
     border-radius: 25px;
-    border: 1.5px solid rgb(78, 152, 164);
+    border: 1px solid rgb(78, 152, 164);
 
     .btn-text {
       display: inline-block;
