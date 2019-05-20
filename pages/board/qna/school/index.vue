@@ -1,7 +1,9 @@
 <template>
   <vue-board-container>
     <!-- sidebar -->
-    <vue-board-sidebar :buttons="buttons" />
+    <vue-board-sidebar
+      :buttons="buttons"
+      :buttons-downside="buttonsDownside"/>
 
     <!-- posts -->
     <vue-board-post-list
@@ -34,20 +36,30 @@ export default {
   data: () => ({
     buttons: [
       {
-        text: '취업 질문게시판',
+        text: '취업 질문',
         to: '/board/qna/job'
       },
       {
-        text: '진학 질문게시판',
+        text: '진학 질문',
         to: '/board/qna/school'
       },
       {
-        text: '대외활동 질문게시판',
+        text: '대외활동 질문',
         to: '/board/qna/extra'
       },
       {
-        text: '기타 질문게시판',
+        text: '기타 질문',
         to: '/board/qna/etc'
+      }
+    ],
+    buttonsDownside: [
+      {
+        text: '공지사항',
+        to: '#'
+      },
+      {
+        text: 'ABOUT US',
+        to: '#'
       }
     ],
     icon_buttons: [

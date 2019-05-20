@@ -3,7 +3,7 @@
     <vue-post
       :title="post.title"
       :content="post.content"
-      category="카테고리"
+      :category="category"
       user-name=" "
       :created-date="post.createdDate"
       view="34"
@@ -21,6 +21,11 @@ export default {
     postId: '',
     post: {}
   }),
+  computed: {
+    category() {
+      return this.$categoryMapper('qna', this.post.categoryId)
+    }
+  },
   mounted() {
     this.postId = this.$route.params.postId
     this.fetchPost()

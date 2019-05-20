@@ -36,7 +36,7 @@ export default {
         title: '수기게시판',
         content: '취업한 선배들의 꿀팁!',
         imgSrc: require('@/assets/images/consult.png'),
-        to: '/board/review'
+        to: '/board/review/jobreview'
       }
     ],
     bannerItems: [

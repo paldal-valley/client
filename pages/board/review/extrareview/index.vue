@@ -2,7 +2,9 @@
   <div>
     <vue-board-container>
       <!-- sidebar -->
-      <vue-board-sidebar :buttons="buttons" />
+      <vue-board-sidebar
+        :buttons="buttons"
+        :buttons-downside="buttonsDownside"/>
 
       <!-- posts -->
       <vue-board-post-list
@@ -36,16 +38,26 @@ export default {
   data: () => ({
     buttons: [
       {
-        text: '취업 게시판',
+        text: '취업 수기',
         to: '/board/review/jobreview'
       },
       {
-        text: '진학 게시판',
+        text: '진학 수기',
         to: '/board/review/schoolreview'
       },
       {
-        text: '대외활동 게시판',
+        text: '대외활동 수기',
         to: '/board/review/extrareview'
+      }
+    ],
+    buttonsDownside: [
+      {
+        text: '공지사항',
+        to: '#'
+      },
+      {
+        text: 'ABOUT US',
+        to: '#'
       }
     ],
     icon_buttons: [

@@ -1,7 +1,9 @@
 <template>
   <vue-board-container>
     <!-- sidebar -->
-    <vue-board-sidebar :buttons="buttons" />
+    <vue-board-sidebar
+      :buttons="buttons"
+      :buttons-downside="buttonsDownside"/>
 
     <!-- posts -->
     <vue-board-post-list
@@ -38,20 +40,30 @@ export default {
     },
     buttons: [
       {
-        text: '자유 게시판',
+        text: '자유톡',
         to: '/board/plaza/free'
       },
       {
-        text: '스터디 게시판',
+        text: '스터디톡',
         to: '/board/plaza/study'
       },
       {
-        text: '취업 게시판',
+        text: '취업톡',
         to: '/board/plaza/job'
       },
       {
-        text: '맛집 게시판',
+        text: '맛집톡',
         to: '/board/plaza/food'
+      }
+    ],
+    buttonsDownside: [
+      {
+        text: '공지사항',
+        to: '#'
+      },
+      {
+        text: 'ABOUT US',
+        to: '#'
       }
     ],
     icon_buttons: [

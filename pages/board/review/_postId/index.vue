@@ -4,7 +4,7 @@
       :title="post.title"
       :content="post.content"
       :category="category"
-      user-name="이병헌"
+      user-name=" "
       :created-date="post.createdDate"
       view="34"
     />
@@ -17,15 +17,15 @@ export default {
   components: {
     VuePost
   },
-  computed: {
-    category() {
-      return this.$categoryMapper('plaza', this.post.categoryId)
-    }
-  },
   data: () => ({
     postId: '',
     post: {}
   }),
+  computed: {
+    category() {
+      return this.$categoryMapper('review', this.post.categoryId)
+    }
+  },
   mounted() {
     this.postId = this.$route.params.postId
     this.fetchPost()
@@ -34,7 +34,7 @@ export default {
     async fetchPost() {
       try {
         const options = {
-          url: `posts/plaza/${this.postId}`,
+          url: `posts/review/${this.postId}`,
           method: 'get'
         }
         const { data } = await this.$axios(options)
