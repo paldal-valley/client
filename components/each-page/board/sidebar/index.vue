@@ -11,6 +11,10 @@
 
     <!-- buttons -->
     <vue-button-group :buttons="buttons" />
+
+    <v-divider class="separator"/>
+
+    <vue-button-group :buttons="buttonsDownside" />
   </vue-sidebar-container>
 </template>
 
@@ -31,6 +35,10 @@ export default {
     buttons: {
       type: Array,
       default: () => []
+    },
+    buttonsDownside: {
+      type: Array,
+      default: () => []
     }
   }
 }
@@ -46,5 +54,8 @@ export default {
     max-height: 120px;
     margin: 10px 0;
   }
+}
+.separator {
+  margin-top: 30px;
 }
 </style>

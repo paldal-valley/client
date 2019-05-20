@@ -25,14 +25,9 @@
           <hr />
         </header>
       </div>
-      <v-textarea
-        v-model="content"
-        counter
-        full-width
-        single-line
-        disabled
-        rows="10px"
-      />
+      <div class="post-content">
+        {{ content }}
+      </div>
       <div></div>
     </v-form>
     <div class="text-xs-right pt-2">
@@ -137,4 +132,9 @@ export default {
   margin-left: 20px;
   color: gray;
 }
+.post-content {
+  text-align: left;
+  margin: 20px;
+}
+
 </style>

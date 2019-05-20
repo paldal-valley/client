@@ -34,7 +34,6 @@ export default {
   },
   computed: {
     category() {
-      console.log(this.boardTitle)
       return this.$categoryMapper(this.boardTitle, this.post.categoryId)
     }
   }
