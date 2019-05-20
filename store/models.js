@@ -24,7 +24,7 @@ export const actions = {
     try {
       const options = {
         method: 'get',
-        url: 'statics'
+        url: 'static'
       }
       const { data } = await this.$axios(options)
       return commit('SET_STATICS', data)
