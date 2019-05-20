@@ -44,6 +44,8 @@ export default {
           )
         }
       })
+      this.$store.dispatch('block-sync/checkWeb3')
+      this.$store.dispatch('block-sync/getContractInstance')
     }
   },
   components: {

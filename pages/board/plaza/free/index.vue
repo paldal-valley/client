@@ -34,10 +34,6 @@ export default {
     VueFloatBtn
   },
   data: () => ({
-    transition: {
-      name: 'test',
-      mode: 'out-in'
-    },
     buttons: [
       {
         text: '자유 게시판',
@@ -69,7 +65,7 @@ export default {
         text: '수기',
         to: '/board/review/jobreview'
       }
-    ]
+    ],
   })
 }
 </script>
