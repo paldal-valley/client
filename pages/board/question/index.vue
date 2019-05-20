@@ -102,7 +102,7 @@ export default {
 
   methods: {
     onWriteClick() {
-      this.$router.push('./qna/writepost')
+      this.$router.push('./question/writepost')
     },
     onReadClick(post) {
       const routerid = post.id

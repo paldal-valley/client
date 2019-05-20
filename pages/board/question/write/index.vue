@@ -66,7 +66,7 @@ export default {
       'contractMethods'
     ]),
     selectorItem() {
-      return this.GET_CATEGORIES['qna']
+      return this.GET_CATEGORIES['question']
     }
   },
   data: () => ({
@@ -78,7 +78,7 @@ export default {
     async createPost() {
       try {
         const options = {
-          url: `posts/qna`,
+          url: `posts/question`,
           method: 'post',
           params: { categoryId: this.categoryId },
           data: {

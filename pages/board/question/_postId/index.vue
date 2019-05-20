@@ -23,7 +23,7 @@ export default {
   }),
   computed: {
     category() {
-      return this.$categoryMapper('qna', this.post.categoryId)
+      return this.$categoryMapper('question', this.post.categoryId)
     }
   },
   mounted() {
@@ -34,7 +34,7 @@ export default {
     async fetchPost() {
       try {
         const options = {
-          url: `posts/qna/${this.postId}`,
+          url: `posts/question/${this.postId}`,
           method: 'get'
         }
         const { data } = await this.$axios(options)

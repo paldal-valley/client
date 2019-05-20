@@ -1,7 +1,7 @@
 export const state = () => ({
   categories: {
     plaza: [],
-    qna: []
+    question: []
   }
 })
 
@@ -11,10 +11,10 @@ export const getters = {
 
 export const mutations = {
   SET_STATICS(state, payload) {
-    const { postPlazaTypes, postQnaTypes,postReviewTypes } = payload
+    const { postPlazaTypes, postQuestionTypes, postReviewTypes } = payload
 
     state.categories.plaza = postPlazaTypes
-    state.categories.qna = postQnaTypes
+    state.categories.question = postQuestionTypes
     state.categories.review = postReviewTypes
   }
 }

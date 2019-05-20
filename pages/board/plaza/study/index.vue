@@ -69,7 +69,7 @@ export default {
       },
       {
         text: 'Q&A',
-        to: '/board/qna/job'
+        to: '/board/question/job'
       },
       {
         text: '수기',

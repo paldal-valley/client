@@ -8,12 +8,12 @@
     <!-- posts -->
     <vue-board-post-list
       :buttons="icon_buttons"
-      board-title="qna"
-      api-endpoint="posts/qna?categoryId=3"
-      post-link-prefix="/board/qna/"
-      alert-msg="대외활동 관련 질문 페이지입니다."
+      board-title="question"
+      api-endpoint="posts/question?categoryId=2"
+      post-link-prefix="/board/question/"
+      alert-msg="진학관련 질문 페이지입니다."
     />
-    <vue-float-btn to="/board/qna/write/"/>
+    <vue-float-btn to="/board/question/write/"/>
   </vue-board-container>
 </template>
 
@@ -37,19 +37,19 @@ export default {
     buttons: [
       {
         text: '취업 질문',
-        to: '/board/qna/job'
+        to: '/board/question/job'
       },
       {
         text: '진학 질문',
-        to: '/board/qna/school'
+        to: '/board/question/school'
       },
       {
         text: '대외활동 질문',
-        to: '/board/qna/extra'
+        to: '/board/question/extra'
       },
       {
         text: '기타 질문',
-        to: '/board/qna/etc'
+        to: '/board/question/etc'
       }
     ],
     buttonsDownside: [
@@ -68,11 +68,11 @@ export default {
         to: '/board/plaza/free'
       },
       {
-        text: 'Q&A 게시판',
-        to: '/board/qna/job'
+        text: 'Q&A',
+        to: '/board/question/job'
       },
       {
-        text: '수기게시판',
+        text: '수기',
         to: '/board/review/jobreview'
       }
     ]

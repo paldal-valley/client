@@ -8,12 +8,12 @@
     <!-- posts -->
     <vue-board-post-list
       :buttons="icon_buttons"
-      board-title="qna"
-      api-endpoint="posts/qna?categoryId=2"
-      post-link-prefix="/board/qna/"
-      alert-msg="진학관련 질문 페이지입니다."
+      board-title="question"
+      api-endpoint="posts/question?categoryId=1"
+      post-link-prefix="/board/question/"
+      alert-msg="취업 관련 질문 페이지입니다."
     />
-    <vue-float-btn to="/board/qna/write/"/>
+    <vue-float-btn to="/board/question/write/"/>
   </vue-board-container>
 </template>
 
@@ -23,7 +23,7 @@ import VueBoardContainer from '~/containers/board'
 
 // components
 import VueBoardSidebar from '~/components/each-page/board/sidebar'
-import VueBoardPostList from '~/components/each-page/board/post-list'
+import VueBoardPostList from '~/components/each-page/board/post-list/index'
 import VueFloatBtn from '~/components/common/buttons/float'
 
 export default {
@@ -37,19 +37,19 @@ export default {
     buttons: [
       {
         text: '취업 질문',
-        to: '/board/qna/job'
+        to: '/board/question/job'
       },
       {
         text: '진학 질문',
-        to: '/board/qna/school'
+        to: '/board/question/school'
       },
       {
         text: '대외활동 질문',
-        to: '/board/qna/extra'
+        to: '/board/question/extra'
       },
       {
         text: '기타 질문',
-        to: '/board/qna/etc'
+        to: '/board/question/etc'
       }
     ],
     buttonsDownside: [
@@ -69,7 +69,7 @@ export default {
       },
       {
         text: 'Q&A',
-        to: '/board/qna/job'
+        to: '/board/question/job'
       },
       {
         text: '수기',
