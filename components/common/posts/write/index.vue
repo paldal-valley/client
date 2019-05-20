@@ -48,6 +48,9 @@ export default {
     title: '',
     content: ''
   }),
+  methods: {
+
+  }
 }
 </script>
 

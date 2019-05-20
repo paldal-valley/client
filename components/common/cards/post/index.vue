@@ -97,6 +97,8 @@ export default {
 
   .card__date {
     text-align: right;
+    font-weight: bold;
+    color: gray;
   }
 }
 </style>
