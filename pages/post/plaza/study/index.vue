@@ -10,10 +10,10 @@
       board-title="plaza"
       :buttons="GET_POST_META.icon_buttons"
       :api-endpoint="`${GET_PLAZA_META.url}?categoryId=2`"
-      :post-link-prefix="`${GET_PLAZA_META.url}/`"
+      :post-link-prefix="GET_PLAZA_META.url"
       alert-msg="플라자 스터디 페이지입니다."
     />
-    <vue-float-btn to="/board/plaza/write/"/>
+    <vue-float-btn :to="`${GET_PLAZA_META.url}/write/`"/>
   </vue-board-container>
 </template>
 

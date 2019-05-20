@@ -55,10 +55,10 @@ export default {
   async mounted() {
     const postId = this.$route.params.id || ''
     //alert(postId)
-    const { data } = await this.$axios.get(`/posts/readQ/${postId}`)
+    const { data } = await this.$axios.get(`/post/readQ/${postId}`)
     this.posts = data[0]
 
-    const ans = (await this.$axios.get(`/posts/readA/${this.posts.id}`)).data
+    const ans = (await this.$axios.get(`/post/readA/${this.posts.id}`)).data
     // this.$axios.$get('/posts/readA/질문id(dynamic)')
     this.answers = ans
   },
