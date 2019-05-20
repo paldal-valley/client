@@ -21,14 +21,12 @@ import VueBoardContainer from '~/containers/board'
 // components
 import VueBoardSidebar from '~/components/each-page/board/sidebar'
 import VueBoardPostList from '~/components/each-page/board/post-list'
-import VueBtn from '~/components/each-page/board/post-list/writeBtn'
 
 export default {
   components: {
     VueBoardContainer,
     VueBoardSidebar,
     VueBoardPostList,
-    VueBtn
   },
   data: () => ({
     buttons: [

@@ -11,7 +11,7 @@
       post-link-prefix="/board/qna/"
       alert-msg="진학관련 질문 페이지입니다."
     />
-    <vue-btn></vue-btn>
+    <vue-float-btn to="/board/qna/write/"/>
   </vue-board-container>
 </template>
 
@@ -22,14 +22,14 @@ import VueBoardContainer from '~/containers/board'
 // components
 import VueBoardSidebar from '~/components/each-page/board/sidebar'
 import VueBoardPostList from '~/components/each-page/board/post-list'
-import VueBtn from '~/components/each-page/board/post-list/writeBtn'
+import VueFloatBtn from '~/components/common/buttons/float'
 
 export default {
   components: {
     VueBoardContainer,
     VueBoardSidebar,
     VueBoardPostList,
-    VueBtn
+    VueFloatBtn
   },
   data: () => ({
     buttons: [

@@ -11,10 +11,11 @@ export const getters = {
 
 export const mutations = {
   SET_STATICS(state, payload) {
-    const { postPlazaTypes, postQnaTypes } = payload
+    const { postPlazaTypes, postQnaTypes,postReviewTypes } = payload
 
     state.categories.plaza = postPlazaTypes
     state.categories.qna = postQnaTypes
+    state.categories.review = postReviewTypes
   }
 }
 

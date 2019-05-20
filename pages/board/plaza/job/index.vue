@@ -11,7 +11,7 @@
       post-link-prefix="/board/plaza/"
       alert-msg="플라자 취업 페이지입니다."
     />
-    <vue-btn></vue-btn>
+    <vue-float-btn to="/board/plaza/write/"/>
   </vue-board-container>
 </template>
 
@@ -22,16 +22,20 @@ import VueBoardContainer from '~/containers/board'
 // components
 import VueBoardSidebar from '~/components/each-page/board/sidebar'
 import VueBoardPostList from '~/components/each-page/board/post-list'
-import VueBtn from '~/components/each-page/board/post-list/writeBtn'
+import VueFloatBtn from '~/components/common/buttons/float'
 
 export default {
   components: {
     VueBoardContainer,
     VueBoardSidebar,
     VueBoardPostList,
-    VueBtn
+    VueFloatBtn
   },
   data: () => ({
+    transition: {
+      name: 'test',
+      mode: 'out-in'
+    },
     buttons: [
       {
         text: '자유 게시판',

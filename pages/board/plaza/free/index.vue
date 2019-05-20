@@ -1,18 +1,20 @@
 <template>
-  <vue-board-container>
-    <!-- sidebar -->
-    <vue-board-sidebar :buttons="buttons" />
+  <transition name="fade">
+    <vue-board-container>
+      <!-- sidebar -->
+      <vue-board-sidebar :buttons="buttons" />
 
-    <!-- posts -->
-    <vue-board-post-list
-      :buttons="icon_buttons"
-      board-title="plaza"
-      api-endpoint="posts/plaza?categoryId=1"
-      post-link-prefix="/board/plaza/"
-      alert-msg="플라자 자유게시판 페이지입니다."
-    />
-    <vue-btn></vue-btn>
-  </vue-board-container>
+      <!-- posts -->
+      <vue-board-post-list
+        :buttons="icon_buttons"
+        board-title="plaza"
+        api-endpoint="posts/plaza?categoryId=1"
+        post-link-prefix="/board/plaza/"
+        alert-msg="플라자 자유게시판 페이지입니다."
+      />
+      <vue-float-btn to="/board/plaza/write/"/>
+    </vue-board-container>
+  </transition>
 </template>
 
 <script>
@@ -22,16 +24,20 @@ import VueBoardContainer from '~/containers/board'
 // components
 import VueBoardSidebar from '~/components/each-page/board/sidebar'
 import VueBoardPostList from '~/components/each-page/board/post-list'
-import VueBtn from '~/components/each-page/board/post-list/writeBtn'
+import VueFloatBtn from '~/components/common/buttons/float'
 
 export default {
   components: {
     VueBoardContainer,
     VueBoardSidebar,
     VueBoardPostList,
-    VueBtn
+    VueFloatBtn
   },
   data: () => ({
+    transition: {
+      name: 'test',
+      mode: 'out-in'
+    },
     buttons: [
       {
         text: '자유 게시판',

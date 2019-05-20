@@ -33,7 +33,7 @@ export default {
           method: 'get'
         }
         const { data } = await this.$axios(options)
-        this.post = data[0]
+        this.post = data
       } catch (err) {
         console.error(err)
       }

@@ -14,7 +14,6 @@ Plugin.install = Vue => {
       },
       $categoryMapper(board, categoryId) {
         const category = this.GET_CATEGORIES[board][categoryId - 1]
-        console.log(this.GET_CATEGORIES[board])
         if (category) {
           return category.title
         }
