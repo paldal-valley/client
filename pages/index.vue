@@ -24,19 +24,19 @@ export default {
         title: 'AC 광장',
         content: '선후배간 자유롭게 대화하세요!',
         imgSrc: require('@/assets/images/free.png'),
-        to: '/board/plaza/free'
+        to: '/post/plaza/free'
       },
       {
         title: 'Q&A 게시판',
         content: '질문과 답변을 올려보세요!',
         imgSrc: require('@/assets/images/qna.png'),
-        to: '/board/qna/job'
+        to: '/post/question/job'
       },
       {
         title: '수기게시판',
         content: '취업한 선배들의 꿀팁!',
         imgSrc: require('@/assets/images/consult.png'),
-        to: '/board/review'
+        to: '/post/review/job'
       }
     ],
     bannerItems: [

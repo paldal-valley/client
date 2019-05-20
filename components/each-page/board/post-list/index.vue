@@ -16,13 +16,6 @@
     <!-- button-group -->
     <vue-button-group :buttons="buttons" />
 
-    <!-- <div class="float-add-post-btn">
-      <v-btn fab dark large color="#4E98A4">
-        <v-icon dark>edit</v-icon>
-      </v-btn>
-      <h3>글쓰기</h3>
-    </div> -->
-
     <!-- posts -->
     <vue-post-card
       v-for="post in posts"

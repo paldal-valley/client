@@ -25,14 +25,9 @@
           <hr />
         </header>
       </div>
-      <v-textarea
-        v-model="content"
-        counter
-        full-width
-        single-line
-        disabled
-        rows="10px"
-      />
+      <div class="post-content">
+        {{ content }}
+      </div>
       <div></div>
     </v-form>
     <div class="text-xs-right pt-2">
@@ -102,7 +97,7 @@ export default {
   methods: {
     onWriteClick() {
       const routerid = this.questionId
-      this.$router.push(`../qna/${routerid}`)
+      this.$router.push(`../question/${routerid}`)
       // this.$axios.$get('/boards').then((response) => {
       //   this.posts[0].title = response
       //   //this.posts[0].title = response.data
@@ -137,4 +132,9 @@ export default {
   margin-left: 20px;
   color: gray;
 }
+.post-content {
+  text-align: left;
+  margin: 20px;
+}
+
 </style>
