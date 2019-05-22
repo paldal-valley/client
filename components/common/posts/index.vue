@@ -7,43 +7,32 @@
             <span class="category">
               {{ category }}
             </span>
-            <br><br>
+            <br /><br />
           </div>
-          <h2 
-          v-if="hasTitle"
-          class="title">
+          <h2 v-if="hasTitle" class="title">
             {{ title }}
           </h2>
-          <br><br>
+          <br /><br />
 
           <p class="post-info">
             <span>
               <strong class="user-name">작성자: {{ userName }}</strong>
             </span>
-            <span class="meta">
-              작성일: {{ createdDate }}
-            </span>
-            <span class="meta">
-              조회수: {{ view }}
-            </span>
+            <span class="meta"> 작성일: {{ createdDate }} </span>
+            <span class="meta"> 조회수: {{ view }} </span>
           </p>
-          <br><hr>
+          <br />
+          <hr />
         </header>
       </div>
-      <v-textarea
-        v-model="content"
-        counter
-        full-width
-        single-line
-        disabled
-        rows="10px"/>
+      <div class="post-content">
+        {{ content }}
+      </div>
       <div></div>
     </v-form>
     <div class="text-xs-right pt-2">
-       <v-btn 
-        v-if="hasSelectBtn"
-        outline large fab color="blue">
-          <v-icon>check</v-icon>
+      <v-btn v-if="hasSelectBtn" outline large fab color="blue">
+        <v-icon>check</v-icon>
       </v-btn>
       <v-btn outline large fab color="red">
         <v-icon>thumb_up</v-icon>
@@ -53,7 +42,9 @@
       v-if="hasAnswerBtn"
       block
       color="#054d95"
-      class="white--text" @click="onWriteClick();">
+      class="white--text"
+      @click="onWriteClick()"
+    >
       <strong>답변하기</strong>
     </v-btn>
   </v-card>
@@ -94,22 +85,19 @@ export default {
       type: Boolean,
       default: false
     },
-    hasTitle:{
+    hasTitle: {
       type: Boolean,
       default: true
     },
-    questionId:{
+    questionId: {
       type: String,
       default: ''
-
     }
-
   },
-   methods: {
-
+  methods: {
     onWriteClick() {
       const routerid = this.questionId
-      this.$router.push(`../qna/${routerid}`);
+      this.$router.push(`../question/${routerid}`)
       // this.$axios.$get('/boards').then((response) => {
       //   this.posts[0].title = response
       //   //this.posts[0].title = response.data
@@ -117,32 +105,36 @@ export default {
       //this.posts[0].title = 취업꿀팁
       //window.location='./qna/writepost';
     }
-}
-
+  }
 }
 </script>
 
 <style scoped>
-  .category {
-    float: left;
-    margin-top: 10px;
-    margin-left: 20px;
-  }
-  .title {
-    float: left;
-    margin-top: 8px;
-    margin-left: 20px;
-  }
-  .post-info {
-    margin-top: 5px;
-    margin-left: 20px;
-  }
-  .user-name {
-    float: left;
-  }
-  .meta {
-    float: left;
-    margin-left: 20px;
-    color: gray;
-  }
+.category {
+  float: left;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.title {
+  float: left;
+  margin-top: 8px;
+  margin-left: 20px;
+}
+.post-info {
+  margin-top: 5px;
+  margin-left: 20px;
+}
+.user-name {
+  float: left;
+}
+.meta {
+  float: left;
+  margin-left: 20px;
+  color: gray;
+}
+.post-content {
+  text-align: left;
+  margin: 20px;
+}
+
 </style>

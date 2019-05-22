@@ -3,10 +3,9 @@
     app
     :flat="toolbarFlat"
     :fixed="toolbarFixed"
-    :color="toolbarColor">
-
-    <v-container
-      class="nav-container" py-0>
+    :color="toolbarColor"
+  >
+    <v-container class="nav-container" py-0>
       <v-layout>
         <v-img
           :src="require('@/assets/ac-logo.png')"
@@ -16,19 +15,12 @@
           height="48"
           width="48"
           max-width="48"
-          @click="$router.push('/')"/>
+          @click="$router.push('/')"
+        />
 
-
-        <v-toolbar-title
-          class="nav-home"
-          @click="$router.push('/')">AJOU COIN</v-toolbar-title>
-
-
-        <!-- 툴바 메인 탭 -->
-        <toolbar-tab-group
-          v-for="tab in tabs.basic"
-          :key="tab.text"
-          :tab="tab"/>
+        <v-toolbar-title class="nav-home" @click="$router.push('/')"
+          >AJOU COIN</v-toolbar-title
+        >
 
         <v-spacer></v-spacer>
 
@@ -36,12 +28,13 @@
         <toolbar-tab-group
           v-for="tab in conditionalTab"
           :key="tab.text"
-          :tab="tab"/>
+          :tab="tab"
+        />
 
         <v-toolbar-side-icon
           class="hidden-md-and-up"
-          @click="drawer = !drawer"/>
-
+          @click="drawer = !drawer"
+        />
       </v-layout>
     </v-container>
   </v-toolbar>
@@ -52,17 +45,20 @@ import ToolbarTabGroup from '../tab/group'
 import { EventBus } from '~/utils/EventBus'
 export default {
   components: {
-    ToolbarTabGroup,
+    ToolbarTabGroup
   },
   watch: {
     drawer() {
-      EventBus.$emit('toolbar-to-drawer', { drawer: this.drawer, tabs: this.tabs.basic })
+      EventBus.$emit('toolbar-to-drawer', {
+        drawer: this.drawer,
+        tabs: this.tabs.basic
+      })
     }
   },
   props: {
     toolbarFlat: {
       type: Boolean,
-      default: false
+      default: true
     },
     toolbarFixed: {
       type: Boolean,
@@ -76,34 +72,6 @@ export default {
   data: () => ({
     drawer: false,
     tabs: {
-      basic: [
-        {
-          text: '수기게시판',
-          to: '#',
-          items: [
-            {
-              text: '취업수기',
-              to: '/board/jobreview',
-            },
-            {
-              text: '진학수기',
-              href: '/board/schoolreview',
-            },
-            {
-              text: '대외활동',
-              href: '/board/extrareview',
-            }
-          ]
-        },
-        {
-          text: '질문게시판',
-          to: '/board/qna',
-        },
-        {
-          text: '자유게시판',
-          to: '/board/free',
-        },
-      ],
       conditional: {
         plain: [
           {
@@ -112,7 +80,7 @@ export default {
           },
           {
             text: '로그인',
-            to: '#'
+            to: '/auth/signin'
           }
         ],
         authorized: [
@@ -128,18 +96,29 @@ export default {
       }
     },
 
-    tmpIsLoggedIn: false,
+    tmpIsLoggedIn: false
   }),
   mounted() {
     EventBus.$on('drawer-to-toolbar', data => {
       this.drawer = data.drawer
     })
+    this.isAuthenticated()
   },
   computed: {
     conditionalTab() {
       return this.tmpIsLoggedIn
         ? this.tabs.conditional.authorized
         : this.tabs.conditional.plain
+    }
+  },
+  methods: {
+    isAuthenticated() {
+      this.$store.dispatch('login_check').then(check => {
+        this.tmpIsLoggedIn = check
+      })
+    },
+    logout() {
+      this.$store.dispatch('logout')
     }
   }
 }
@@ -154,7 +133,7 @@ export default {
     margin-left: -5px;
     margin-top: 10px;
     cursor: pointer;
-    color: #4E98A4;
+    color: #4e98a4;
   }
 }
 </style>
