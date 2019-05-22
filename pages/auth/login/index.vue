@@ -1,28 +1,46 @@
 <template>
-  <v-layout justify-center align-center>
-    <v-card class="elevation-10" style="flex: 0 1 400px">
-      <v-card-title class="headline">Log In</v-card-title>
-      <v-card-text>
-        <v-form @submit.prevent="submit">
-          <v-alert v-if="alert" :type="alert.type" value="true">{{alert.message}}</v-alert>
-          <v-text-field label="Email" v-model="email"/>
-          <v-text-field label="Password" v-model="password" type="password"/>
-          <v-btn type="submit" :loading="loading" :disabled="loading">Log In</v-btn>
-        </v-form>
-      </v-card-text>
-    </v-card>
+  <v-layout justify-center class="mt-3">
+    <v-flex xs12 sm10 md10 lg6>
+      <v-form>
+        <v-text-field label="EMAIL" v-model="email" outline required></v-text-field>
+        <v-text-field
+          ref="password"
+          v-model="password"
+          :type="'password'"
+          label="PASSWORD"
+          outline
+          required
+        ></v-text-field>
+        <v-btn color="primary" large block @click="submit">Login</v-btn>
+        <v-layout row wrap>
+          <v-flex xs12 sm4 md4>
+            <v-checkbox
+              v-model="check"
+              label="Remember"
+              color="primary"
+              value="primary"
+              hide-details
+            ></v-checkbox>
+          </v-flex>
+          <v-flex xs12 sm4 md4> </v-flex>
+          <v-flex xs12 sm4 md4>
+            <v-btn color="primary" flat class="mt-3">비밀번호 찾기</v-btn>
+          </v-flex>
+        </v-layout>
+      </v-form>
+    </v-flex>
   </v-layout>
 </template>
+
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  layout: 'fullscreen',
+  layout: 'login',
   data () {
     return {
       email: '',
       password: '',
-      alert: null,
-      loading: false
+      check: false,
     }
   },
   computed: {
@@ -39,7 +57,7 @@ export default {
         })
 
         console.log(this.GET_USER)
-        this.$router.push('/admin')
+        this.$router.push('/')
       } catch (err) {
         console.error(err)
       }
