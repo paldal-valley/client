@@ -69,9 +69,9 @@ export default {
   },
   beforeMount() {
     $('nav').addClass('hide_background')
-    this.$store.dispatch('login_check').then(check => {
-      EventBus.$emit('isLogin', check)
-    })
+    // this.$store.dispatch('login_check').then(check => {
+    //   EventBus.$emit('isLogin', check)
+    // })
   },
   mounted() {
     $('nav').addClass('hide_background')
