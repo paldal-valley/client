@@ -14,6 +14,7 @@
 <script>
 import VuePost from '~/components/common/posts'
 export default {
+  middleware: ['isLoggedIn'],
   components: {
     VuePost
   },

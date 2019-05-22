@@ -43,6 +43,8 @@
 <script>
 import ToolbarTabGroup from '../tab/group'
 import { EventBus } from '~/utils/EventBus'
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
     ToolbarTabGroup
@@ -80,7 +82,7 @@ export default {
           },
           {
             text: '로그인',
-            to: '/auth/signin'
+            to: '/auth/login'
           }
         ],
         authorized: [
@@ -96,7 +98,7 @@ export default {
       }
     },
 
-    tmpIsLoggedIn: false
+    isLoggedIn: false
   }),
   mounted() {
     EventBus.$on('drawer-to-toolbar', data => {
@@ -105,20 +107,24 @@ export default {
     this.isAuthenticated()
   },
   computed: {
+    ...mapGetters('auth', [
+      'IS_LOGGED_IN'
+    ]),
     conditionalTab() {
-      return this.tmpIsLoggedIn
+      return this.isLoggedIn
         ? this.tabs.conditional.authorized
         : this.tabs.conditional.plain
     }
   },
   methods: {
     isAuthenticated() {
-      this.$store.dispatch('login_check').then(check => {
-        this.tmpIsLoggedIn = check
-      })
+      this.isLoggedIn = this.IS_LOGGED_IN
+      // this.$store.dispatch('login_check').then(check => {
+      //   this.isLoggedIn = check
+      // })
     },
     logout() {
-      this.$store.dispatch('logout')
+      // this.$store.dispatch('logout')
     }
   }
 }

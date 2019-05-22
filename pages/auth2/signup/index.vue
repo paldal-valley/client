@@ -319,7 +319,7 @@ export default {
     send_user_info() {
       this.email_confirm = true
       this.$axios
-        .$post('/user', {
+        .$post('/users', {
           // 경로확인
           userId: this.form.id,
           password: this.form.password,

@@ -78,7 +78,7 @@ export default {
     async createPost() {
       try {
         const options = {
-          url: `posts/question`,
+          url: `post/question`,
           method: 'post',
           params: { categoryId: this.categoryId },
           data: {

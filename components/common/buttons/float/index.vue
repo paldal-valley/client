@@ -3,7 +3,7 @@
     <v-btn @click="onClick" fab dark large :color="color">
       <v-icon dark>{{ icon }}</v-icon>
     </v-btn>
-    <h3>글쓰기</h3>
+    <h3 class="abc" @click="onClick">글쓰기</h3>
   </div>
 </template>
 <script>
@@ -34,10 +34,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
   .float-add-post-btn {
     position: fixed;
     margin-left: 60%;
     margin-top: 10%;
+  }
+  .abc {
+    &:hover {
+      cursor: pointer;
+    }
   }
 </style>

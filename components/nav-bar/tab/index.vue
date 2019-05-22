@@ -13,11 +13,15 @@
         class="hidden-sm-and-down"
         flat
         @click.native="logout"
-        v-on="on"
-      >
+        v-on="on">
         {{ text }}
       </v-btn>
-      <v-btn v-else :to="to" class="hidden-sm-and-down" flat v-on="on">
+      <v-btn
+        v-else
+        :to="to"
+        class="hidden-sm-and-down"
+        flat
+        v-on="on">
         {{ text }}
       </v-btn>
     </template>
@@ -56,10 +60,11 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch('logout').then(() => {
-        this.$router.push('/')
-        location.reload()
-      })
+      this.$store.dispatch('auth/LOGOUT')
+      // this.$store.dispatch('logout').then(() => {
+      //   this.$router.push('/')
+      //   location.reload()
+      // })
     }
   }
 }

@@ -10,10 +10,10 @@
       board-title="review"
       :buttons="GET_POST_META.icon_buttons"
       :api-endpoint="`${GET_REVIEW_META.url}?categoryId=1`"
-      :post-link-prefix="`${GET_REVIEW_META.url}/`"
+      :post-link-prefix="GET_REVIEW_META.url"
       alert-msg="수기 게시판입니다."
     />
-    <vue-float-btn to="/board/review/write/"/>
+    <vue-float-btn :to="`${GET_REVIEW_META.url}/write/`"/>
   </vue-board-container>
 </template>
 

@@ -10,10 +10,10 @@
       board-title="question"
       :buttons="GET_POST_META.icon_buttons"
       :api-endpoint="`${GET_QUESTION_META.url}?categoryId=2`"
-      :post-link-prefix="`${GET_QUESTION_META.url}/`"
+      :post-link-prefix="GET_QUESTION_META.url"
       alert-msg="진학관련 질문 페이지입니다."
     />
-    <vue-float-btn to="/board/question/write/"/>
+    <vue-float-btn :to="`${GET_QUESTION_META.url}/write/`"/>
   </vue-board-container>
 </template>
 

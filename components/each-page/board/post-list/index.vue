@@ -22,7 +22,7 @@
       :board-title="boardTitle"
       :key="post.id"
       :post="post"
-      :to="`${postLinkPrefix}${post.id}`"
+      :to="`${postLinkPrefix}/${post.id}`"
     />
     <div class="append-btn-container">
       <v-btn
