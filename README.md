@@ -1,29 +1,15 @@
+## Ajou Coin 프로젝트
+
+[![Build Status](https://travis-ci.org/paldal-valley/client.svg?branch=master)](https://travis-ci.org/paldal-valley/client)
 [![Coverage Status](https://coveralls.io/repos/github/paldal-valley/client/badge.svg?branch=master)](https://coveralls.io/github/paldal-valley/client?branch=master)
-# ajou-coin
-
-> capstone project
-
-## Build Setup
-
-``` bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
 
 
 
+### Stack
 
+> Nuxt.js: 2.6.3
+>
+> Vuetify: 1.5.8
+>
+> web3: 1.0.0-beta.36
 
-// test
