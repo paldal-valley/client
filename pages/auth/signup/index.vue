@@ -58,12 +58,12 @@
     <v-stepper-content step="2">
       <form>
         <v-text-field
-          v-model="form.id"
+          v-model="form.userName"
           v-validate="'required|min:6|max:20'"
           :counter="20"
-          :error-messages="errors.collect('id')"
-          label="ID"
-          data-vv-name="id"
+          :error-messages="errors.collect('user_name')"
+          label="USER NAME"
+          data-vv-name="user_name"
           required
         ></v-text-field>
         <v-text-field
@@ -196,7 +196,7 @@ export default {
     enabled: false,
     email_confirm: false,
     form: {
-      id: '',
+      userName: '',
       email: '',
       status: '',
       password: '',
@@ -321,7 +321,7 @@ export default {
       this.$axios
         .$post('/user', {
           // 경로확인
-          userId: this.form.id,
+          userName: this.form.userName,
           password: this.form.password,
           email: this.form.email,
           walletAddress: this.form.walletAddress,
