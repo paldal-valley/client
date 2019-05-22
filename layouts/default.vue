@@ -35,15 +35,15 @@ export default {
   // created 시점에서는 localStorage 생성이 안되어있음
   beforeMount() {
     if (this.$router.currentRoute.path != '/auth/signup') {
-      this.$store.dispatch('enhanceAccessToken')
-      this.$store.dispatch('login_check').then(res => {
-        if (!res) {
-          alert('로그인이 필요합니다.')
-          this.$router.push(
-            '/auth/signin/?returnPath=' + this.$router.currentRoute.path
-          )
-        }
-      })
+      // this.$store.dispatch('enhanceAccessToken')
+      // this.$store.dispatch('login_check').then(res => {
+      //   if (!res) {
+      //     alert('로그인이 필요합니다.')
+      //     this.$router.push(
+      //       '/auth/signin/?returnPath=' + this.$router.currentRoute.path
+      //     )
+      //   }
+      // })
       this.$store.dispatch('block-sync/checkWeb3')
       this.$store.dispatch('block-sync/getContractInstance')
     }
