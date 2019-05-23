@@ -77,12 +77,12 @@ export default {
       conditional: {
         plain: [
           {
-            text: '회원가입',
-            to: '/auth/signup'
-          },
-          {
             text: '로그인',
             to: '/auth/login'
+          },
+          {
+            text: '회원가입',
+            to: '/auth/signup'
           }
         ],
         authorized: [

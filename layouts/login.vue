@@ -6,7 +6,7 @@
           <v-layout justify-center align-center>
             <v-flex text-xs-center>
               <img class="footer-logo-img" src="~assets/ac-logo.png" />
-              <p class="logo" @click="$router.push('/')">AJOU COIN</p>
+              <p class="logo" @click="$router.push('/')">DOAJOU</p>
 
               <nuxt />
             </v-flex>
@@ -44,6 +44,7 @@ export default {
 .logo {
   cursor: pointer;
   color: #4e98a4;
+  font-family: 'Aclonica', sans-serif;
   font-size: 30px;
 }
 </style>
