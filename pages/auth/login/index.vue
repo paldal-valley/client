@@ -34,7 +34,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-export default {
+export default { 
   layout: 'login',
   data () {
     return {

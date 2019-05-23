@@ -19,7 +19,7 @@
         />
 
         <v-toolbar-title class="nav-home" @click="$router.push('/')"
-          >AJOU COIN</v-toolbar-title
+          >DOAJOU</v-toolbar-title
         >
 
         <v-spacer></v-spacer>
@@ -137,9 +137,11 @@ export default {
 
   .nav-home {
     margin-left: -5px;
-    margin-top: 10px;
+    margin-top: 6px;
+    font-size: 26px;
     cursor: pointer;
     color: #4e98a4;
+    font-family: 'Aclonica', sans-serif;
   }
 }
 </style>
