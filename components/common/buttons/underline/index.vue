@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { EventBus } from '~/utils/EventBus'
 export default {
   props: {
     text: {
@@ -30,13 +31,22 @@ export default {
     highlight: {
       'border-color': '#4E98A4',
       color: 'black'
-    }
+    },
+    categoryName: ''
   }),
   computed: {
     isCurrentPage() {
-      return this.$route.path === this.to
+      return this.categoryName
+        // when 게시판 상세페이지
+        ? this.text === this.categoryName
+        // when 게시판 리스트
+        : this.$route.path.includes(this.to)
     }
-  }
+  },
+  mounted() {
+    EventBus.$once('categoryName from post',
+      categoryName => this.categoryName = categoryName)
+  },
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="post">
     <v-form>
       <div class="post-container">
         <header>
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import { EventBus } from '~/utils/EventBus'
 export default {
   props: {
     title: {
@@ -94,6 +95,16 @@ export default {
       default: ''
     }
   },
+  // watcher: detect change of the data
+  // updated: detect change of the DOM
+  watch: {
+    category() {
+      EventBus.$emit('categoryName from post', this.category)
+    }
+  },
+  // beforeUpdate() {
+  //   EventBus.$emit('categoryName from post', this.category)
+  // },
   methods: {
     onWriteClick() {
       const routerid = this.questionId
@@ -110,6 +121,9 @@ export default {
 </script>
 
 <style scoped>
+.post {
+  width: 100%;
+}
 .category {
   float: left;
   margin-top: 10px;
