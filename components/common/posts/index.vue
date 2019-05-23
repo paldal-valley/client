@@ -15,8 +15,9 @@
           <br /><br />
 
           <p class="post-info">
-            <span>
-              <strong class="user-name">작성자: {{ userName }}</strong>
+            <span class="user-info">
+              <strong>작성자: {{ userName }}</strong>
+              ({{ userEmail }})
             </span>
             <span class="meta"> 작성일: {{ createdDate }} </span>
             <span class="meta"> 조회수: {{ view }} </span>
@@ -67,6 +68,10 @@ export default {
       default: ''
     },
     userName: {
+      type: String,
+      default: ''
+    },
+    userEmail: {
       type: String,
       default: ''
     },
@@ -138,7 +143,7 @@ export default {
   margin-top: 5px;
   margin-left: 20px;
 }
-.user-name {
+.user-info {
   float: left;
 }
 .meta {
