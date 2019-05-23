@@ -12,6 +12,6 @@ export default {}
 .post-container {
   display: flex;
   flex-direction: column;
-  flex: 4 1 750px;
+  width: 100%;
 }
 </style>
