@@ -1,6 +1,12 @@
 <template>
-  <div>
+  <vue-board-container>
+    <!-- sidebar -->
+    <vue-board-sidebar
+      :buttons="GET_PLAZA_META.sidebarButtons"
+      :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
+
     <vue-post
+      class="test"
       :title="post.title"
       :content="post.content"
       :category="category"
@@ -8,17 +14,31 @@
       :created-date="post.createdDate"
       view="34"
     />
-  </div>
+  </vue-board-container>
 </template>
 
 <script>
+// containers
+import VueBoardContainer from '~/containers/board'
+
+// components
+import VueBoardSidebar from '~/components/each-page/board/sidebar'
 import VuePost from '~/components/common/posts'
+
+import { mapGetters } from 'vuex'
+
 export default {
   middleware: ['isLoggedIn'],
   components: {
+    VueBoardContainer,
+    VueBoardSidebar,
     VuePost
   },
   computed: {
+    ...mapGetters('page-meta', [
+      'GET_POST_META',
+      'GET_PLAZA_META'
+    ]),
     category() {
       return this.$categoryMapper('plaza', this.post.categoryId)
     }
@@ -48,4 +68,5 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
