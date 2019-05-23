@@ -9,10 +9,12 @@
       :title="post.title"
       :content="post.content"
       :category="category"
-      user-name=" "
+      :user-name="post.userName"
+      :user-email="post.userEmail"
       :created-date="post.createdDate"
       view="34"
     />
+
   </vue-board-container>
 </template>
 
@@ -21,7 +23,7 @@
 import VueBoardContainer from '~/containers/board'
 
 // components
-import VueBoardSidebar from '~/components/each-page/board/sidebar'
+import VueBoardSidebar from '~/components/each-page/post/sidebar'
 import VuePost from '~/components/common/posts'
 
 import { mapGetters } from 'vuex'

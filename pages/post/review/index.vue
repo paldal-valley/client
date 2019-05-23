@@ -19,8 +19,8 @@
 import VueBoardContainer from '~/containers/board'
 
 // components
-import VueBoardSidebar from '~/components/each-page/board/sidebar'
-import VueBoardPostList from '~/components/each-page/board/post-list'
+import VueBoardSidebar from '~/components/each-page/post/sidebar'
+import VueBoardPostList from '~/components/each-page/post/post-list'
 
 export default {
   components: {
