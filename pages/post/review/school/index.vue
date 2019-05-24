@@ -13,7 +13,9 @@
       :post-link-prefix="GET_REVIEW_META.url"
       alert-msg="수기 게시판입니다."
     />
-    <vue-float-btn :to="`${GET_REVIEW_META.url}/write/`"/>
+    <vue-float-btn
+      class="float-add-post-btn"
+      @click="$router.push(`${GET_REVIEW_META.url}/write/`)"/>
   </vue-board-container>
 </template>
 
@@ -44,4 +46,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .float-add-post-btn {
+    position: fixed;
+    margin-left: 60%;
+    margin-top: 10%;
+  }
+</style>

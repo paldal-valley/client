@@ -13,7 +13,9 @@
       :post-link-prefix="GET_QUESTION_META.url"
       alert-msg="취업 관련 질문 페이지입니다."
     />
-    <vue-float-btn :to="`${GET_QUESTION_META.url}/write/`"/>
+    <vue-float-btn
+      class="float-add-post-btn"
+      @click="$router.push(`${GET_QUESTION_META.url}/write/`)"/>
   </vue-board-container>
 </template>
 
@@ -44,4 +46,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .float-add-post-btn {
+    position: fixed;
+    margin-left: 60%;
+    margin-top: 10%;
+  }
+</style>
