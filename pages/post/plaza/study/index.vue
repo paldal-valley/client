@@ -13,7 +13,9 @@
       :post-link-prefix="GET_PLAZA_META.url"
       alert-msg="플라자 스터디 페이지입니다."
     />
-    <vue-float-btn :to="`${GET_PLAZA_META.url}/write/`"/>
+    <vue-float-btn
+      class="float-add-post-btn"
+      @click="$router.push(`${GET_PLAZA_META.url}/write/`)"/>
   </vue-board-container>
 </template>
 
@@ -22,8 +24,8 @@
 import VueBoardContainer from '~/containers/board'
 
 // components
-import VueBoardSidebar from '~/components/each-page/board/sidebar'
-import VueBoardPostList from '~/components/each-page/board/post-list'
+import VueBoardSidebar from '~/components/each-page/post/sidebar'
+import VueBoardPostList from '~/components/each-page/post/post-list'
 import VueFloatBtn from '~/components/common/buttons/float'
 
 import { mapGetters } from 'vuex'
@@ -44,4 +46,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .float-add-post-btn {
+    position: fixed;
+    margin-left: 60%;
+    margin-top: 10%;
+  }
+</style>

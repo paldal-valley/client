@@ -1,5 +1,5 @@
 <template>
-  <div class="qwer">
+  <div class="underline-btn-container">
     <nuxt-link
       v-if="isCurrentPage"
       :to="to"
@@ -40,7 +40,7 @@ export default {
         // when 게시판 상세페이지
         ? this.text === this.categoryName
         // when 게시판 리스트
-        : this.$route.path.includes(this.to)
+        : this.$route.path === this.to
     }
   },
   mounted() {
@@ -52,7 +52,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '~assets/scss/index';
-.qwer {
+.underline-btn-container {
   display: table-cell;
   vertical-align: middle;
   font-weight: bold;

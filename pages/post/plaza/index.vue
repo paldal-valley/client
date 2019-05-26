@@ -2,20 +2,19 @@
   <vue-board-container>
     <!-- sidebar -->
     <vue-board-sidebar
-      :buttons="GET_REVIEW_META.sidebarButtons"
+      :buttons="GET_PLAZA_META.sidebarButtons"
       :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
 
     <!-- posts -->
     <vue-board-post-list
-      board-title="review"
+      board-title="plaza"
       :buttons="GET_POST_META.icon_buttons"
-      :api-endpoint="`${GET_REVIEW_META.url}?categoryId=2`"
-      :post-link-prefix="GET_REVIEW_META.url"
-      alert-msg="수기 게시판입니다."
+      :api-endpoint="GET_PLAZA_META.url"
+      :post-link-prefix="GET_PLAZA_META.url"
     />
     <vue-float-btn
       class="float-add-post-btn"
-      @click="$router.push(`${GET_REVIEW_META.url}/write/`)"/>
+      @click="$router.push(`${GET_PLAZA_META.url}/write/`)"/>
   </vue-board-container>
 </template>
 
@@ -40,9 +39,14 @@ export default {
   computed: {
     ...mapGetters('page-meta', [
       'GET_POST_META',
-      'GET_REVIEW_META'
+      'GET_PLAZA_META'
     ]),
   },
+  methods: {
+    foo() {
+      console.log('clickckckk')
+    }
+  }
 }
 </script>
 

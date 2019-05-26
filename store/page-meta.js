@@ -5,19 +5,23 @@ export const state = () => ({
         url: '/post/plaza',
         sidebarButtons: [
           {
-            text: '자유톡',
+            text: '전체 톡',
+            to: '/post/plaza'
+          },
+          {
+            text: '자유 톡',
             to: '/post/plaza/free'
           },
           {
-            text: '스터디톡',
+            text: '스터디 톡',
             to: '/post/plaza/study'
           },
           {
-            text: '취업톡',
+            text: '취업 톡',
             to: '/post/plaza/job'
           },
           {
-            text: '맛집톡',
+            text: '맛집 톡',
             to: '/post/plaza/food'
           }
         ],
@@ -25,6 +29,10 @@ export const state = () => ({
       question: {
         url: '/post/question',
         sidebarButtons: [
+          {
+            text: '전체 질문',
+            to: '/post/question'
+          },
           {
             text: '취업 질문',
             to: '/post/question/job'
@@ -46,6 +54,10 @@ export const state = () => ({
       review: {
         url: '/post/review',
         sidebarButtons: [
+          {
+            text: '전체 수기',
+            to: '/post/review'
+          },
           {
             text: '취업 수기',
             to: '/post/review/job'
