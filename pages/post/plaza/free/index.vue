@@ -6,17 +6,18 @@
         :buttons="GET_PLAZA_META.sidebarButtons"
         :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
 
-      <vue-post-container>
-        <vue-button-group :buttons="GET_POST_META.icon_buttons" />
+    <vue-post-container>
+      <!-- buttons -->
+      <vue-button-group :buttons="GET_POST_META.icon_buttons" />
+      <!-- posts -->
+      <vue-board-post-list
+        :api-endpoint="`${GET_PLAZA_META.url}?categoryId=1`"
+        board-title="plaza"
+        :post-link-prefix="GET_PLAZA_META.url"
+        alert-msg="플라자 자유게시판 페이지입니다."
+      />
+    </vue-post-container>
 
-        <!-- posts -->
-        <vue-board-post-list
-          :api-endpoint="`${GET_PLAZA_META.url}?categoryId=1`"
-          board-title="plaza"
-          :post-link-prefix="GET_PLAZA_META.url"
-          alert-msg="플라자 자유게시판 페이지입니다."
-        />
-      </vue-post-container>
       <vue-float-btn
         class="float-add-post-btn"
         @click="$router.push(`${GET_PLAZA_META.url}/write/`)"/>

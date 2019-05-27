@@ -154,6 +154,7 @@ export default {
 .post-content {
   text-align: left;
   margin: 20px;
+  white-space: pre-line;
 }
 
 </style>
