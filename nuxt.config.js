@@ -20,6 +20,11 @@ module.exports = {
         rel: 'stylesheet',
         href:
           'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+      },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css?family=Aclonica&display=swap'
       }
     ],
     script: [
@@ -52,12 +57,12 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
+
   plugins: [
     '@/plugins/vuetify',
     '~/plugins/axios',
-    {
-      src: '~/plugins/utils',
-    }
+    '~/plugins/utils',
+    { src: '~/plugins/vue-notifications', ssr: false }
   ],
 
   /*

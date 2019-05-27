@@ -2,24 +2,24 @@
   <vue-board-container>
     <!-- sidebar -->
     <vue-board-sidebar
-      :buttons="GET_QUESTION_META.sidebarButtons"
+      :buttons="GET_PLAZA_META.sidebarButtons"
       :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
 
     <vue-post-container>
       <!-- buttons -->
       <vue-button-group :buttons="GET_POST_META.icon_buttons" />
-      <!-- posts -->
+          <!-- posts -->
       <vue-board-post-list
-        board-title="question"
-        :api-endpoint="`${GET_QUESTION_META.url}?categoryId=1`"
-        :post-link-prefix="GET_QUESTION_META.url"
-        alert-msg="취업 관련 질문 페이지입니다."
+        board-title="plaza"
+        :buttons="GET_POST_META.icon_buttons"
+        :api-endpoint="GET_PLAZA_META.url"
+        :post-link-prefix="GET_PLAZA_META.url"
       />
     </vue-post-container>
 
     <vue-float-btn
       class="float-add-post-btn"
-      @click="$router.push(`${GET_QUESTION_META.url}/write/`)"/>
+      @click="$router.push(`${GET_PLAZA_META.url}/write/`)"/>
   </vue-board-container>
 </template>
 
@@ -48,9 +48,14 @@ export default {
   computed: {
     ...mapGetters('page-meta', [
       'GET_POST_META',
-      'GET_QUESTION_META'
+      'GET_PLAZA_META'
     ]),
   },
+  methods: {
+    foo() {
+      console.log('clickckckk')
+    }
+  }
 }
 </script>
 

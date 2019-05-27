@@ -14,7 +14,7 @@
     </div> -->
 
     <!-- button-group -->
-    <vue-button-group :buttons="buttons" />
+    <!-- <vue-button-group :buttons="buttons" /> -->
 
     <!-- posts -->
     <vue-post-card
