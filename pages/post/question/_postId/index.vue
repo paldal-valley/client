@@ -4,7 +4,6 @@
     <vue-board-sidebar
       :buttons="GET_QUESTION_META.sidebarButtons"
       :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
-
     <vue-post
       :title="post.title"
       :content="post.content"
@@ -12,9 +11,10 @@
       :user-name="post.userName"
       :user-email="post.userEmail"
       :created-date="post.createdDate"
-      view="34"
+      :hasAnswerBtn=true
     />
-
+    <div>
+    </div>
     <div
       v-if="GET_USER.id === post.userId"
       class="float-btn-group">
@@ -48,11 +48,13 @@ export default {
     VueBoardContainer,
     VueBoardSidebar,
     VuePost,
-    VueFloatBtn
+    VueFloatBtn,
   },
   data: () => ({
     postId: '',
-    post: {}
+    postId_Q: '',
+    post: {},
+    answer: {}
   }),
   computed: {
     ...mapGetters({
@@ -67,6 +69,7 @@ export default {
   mounted() {
     this.postId = this.$route.params.postId
     this.fetchPost()
+    this.fetchAnswer()
   },
   methods: {
     async fetchPost() {
@@ -77,6 +80,22 @@ export default {
         }
         const { data } = await this.$axios(options)
         this.post = data
+        this.postId_Q = data.id
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    async fetchAnswer(){
+      try {
+        const options = {
+          url: `post/answer/${this.postId}`,
+          method: 'get',
+          params: { postId_Q: this.postId_Q }
+        }
+        const { data } = await this.$axios(options)
+        this.answer = data
+        //alert(data.length) --> 답변 갯수
+        // await this.getReward("0x98FE5eaFd3D61af18fB2b2322b8346dF05057202")
       } catch (err) {
         console.error(err)
       }
@@ -105,6 +124,11 @@ export default {
         alert('에러가 발생했습니다.')
       }
     },
+   onWriteClick() {
+      const routerid = this.$route.params.postId
+      this.$router.push(`../answer/${routerid}`)
+      //this.$router.push(`../question/${routerid}`)
+    }
   }
 }
 </script>

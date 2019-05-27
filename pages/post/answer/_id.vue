@@ -1,95 +1,116 @@
 <template>
-  <div>
-    <vue-post
-      :title="posts.title"
-      :content="posts.content"
-      :createdDate="posts.createdDate"
-      :view="posts.view"
-      :hasAnswerBtn="true"
-      :questionId="posts.postId"
-    ></vue-post>
+  <div class="write-container">
+    <v-card>
+      <v-form>
+        <vue-post
+          :title="post.title"
+          :content="post.content"
+          :category="category"
+          :user-name="post.userName"
+          :user-email="post.userEmail"
+          :created-date="post.createdDate"
+        />
 
-    <h4 class="answer">{{ answers.length }} 개의 답변이 있습니다.</h4>
-
-    <vue-post
-      v-for="answer in answers"
-      :key="answer.id"
-      class="answer"
-      :content="answer.content"
-      :createdDate="answer.createdDate"
-      :hasSelectBtn="true"
-      :hasTitle="false"
-    ></vue-post>
-
-    <!-- 답변 시작 -->
+        <v-divider
+          class="separator"/>
+         <br><br> 
+        <v-textarea
+          v-model="content"
+          :placeholder="contentPlaceHolder"
+          full-width
+          rows="15"/>
+      </v-form>
+    </v-card>
+    <v-btn
+      block
+      color="#4E98A4"
+      class="white--text"
+      @click="createAnswer">
+      <strong>답변 등록</strong>
+    </v-btn>
   </div>
 </template>
 
 <script>
-import VuePost from '~/components/common/posts/index'
+import { mapGetters, mapState } from 'vuex'
+import VuePost from '~/components/common/posts'
 export default {
-  //middleware : 'search',
   components: {
     VuePost
   },
-  data() {
-    return {
-      posts: {
-        id: '',
-        title: '', //제목
-        content: '', //내용
-        writer: '', // userId
-        view: '', // 조회수
-        recommended: '', // 추천수
-        createdDate: '', //작성일
-        lastModifiedDate: '', //최종 수정일
-        isPending: '',
-        isDeleted: '',
-        type: ''
-      },
-      answers: []
-
-      // postId: ''
+  data: () => ({
+    postId: '',
+    postId_Q: '',
+    post: {}
+  }),
+  props: {
+    titlePlaceHolder: {
+      type: String,
+      default: '제목'
+    },
+    contentPlaceHolder: {
+      type: String,
+      default: '내용을 입력하세요!'
     }
   },
-  async mounted() {
-    const postId = this.$route.params.id || ''
-    //alert(postId)
-    const { data } = await this.$axios.get(`/post/readQ/${postId}`)
-    this.posts = data[0]
-
-    const ans = (await this.$axios.get(`/post/readA/${this.posts.id}`)).data
-    // this.$axios.$get('/posts/readA/질문id(dynamic)')
-    this.answers = ans
+  computed: {
+    ...mapGetters({
+      GET_USER: 'auth/GET_USER',
+      GET_CATEGORIES: 'models/GET_CATEGORIES'
+    }),
+    selectorItem() {
+      return this.GET_CATEGORIES['question']
+    }
+  },
+  mounted() {
+    this.postId = this.$route.params.id
+    //this.postId_Q
+    this.fetchPost()
   },
   methods: {
-    onWriteClick(post) {
-      const routerid = post.id
-      this.$router.push('./writeanswer/${routerid}')
-      // this.$axios.$get('/boards').then((response) => {
-      //   this.posts[0].title = response
-      //   //this.posts[0].title = response.data
-      // })
-      //this.posts[0].title = 취업꿀팁
-      //window.location='./qna/writepost';
+     async fetchPost() {
+      try {
+        const options = {
+          url: `post/question/${this.postId}`,
+          method: 'get'
+        }
+        const { data } = await this.$axios(options)
+        this.post = data
+        this.postId_Q = data.id
+      } catch (err) {
+        console.error(err)
+      }
     },
-    async onReadClick() {
-      this.$router.go('-1')
-
-      // this.$axios.$post('/boards', {
-      //   id : '37',
-      //   title : '한국어교육학과'
-      // }).then(function (response) {
-      //   console.log(response)
-      // })
-      //window.location='./qna/readpost';
-    }
+    async createAnswer() {
+      try {
+        const options = {
+          url: `post/answer/${this.postId}`,
+          method: 'post',
+          params: { postId_Q: this.postId_Q },
+          data: {
+            content: this.content,
+            userId: this.GET_USER.id
+          }
+        }
+        //alert(this.postId_Q)
+        await this.$axios(options)
+        alert(this.postId_Q)
+        // await this.getReward("0x98FE5eaFd3D61af18fB2b2322b8346dF05057202")
+        //this.$router.back()
+      } catch (err) {
+        console.error(err)
+      }
+    },
   }
 }
 </script>
 
-<style>
-.answer {
-  margin-top: 20px;
-}
+<style scoped>
+  .separator {
+    margin-top: -30px;
+    margin-bottom: 10px;
+  }
+  .write-container {
+    margin-bottom: 20px;
+  }
 </style>
