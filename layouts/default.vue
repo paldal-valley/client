@@ -9,9 +9,11 @@
         menu-transition="slide-x-transition"
       />
       <vue-drawer />
-      <notifications group="alert-css"
-                position="bottom left"
-                :speed="500" />
+      <no-ssr>
+        <notifications group="alert-css"
+                  position="bottom left"
+                  :speed="500" />
+      </no-ssr>
 
       <!-- 추후 리팩토링 필요함 -->
       <v-content>
