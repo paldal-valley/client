@@ -1,6 +1,11 @@
 <template>
   <v-app>
     <div class="foo-layout-container">
+      <no-ssr>
+        <notifications group="alert-css"
+                  position="bottom left"
+                  :speed="500" />
+      </no-ssr>
       <v-content>
         <v-container fluid fill-height>
           <v-layout justify-center align-center>
