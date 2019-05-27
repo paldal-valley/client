@@ -165,17 +165,6 @@ import Vue from 'vue'
 import VeeValidate from 'vee-validate'
 import { AjouEmailRule } from '@/validates/AjouEmailValidates'
 
-/* 한글화 노가다 말고 'ko' locale 이용해서 해볼것
-  import ko from 'vee-validate/dist/locale/ko.js'
-
-  const config = {
-    locale: 'ko',
-    dictionary: {
-      ko
-    }
-  }
-
-  Vue.use(VeeValidate, config)*/
 VeeValidate.Validator.extend('ajouEmail', AjouEmailRule)
 Vue.use(VeeValidate)
 
