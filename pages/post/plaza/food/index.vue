@@ -13,7 +13,9 @@
       :post-link-prefix="GET_PLAZA_META.url"
       alert-msg="플라자 맛집 페이지입니다."
     />
-    <vue-float-btn :to="`${GET_PLAZA_META.url}/write/`"/>
+    <vue-float-btn
+      class="float-add-post-btn"
+      @click="$router.push(`${GET_PLAZA_META.url}/write/`)"/>
   </vue-board-container>
 </template>
 
@@ -41,7 +43,18 @@ export default {
       'GET_PLAZA_META'
     ]),
   },
+  methods: {
+    foo() {
+      console.log('clickckckk')
+    }
+  }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .float-add-post-btn {
+    position: fixed;
+    margin-left: 60%;
+    margin-top: 10%;
+  }
+</style>

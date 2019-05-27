@@ -11,13 +11,15 @@
 
         <!-- posts -->
         <vue-board-post-list
-          board-title="plaza"
           :api-endpoint="`${GET_PLAZA_META.url}?categoryId=1`"
+          board-title="plaza"
           :post-link-prefix="GET_PLAZA_META.url"
           alert-msg="플라자 자유게시판 페이지입니다."
         />
       </vue-post-container>
-      <vue-float-btn :to="`${GET_PLAZA_META.url}/write/`"/>
+      <vue-float-btn
+        class="float-add-post-btn"
+        @click="$router.push(`${GET_PLAZA_META.url}/write/`)"/>
     </vue-board-container>
   </transition>
 </template>
@@ -53,4 +55,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .float-add-post-btn {
+    position: fixed;
+    margin-left: 60%;
+    margin-top: 10%;
+  }
+</style>
