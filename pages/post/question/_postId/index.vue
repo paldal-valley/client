@@ -84,11 +84,11 @@ export default {
     async deletePost() {
       // TODO: vue-notification 플러그인이 먹지 않음
       // TODO: 향후 alert 등 대체할 것
-      // this.$notify({
-      //   group: 'foo',
-      //   title: 'Important message',
-      //   text: 'Hello user! This is a notification!'
-      // });
+      this.$notify({
+        group: 'alert-css',
+        title: '게시글 삭제', 
+        text: '정상적으로 삭제되었습니다.'
+      });
       const options = {
         url: `post/${this.postId}`,
         method: 'delete'
