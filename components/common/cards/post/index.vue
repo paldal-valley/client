@@ -6,7 +6,12 @@
         class="card__category">
         {{ category }}
       </div>
-      <h2 class="card__title">{{ post.title }}</h2>
+      <div class="card__header">
+        <span class="card__title">{{ post.title }}</span>
+        <span
+          v-if="post.totalComment"
+          class="card__comment">[{{ post.totalComment }}]</span>
+      </div>
       <p class="card__content">{{ post.content }}</p>
       <div class="card__date"> {{ post.createdDate }} </div>
     </div>
@@ -14,9 +19,6 @@
 </template>
 
 <script>
-// props
-// exist: title, view, id, recommended, content
-// need: createdDate, tag, category
 export default {
   props: {
     post: {
@@ -33,6 +35,9 @@ export default {
     }
   },
   computed: {
+    title() {
+      return `${this.post.title}`
+    },
     category() {
       return this.$categoryMapper(this.boardTitle, this.post.categoryId)
     }
@@ -68,9 +73,19 @@ export default {
     }
   }
 
-  .card__title {
-    color: black;
+  .card__header {
     margin-bottom: 10px;
+    font-weight: bold;
+
+    .card__title {
+      color: black;
+      font-size: 20px;
+    }
+    .card__comment {
+      color: $ac-green2;
+      font-size: 15px;
+      margin-left: 5px;
+    }
   }
 
   .card__content {

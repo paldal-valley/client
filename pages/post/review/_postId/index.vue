@@ -5,15 +5,35 @@
       :buttons="GET_REVIEW_META.sidebarButtons"
       :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
 
-    <vue-post
-      :title="post.title"
-      :content="post.content"
-      :category="category"
-      :user-name="post.userName"
-      :user-email="post.userEmail"
-      :created-date="post.createdDate"
-      view="34"
-    />
+    <!-- post-content -->
+    <div class="post-content">
+      <vue-post
+        :title="post.title"
+        :content="post.content"
+        :category="category"
+        :user-name="post.userName"
+        :user-email="post.userEmail"
+        :created-date="post.createdDate"
+        view="34"
+      />
+
+      <!-- comments -->
+      <vue-category-separator
+        :category-name="commentText"/>
+
+      <vue-comment-textarea
+        @comment-created="fetchPost"/>
+
+      <transition-group name="fade" tag="div">
+        <vue-comment-card
+          v-for="comment in post.comments"
+          :key="comment.id"
+          :comment="comment"
+          @comments-changed="fetchPost"/>
+      </transition-group>
+    </div>
+
+    <!-- float buttons -->
 
     <div
       v-if="GET_USER.id === post.userId"
@@ -39,6 +59,9 @@ import VueBoardContainer from '~/containers/board'
 import VueBoardSidebar from '~/components/each-page/post/sidebar'
 import VuePost from '~/components/common/posts'
 import VueFloatBtn from '~/components/common/buttons/float'
+import VueCommentCard from '~/components/common/cards/comment'
+import VueCommentTextarea from '~/components/common/textareas/comment'
+import VueCategorySeparator from '~/components/common/separators/category'
 
 import { mapGetters } from 'vuex'
 
@@ -48,12 +71,11 @@ export default {
     VueBoardContainer,
     VueBoardSidebar,
     VuePost,
-    VueFloatBtn
+    VueFloatBtn,
+    VueCommentCard,
+    VueCommentTextarea,
+    VueCategorySeparator
   },
-  data: () => ({
-    postId: '',
-    post: {}
-  }),
   computed: {
     ...mapGetters({
       GET_POST_META: 'page-meta/GET_POST_META',
@@ -62,8 +84,19 @@ export default {
     }),
     category() {
       return this.$categoryMapper('review', this.post.categoryId)
+    },
+    commentText() {
+      if (typeof this.post.comments !== 'undefined') {
+        return this.post.comments.length
+          ? `${this.post.comments.length}개의 댓글이 존재합니다.`
+          : `작성된 댓글이 없습니다.`
+      }
     }
   },
+  data: () => ({
+    postId: '',
+    post: {}
+  }),
   mounted() {
     this.postId = this.$route.params.postId
     this.fetchPost()
@@ -82,13 +115,6 @@ export default {
       }
     },
     async deletePost() {
-      // TODO: vue-notification 플러그인이 먹지 않음
-      // TODO: 향후 alert 등 대체할 것
-      this.$notify({
-        group: 'alert-css',
-        title: '게시글 삭제', 
-        text: '정상적으로 삭제되었습니다.'
-      });
       const options = {
         url: `post/${this.postId}`,
         method: 'delete'
@@ -97,12 +123,12 @@ export default {
       try {
         if (confirm('포스트를 정말 삭제하시겠습니까?')) {
           await this.$axios(options)
-          alert('정상적으로 삭제되었습니다')
+          this.$notifySuccess('정상적으로 삭제되었습니다.')
           this.$router.back()
         }
       } catch (err) {
         console.error(err)
-        alert('에러가 발생했습니다.')
+        this.$notifyError('에러가 발생했습니다.')
       }
     },
   }
@@ -117,6 +143,17 @@ export default {
     .float-btn {
       margin-bottom: 10px;
     }
+  }
+  .post-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 1.5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
   }
 </style>
 

@@ -1,9 +1,15 @@
 <template>
   <div>
-    <v-btn @click="$emit('click')" fab dark large :color="color">
+    <v-btn
+      fab
+      dark
+      :color="color"
+      :small="small"
+      :large="!small"
+      @click="$emit('click')">
       <v-icon dark>{{ icon }}</v-icon>
     </v-btn>
-    <h3 class="btn-text" @click="$emit('click')">{{ buttonText }}</h3>
+    <h3 v-if="buttonText" class="btn-text" @click="$emit('click')">{{ buttonText }}</h3>
   </div>
 </template>
 <script>
@@ -19,8 +25,12 @@ export default {
     },
     buttonText: {
       type: String,
-      default: '글쓰기'
+      default: ''
     },
+    small: {
+      type: Boolean,
+      default: false
+    }
   },
 }
 </script>

@@ -19,6 +19,7 @@
 
     <vue-float-btn
       class="float-add-post-btn"
+      button-text="글쓰기"
       @click="$router.push(`${GET_PLAZA_META.url}/write/`)"/>
   </vue-board-container>
 </template>
@@ -51,11 +52,6 @@ export default {
       'GET_PLAZA_META'
     ]),
   },
-  methods: {
-    foo() {
-      console.log('clickckckk')
-    }
-  }
 }
 </script>
 
