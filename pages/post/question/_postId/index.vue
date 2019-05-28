@@ -4,30 +4,43 @@
     <vue-board-sidebar
       :buttons="GET_QUESTION_META.sidebarButtons"
       :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
-    <vue-post-container>
-    <vue-post
-      :title="post.title"
-      :content="post.content"
-      :category="category"
-      :user-name="post.userName"
-      :user-email="post.userEmail"
-      :created-date="post.createdDate"
-      :hasAnswerBtn=true
-    />
-    <br>
-    <h2> {{length}}개의 답변이 존재합니다. </h2>
-    <br>
-    <vue-answer
-      v-for="answer in answers"
-      :key="answer.id"
-      :content="answer.content"
-      :user-name="answer.userName"
-      :user-email="answer.userEmail"
-      :created-date="answer.createdDate"
-      :hasSelectBtn=true
-    />
-    </vue-post-container>
-    <div>
+    <div class="post-content">
+      <vue-post
+        :title="post.title"
+        :content="post.content"
+        :category="category"
+        :user-name="post.userName"
+        :user-email="post.userEmail"
+        :created-date="post.createdDate"
+        :hasAnswerBtn=true
+      />
+      <br>
+      <h2> {{length}}개의 답변이 존재합니다. </h2>
+      <br>
+      <vue-answer
+        v-for="answer in answers"
+        :key="answer.id"
+        :content="answer.content"
+        :user-name="answer.userName"
+        :user-email="answer.userEmail"
+        :created-date="answer.createdDate"
+        :hasSelectBtn=true
+      />
+
+      <!-- comments -->
+      <vue-category-separator
+        :category-name="commentText"/>
+
+      <vue-comment-textarea
+        @comment-created="fetchPost"/>
+
+      <transition-group name="fade" tag="div">
+        <vue-comment-card
+          v-for="comment in post.comments"
+          :key="comment.id"
+          :comment="comment"
+          @comments-changed="fetchPost"/>
+      </transition-group>
     </div>
     <div
       v-if="GET_USER.id === post.userId"
@@ -55,25 +68,25 @@ import VueBoardSidebar from '~/components/each-page/post/sidebar'
 import VuePost from '~/components/common/posts'
 import VueFloatBtn from '~/components/common/buttons/float'
 import VueAnswer from '~/components/common/answer'
+import VueCommentCard from '~/components/common/cards/comment'
+import VueCommentTextarea from '~/components/common/textareas/comment'
+import VueCategorySeparator from '~/components/common/separators/category'
 
 import { mapGetters } from 'vuex'
 
 export default {
   middleware: ['isLoggedIn'],
   components: {
+    VuePostContainer,
     VueBoardContainer,
     VueBoardSidebar,
     VuePost,
     VueFloatBtn,
     VueAnswer,
+    VueCommentCard,
+    VueCommentTextarea,
+    VueCategorySeparator
   },
-  data: () => ({
-    postId: '',
-    postId_Q: '',
-    length: '',
-    post: {},
-    answers: []
-  }),
   computed: {
     ...mapGetters({
       GET_POST_META: 'page-meta/GET_POST_META',
@@ -82,8 +95,22 @@ export default {
     }),
     category() {
       return this.$categoryMapper('question', this.post.categoryId)
+    },
+    commentText() {
+      if (typeof this.post.comments !== 'undefined') {
+        return this.post.comments.length
+          ? `${this.post.comments.length}개의 댓글이 존재합니다.`
+          : `작성된 댓글이 없습니다.`
+      }
     }
   },
+  data: () => ({
+    postId: '',
+    postId_Q: '',
+    length: '',
+    post: {},
+    answers: []
+  }),
   mounted() {
     this.postId = this.$route.params.postId
     this.fetchPost()
@@ -149,5 +176,16 @@ export default {
     .float-btn {
       margin-bottom: 10px;
     }
+  }
+  .post-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 1.5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
   }
 </style>
