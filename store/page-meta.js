@@ -85,15 +85,15 @@ export const state = () => ({
       icon_buttons: [
         {
           text: 'AC 광장',
-          to: '/post/plaza/free'
+          to: '/post/plaza'
         },
         {
           text: 'Q&A',
-          to: '/post/question/job'
+          to: '/post/question'
         },
         {
           text: '수기',
-          to: '/post/review/job'
+          to: '/post/review'
         }
 
       ]

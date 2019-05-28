@@ -1,6 +1,6 @@
 import cookie from 'cookie'
 
-// export const strict = false
+export const strict = false
 
 export const state = () => ({
   // accessToken: null,

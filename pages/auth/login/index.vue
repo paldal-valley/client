@@ -24,7 +24,7 @@
           </v-flex>
           <v-flex xs12 sm4 md4> </v-flex>
           <v-flex xs12 sm4 md4>
-            <v-btn color="primary" flat class="mt-3">비밀번호 찾기</v-btn>
+            <v-btn color="primary" to="password" flat class="mt-3">비밀번호 찾기</v-btn>
           </v-flex>
         </v-layout>
       </v-form>
@@ -34,7 +34,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-export default {
+export default { 
   layout: 'login',
   data () {
     return {

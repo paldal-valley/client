@@ -59,11 +59,11 @@
       <form>
         <v-text-field
           v-model="form.name"
-          v-validate="'required|min:6|max:20'"
-          :counter="20"
-          :error-messages="errors.collect('user_name')"
-          label="USER NAME"
-          data-vv-name="user_name"
+          v-validate="'required|max:10'"
+          :counter="10"
+          :error-messages="errors.collect('name')"
+          label="NickName"
+          data-vv-name="name"
           required
         ></v-text-field>
         <v-text-field
@@ -165,17 +165,6 @@ import Vue from 'vue'
 import VeeValidate from 'vee-validate'
 import { AjouEmailRule } from '@/validates/AjouEmailValidates'
 
-/* 한글화 노가다 말고 'ko' locale 이용해서 해볼것
-  import ko from 'vee-validate/dist/locale/ko.js'
-
-  const config = {
-    locale: 'ko',
-    dictionary: {
-      ko
-    }
-  }
-
-  Vue.use(VeeValidate, config)*/
 VeeValidate.Validator.extend('ajouEmail', AjouEmailRule)
 Vue.use(VeeValidate)
 
@@ -228,10 +217,9 @@ export default {
         // custom attributes
       },
       custom: {
-        id: {
+        name: {
           required: () => '필수 정보입니다.',
-          min: 'ID는 최소 6자 입니다.',
-          max: 'ID는 최대 20자 입니다.'
+          max: '닉네임은 최대 10자 입니다.'
         },
         password: {
           required: () => '필수 정보입니다.',
@@ -266,7 +254,7 @@ export default {
       this.$validator.validateAll()
     },
     clear() {
-      this.form.id = ''
+      this.form.name = ''
       this.form.password = ''
       this.form.password_confirm = ''
       this.form.email = ''

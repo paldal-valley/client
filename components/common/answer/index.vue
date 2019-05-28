@@ -3,24 +3,13 @@
     <v-form>
       <div class="post-container">
         <header>
-          <div>
-            <span class="category">
-              {{ category }}
-            </span>
-            <br /><br />
-          </div>
-          <h2 v-if="hasTitle" class="title">
-            {{ title }}
-          </h2>
-          <br /><br />
-
+            <br>
           <p class="post-info">
             <span class="user-info">
               <strong>작성자: {{ userName }}</strong>
               ({{ userEmail }})
             </span>
             <span class="meta"> 작성일: {{ createdDate }} </span>
-            <span class="meta"> 조회수: {{ view }} </span>
           </p>
           <br />
           <hr />
@@ -39,15 +28,6 @@
         <v-icon>thumb_up</v-icon>
       </v-btn>
     </div>
-    <v-btn
-      v-if="hasAnswerBtn"
-      block
-      color="#054d95"
-      class="white--text"
-      @click="onWriteClick()"
-    >
-      <strong>답변하기</strong>
-    </v-btn>
   </v-card>
 </template>
 
@@ -55,15 +35,7 @@
 import { EventBus } from '~/utils/EventBus'
 export default {
   props: {
-    title: {
-      type: String,
-      default: ''
-    },
     content: {
-      type: String,
-      default: ''
-    },
-    category: {
       type: String,
       default: ''
     },
@@ -78,14 +50,6 @@ export default {
     createdDate: {
       type: String,
       default: ''
-    },
-    view: {
-      type: String,
-      default: ''
-    },
-    hasAnswerBtn: {
-      type: Boolean,
-      default: false
     },
     hasSelectBtn: {
       type: Boolean,
@@ -107,22 +71,8 @@ export default {
       EventBus.$emit('categoryName from post', this.category)
     }
   },
-  // beforeUpdate() {
-  //   EventBus.$emit('categoryName from post', this.category)
-  // },
   methods: {
-    onWriteClick() {
-      //const routerid = this.questionId
-      const routerid = this.$route.params.postId
-      //alert(routerid)
-      this.$router.push(`../answer/${routerid}`)
-      // this.$axios.$get('/boards').then((response) => {
-      //   this.posts[0].title = response
-      //   //this.posts[0].title = response.data
-      // })
-      //this.posts[0].title = 취업꿀팁
-      //window.location='./qna/writepost';
-    }
+
   }
 }
 </script>
@@ -130,11 +80,12 @@ export default {
 <style scoped>
 .post {
   width: 100%;
+  margin-bottom: 35px;
 }
 .category {
   float: left;
   margin-top: 10px;
-  margin-left: 20px;
+  margin-left: 0px;
 }
 .title {
   float: left;

@@ -4,7 +4,7 @@
     <vue-board-sidebar
       :buttons="GET_QUESTION_META.sidebarButtons"
       :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
-
+    <vue-post-container>
     <vue-post
       :title="post.title"
       :content="post.content"
@@ -12,9 +12,23 @@
       :user-name="post.userName"
       :user-email="post.userEmail"
       :created-date="post.createdDate"
-      view="34"
+      :hasAnswerBtn=true
     />
-
+    <br>
+    <h2> {{length}}개의 답변이 존재합니다. </h2>
+    <br>
+    <vue-answer
+      v-for="answer in answers"
+      :key="answer.id"
+      :content="answer.content"
+      :user-name="answer.userName"
+      :user-email="answer.userEmail"
+      :created-date="answer.createdDate"
+      :hasSelectBtn=true
+    />
+    </vue-post-container>
+    <div>
+    </div>
     <div
       v-if="GET_USER.id === post.userId"
       class="float-btn-group">
@@ -34,11 +48,13 @@
 <script>
 // containers
 import VueBoardContainer from '~/containers/board'
+import VuePostContainer from '~/containers/post'
 
 // components
 import VueBoardSidebar from '~/components/each-page/post/sidebar'
 import VuePost from '~/components/common/posts'
 import VueFloatBtn from '~/components/common/buttons/float'
+import VueAnswer from '~/components/common/answer'
 
 import { mapGetters } from 'vuex'
 
@@ -48,11 +64,15 @@ export default {
     VueBoardContainer,
     VueBoardSidebar,
     VuePost,
-    VueFloatBtn
+    VueFloatBtn,
+    VueAnswer,
   },
   data: () => ({
     postId: '',
-    post: {}
+    postId_Q: '',
+    length: '',
+    post: {},
+    answers: []
   }),
   computed: {
     ...mapGetters({
@@ -77,6 +97,20 @@ export default {
         }
         const { data } = await this.$axios(options)
         this.post = data
+        this.postId_Q = data.id
+        try{
+          const options2 = {
+            url: `post/answer/${this.postId}`,
+            method: 'get',
+            params: { postId_Q: this.postId_Q }
+          }
+          const ans = (await this.$axios(options2)).data
+          this.answers = ans
+          this.length = ans.length
+
+        }catch (err) {
+          console.error(err)
+        }
       } catch (err) {
         console.error(err)
       }
@@ -84,11 +118,11 @@ export default {
     async deletePost() {
       // TODO: vue-notification 플러그인이 먹지 않음
       // TODO: 향후 alert 등 대체할 것
-      // this.$notify({
-      //   group: 'foo',
-      //   title: 'Important message',
-      //   text: 'Hello user! This is a notification!'
-      // });
+      this.$notify({
+        group: 'alert-css',
+        title: '게시글 삭제', 
+        text: '정상적으로 삭제되었습니다.'
+      });
       const options = {
         url: `post/${this.postId}`,
         method: 'delete'
@@ -105,6 +139,11 @@ export default {
         alert('에러가 발생했습니다.')
       }
     },
+   onWriteClick() {
+      const routerid = this.$route.params.postId
+      this.$router.push(`../answer/${routerid}`)
+      //this.$router.push(`../question/${routerid}`)
+    }
   }
 }
 </script>
