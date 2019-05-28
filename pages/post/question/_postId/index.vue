@@ -116,13 +116,6 @@ export default {
       }
     },
     async deletePost() {
-      // TODO: vue-notification 플러그인이 먹지 않음
-      // TODO: 향후 alert 등 대체할 것
-      this.$notify({
-        group: 'alert-css',
-        title: '게시글 삭제', 
-        text: '정상적으로 삭제되었습니다.'
-      });
       const options = {
         url: `post/${this.postId}`,
         method: 'delete'
@@ -131,12 +124,12 @@ export default {
       try {
         if (confirm('포스트를 정말 삭제하시겠습니까?')) {
           await this.$axios(options)
-          alert('정상적으로 삭제되었습니다')
+          this.$notifySuccess('정상적으로 삭제되었습니다.')
           this.$router.back()
         }
       } catch (err) {
         console.error(err)
-        alert('에러가 발생했습니다.')
+        this.$notifyError('에러가 발생했습니다.')
       }
     },
    onWriteClick() {

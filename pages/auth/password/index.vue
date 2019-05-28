@@ -40,7 +40,7 @@ import { mapGetters } from 'vuex'
 VeeValidate.Validator.extend('ajouEmail', AjouEmailRule)
 Vue.use(VeeValidate)
 
-export default { 
+export default {
   layout: 'login',
   $_veeValidate: {
     validator: 'new'
@@ -72,11 +72,7 @@ export default {
   },
   methods: {
     async submit () {
-        this.$notify({
-            group: 'alert-css',
-            title: '비밀번호 변경', 
-            text: '비밀번호 변경 이메일을 전송하였습니다.'
-      });
+      this.$notifySuccess('비밀번호 변경 이메일을 전송하였습니다.')
     //   try {
     //     await this.$store.dispatch('auth/LOGIN', {
     //       email: this.email,
