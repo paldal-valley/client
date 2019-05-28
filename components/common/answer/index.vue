@@ -28,7 +28,6 @@
         <v-icon>thumb_up</v-icon>
       </v-btn>
     </div>
-    <br>
   </v-card>
 </template>
 
@@ -81,11 +80,12 @@ export default {
 <style scoped>
 .post {
   width: 100%;
+  margin-bottom: 35px;
 }
 .category {
   float: left;
   margin-top: 10px;
-  margin-left: 20px;
+  margin-left: 0px;
 }
 .title {
   float: left;
