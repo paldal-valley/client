@@ -9,9 +9,10 @@
       />
       <vue-drawer />
       <no-ssr>
-        <notifications group="alert-css"
-                  position="bottom left"
-                  :speed="500" />
+        <notifications
+          position="bottom right"
+          width="400"
+          :speed="500"/>
       </no-ssr>
 
       <!-- 추후 리팩토링 필요함 -->

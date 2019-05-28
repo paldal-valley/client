@@ -2,9 +2,10 @@
   <v-app>
     <div class="foo-layout-container">
       <no-ssr>
-        <notifications group="alert-css"
-                  position="bottom left"
-                  :speed="500" />
+        <notifications
+          position="bottom right"
+          width="400"
+          :speed="500"/>
       </no-ssr>
       <v-content>
         <v-container fluid fill-height>
