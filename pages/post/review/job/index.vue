@@ -16,9 +16,10 @@
         alert-msg="수기 게시판입니다."
       />
     </vue-post-container>
-      
+
     <vue-float-btn
       class="float-add-post-btn"
+      button-text="글쓰기"
       @click="$router.push(`${GET_REVIEW_META.url}/write/`)"/>
   </vue-board-container>
 </template>

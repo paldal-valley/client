@@ -20,6 +20,7 @@
 
       <vue-float-btn
         class="float-add-post-btn"
+        button-text="글쓰기"
         @click="$router.push(`${GET_REVIEW_META.url}/write/`)"/>
     </vue-board-container>
   </div>
