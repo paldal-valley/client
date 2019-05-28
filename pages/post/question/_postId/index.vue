@@ -4,6 +4,7 @@
     <vue-board-sidebar
       :buttons="GET_QUESTION_META.sidebarButtons"
       :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
+    <vue-post-container>
     <vue-post
       :title="post.title"
       :content="post.content"
@@ -13,6 +14,19 @@
       :created-date="post.createdDate"
       :hasAnswerBtn=true
     />
+    <br>
+    <h2> {{length}}개의 답변이 존재합니다. </h2>
+    <br>
+    <vue-answer
+      v-for="answer in answers"
+      :key="answer.id"
+      :content="answer.content"
+      :user-name="answer.userName"
+      :user-email="answer.userEmail"
+      :created-date="answer.createdDate"
+      :hasSelectBtn=true
+    />
+    </vue-post-container>
     <div>
     </div>
     <div
@@ -34,11 +48,13 @@
 <script>
 // containers
 import VueBoardContainer from '~/containers/board'
+import VuePostContainer from '~/containers/post'
 
 // components
 import VueBoardSidebar from '~/components/each-page/post/sidebar'
 import VuePost from '~/components/common/posts'
 import VueFloatBtn from '~/components/common/buttons/float'
+import VueAnswer from '~/components/common/answer'
 
 import { mapGetters } from 'vuex'
 
@@ -49,12 +65,14 @@ export default {
     VueBoardSidebar,
     VuePost,
     VueFloatBtn,
+    VueAnswer,
   },
   data: () => ({
     postId: '',
     postId_Q: '',
+    length: '',
     post: {},
-    answer: {}
+    answers: []
   }),
   computed: {
     ...mapGetters({
@@ -69,7 +87,6 @@ export default {
   mounted() {
     this.postId = this.$route.params.postId
     this.fetchPost()
-    this.fetchAnswer()
   },
   methods: {
     async fetchPost() {
@@ -81,21 +98,19 @@ export default {
         const { data } = await this.$axios(options)
         this.post = data
         this.postId_Q = data.id
-      } catch (err) {
-        console.error(err)
-      }
-    },
-    async fetchAnswer(){
-      try {
-        const options = {
-          url: `post/answer/${this.postId}`,
-          method: 'get',
-          params: { postId_Q: this.postId_Q }
+        try{
+          const options2 = {
+            url: `post/answer/${this.postId}`,
+            method: 'get',
+            params: { postId_Q: this.postId_Q }
+          }
+          const ans = (await this.$axios(options2)).data
+          this.answers = ans
+          this.length = ans.length
+
+        }catch (err) {
+          console.error(err)
         }
-        const { data } = await this.$axios(options)
-        this.answer = data
-        //alert(data.length) --> 답변 갯수
-        // await this.getReward("0x98FE5eaFd3D61af18fB2b2322b8346dF05057202")
       } catch (err) {
         console.error(err)
       }
