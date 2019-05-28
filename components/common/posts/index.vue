@@ -1,5 +1,5 @@
 <template>
-  <v-card class="post">
+  <div class="post">
     <v-form>
       <div class="post-container">
         <header>
@@ -48,7 +48,7 @@
     >
       <strong>답변하기</strong>
     </v-btn>
-  </v-card>
+  </div>
 </template>
 
 <script>
@@ -107,27 +107,25 @@ export default {
       EventBus.$emit('categoryName from post', this.category)
     }
   },
-  // beforeUpdate() {
-  //   EventBus.$emit('categoryName from post', this.category)
-  // },
   methods: {
     onWriteClick() {
       const routerid = this.questionId
       this.$router.push(`../question/${routerid}`)
-      // this.$axios.$get('/boards').then((response) => {
-      //   this.posts[0].title = response
-      //   //this.posts[0].title = response.data
-      // })
-      //this.posts[0].title = 취업꿀팁
-      //window.location='./qna/writepost';
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '~assets/scss/index';
 .post {
   width: 100%;
+  height: 500px;
+
+  // 아래 세 요소 scss로 래핑하기
+  box-shadow: $box-shadow;
+  border: 1px solid transparent;
+  border-radius: 6px;
 }
 .category {
   float: left;
