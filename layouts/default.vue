@@ -16,7 +16,6 @@
           :speed="500"/>
       </no-ssr>
 
-      <!-- 추후 리팩토링 필요함 -->
       <v-content>
         <v-container fluid fill-height>
           <transition class="fade" mode="out-in">
