@@ -14,9 +14,6 @@
 </template>
 
 <script>
-// props
-// exist: title, view, id, recommended, content
-// need: createdDate, tag, category
 export default {
   props: {
     post: {
