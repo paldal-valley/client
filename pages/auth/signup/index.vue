@@ -69,8 +69,8 @@
         <v-text-field
           v-model="form.password"
           v-validate="'required|min:6|max:15'"
-          :append-icon="show1 ? 'visibility' : 'visibility_off'"
-          :type="show1 ? 'text' : 'password'"
+          :append-icon="'visibility_off'"
+          :type="'password'"
           :counter="15"
           :error-messages="errors.collect('password')"
           ref="password"
@@ -81,8 +81,8 @@
         <v-text-field
           v-model="form.password_confirm"
           v-validate="'required|confirmed:password'"
-          :append-icon="show2 ? 'visibility' : 'visibility_off'"
-          :type="show2 ? 'text' : 'password'"
+          :append-icon="'visibility_off'"
+          :type="'password'"
           :counter="15"
           :error-messages="errors.collect('password_confirm')"
           label="비밀번호 확인"
@@ -177,8 +177,6 @@ export default {
     e6: 1,
     isActive: false,
     valid: true,
-    show1: false,
-    show2: false,
     token: '',
     token_input: '',
     email_send: false,

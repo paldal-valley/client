@@ -12,7 +12,7 @@
                 v-validate="'required|ajouEmail'"
                 :error-messages="errors.collect('email')"
                 label="E-mail"
-                data-vv-name="email"
+                data-vv-name="email" 
                 required
                 >
                     <template v-slot:label>
@@ -20,7 +20,7 @@
                         <v-icon style="vertical-align: middle">email</v-icon>
                     </template>
                 </v-text-field>
-                <v-btn color="primary" large block @click="submit">비밀번호 찾기</v-btn>
+                <v-btn color="primary" large block @click="validation">비밀번호 찾기</v-btn>
                 <v-layout row wrap>
                     <v-btn color="primary" to="/" flat class="left mt-3">뒤로가기</v-btn>
                 </v-layout>
@@ -71,19 +71,28 @@ export default {
     ])
   },
   methods: {
+    async validation() {
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          this.submit()
+        } else {
+          this.$notifySuccess('모든 필수정보를 입력해주세요.')
+        }
+      })
+    },
     async submit () {
-      this.$notifySuccess('비밀번호 변경 이메일을 전송하였습니다.')
-    //   try {
-    //     await this.$store.dispatch('auth/LOGIN', {
-    //       email: this.email,
-    //       password: this.password
-    //     })
-
-    //     console.log(this.GET_USER)
-    //     this.$router.push('/')
-    //   } catch (err) {
-    //     console.error(err)
-    //   }
+      this.token = Math.random()
+        .toString(36)
+        .substring(2, 12)
+      this.$axios
+        .$post('/email/reset', {
+          email: this.email,
+          token: this.token
+        })
+        .then(res => {
+          this.$notifySuccess('비밀번호 변경 이메일을 전송하였습니다.')
+          this.email_send = true
+        })
     }
   }
 }
