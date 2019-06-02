@@ -28,7 +28,7 @@
                   data-vv-name="password_confirm"
                   required
                 ></v-text-field>
-                <v-btn color="primary" large block @click="validation">비밀번호 찾기</v-btn>
+                <v-btn color="primary" large block @click="validation">비밀번호 변경</v-btn>
             </v-container>
         </v-form>
         </v-flex>
@@ -69,19 +69,23 @@ export default {
         if (result) {
           this.submit()
         } else {
-          this.$notifySuccess('모든 필수정보를 입력해주세요.')
+          this.$notifySuccess('모든 필수정보를 올바르게 입력해주세요.')
         }
       })
     },
     async submit () {
       this.$axios
-        .$post('/user/reset', {
-          email: this.email,
-          token: this.token
+        .$post(`user/reset/${this.token}`, {
+          password: this.password,
+          resetPasswordToken: null,
+          resetPasswordExpires: Date.now()
         })
         .then(res => {
           this.$notifySuccess('비밀번호 변경이 완료되었습니다.')
+          this.$notifySuccess('변경된 비밀번호로 로그인해주세요.')
+          this.$router.push('/')
         }).catch(e=>{
+          this.$notifySuccess('올바르지 않은 접근입니다.')
           console.log(e)
         })
     }
