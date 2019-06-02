@@ -85,9 +85,9 @@ export default {
         .toString(36)
         .substring(2, 12)
       this.$axios
-        .$post('/email/reset', {
-          email: this.email,
-          token: this.token
+        .$post(`/email/reset/${this.email}`, {
+          resetPasswordToken: this.token,
+          resetPasswordExpires: Date.now() + 3600000
         })
         .then(res => {
           this.$notifySuccess('비밀번호 변경 이메일을 전송하였습니다.')
