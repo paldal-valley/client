@@ -28,7 +28,8 @@
         :answerId="answer.id"
         :questionId="postId_Q"
         :postId="postId"
-        :hasSelectBtn=false
+        :hasUpdateBtn="onGetAuthority(answer.userId)"
+        :hasDeleteBtn="onGetAuthority(answer.userId)"
         @answers-changed="fetchPost"
       />
       <!-- comments -->
@@ -167,7 +168,13 @@ export default {
       const postId = this.$route.params.postId
       this.$router.push(`../${postId}/answer`)
       //this.$router.push(`../question/${routerid}`)
-    }
+    },
+   onGetAuthority(userId) {
+     if(userId === this.GET_USER.id){
+       //alert(this.GET_USER.id)
+       return true;
+     }
+   }
   }
 }
 </script>

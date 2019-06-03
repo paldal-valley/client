@@ -21,8 +21,16 @@
       <div></div>
     </v-form>
     <v-card-actions>
-      <v-btn flat color="blue" @click="updateAnswer()">수정하기</v-btn>
-      <v-btn flat color="red" @click="deleteAnswer()">삭제하기</v-btn>
+      <v-btn v-if="hasUpdateBtn"
+      flat color="blue" 
+      @click="updateAnswer()">
+      수정하기
+      </v-btn>
+      <v-btn v-if="hasDeleteBtn"
+      flat color="red" 
+      @click="deleteAnswer()">
+      삭제하기
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -47,7 +55,11 @@ export default {
       type: String,
       default: ''
     },
-    hasSelectBtn: {
+    hasUpdateBtn: {
+      type: Boolean,
+      default: false
+    },
+    hasDeleteBtn: {
       type: Boolean,
       default: false
     },
@@ -77,24 +89,9 @@ export default {
   },
   methods: {
     async updateAnswer() {
-      //alert(this.answerId)
-      //./${postId}/answer
+
       this.$router.push(`./${this.postId}/answer/${this.answerId}`)
-      
-      // const options = {
-      //   url: `post/${this.answerId}`,
-      //   method: 'put',
-      //   data: { content: this.content }
-      // }
-      // try {
-      //   await this.$axios(options)
-      //   this.$notifySuccess('답변 수정 완료')
-      //   this.$emit('answers-changed')
-      //   this.isEditing = false
-      // } catch (err) {
-      //   console.error(err)
-      //   this.$notifyError('에러가 발생했습니다.')
-      // }
+    
     },
     async deleteAnswer(){
 
