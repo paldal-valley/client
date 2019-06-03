@@ -46,16 +46,16 @@
 
 
 <!-- 채택 버튼 들어가야 할 부분 -->
-    <!-- <div class="text-xs-right pt-2"> -->
-      <!-- <v-btn v-if="hasSelectBtn" outline large fab color="blue">
+    <div class="text-xs-right pt-2">
+      <v-btn v-if="hasSelectBtn" outline large fab color="blue">
         <v-icon>check</v-icon>
-      </v-btn> -->
+      </v-btn>
       <div class = "like">
         <v-btn outline large fab color="red">
           <v-icon>thumb_up</v-icon>
         </v-btn>
       </div>
-    <!-- </div> -->
+    </div>
 
 
     <v-btn

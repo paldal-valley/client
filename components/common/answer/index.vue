@@ -23,7 +23,8 @@
     <!-- 여기서 v-if로 함수를 하나 더 걸어서 주인장이면 나오게 하란 말? -->
     <div class="text-xs-right pt-2">
       <v-btn v-if="hasSelectBtn" outline large fab color="blue">
-        <v-icon>check</v-icon>
+        <v-icon>check</v-icon></v-btn>
+    </div>
     <v-card-actions>
       <v-btn v-if="hasUpdateBtn"
       flat color="blue" 
@@ -60,6 +61,10 @@ export default {
       default: ''
     },
     hasUpdateBtn: {
+      type: Boolean,
+      default: false
+    },
+    hasSelectBtn: {
       type: Boolean,
       default: false
     },

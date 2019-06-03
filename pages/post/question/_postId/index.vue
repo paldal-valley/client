@@ -173,19 +173,17 @@ export default {
       this.$router.push(`../${postId}/answer`)
       //this.$router.push(`../question/${routerid}`)
     },
+    selectBtn(loginId) {
+      if(loginId === this.post.userId){
+        return true;
+      }
+    },
    onGetAuthority(userId) {
      if(userId === this.GET_USER.id){
        //alert(this.GET_USER.id)
        return true;
      }
    }
-    },
-    selectBtn(loginId) {
-      if(loginId === this.post.userId){
-        return true;
-      }
-
-    }
   }
 }
 </script>
