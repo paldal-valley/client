@@ -7,8 +7,18 @@
           :label="titlePlaceHolder"
           full-width/>
 
+
         <v-divider
           class="separator"/>
+
+<!-- slide로 내공 추가하고 컴포넌트에 has slider 옵션 만들어서 qna에서만 보이도록. 그리고 디비랑 연결 -->
+
+        <!-- <v-slider
+            v-model="slider"
+            :max="max"
+            :min="min"
+          ></v-slider> -->
+
 
         <v-textarea
           v-model="content"
@@ -17,6 +27,7 @@
           rows="15"/>
       </v-form>
     </v-card>
+    
     <v-btn
       block
       color="blue"

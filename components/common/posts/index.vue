@@ -9,10 +9,21 @@
             </span>
             <br /><br />
           </div>
-          <h2 v-if="hasTitle" class="title">
-            {{ title }}
-          </h2>
-          <br /><br />
+
+<!-- 내공 보이는 부분 -->
+      <div class = "rewardTitle">
+            <div class = "rewardDiv">
+              <span class= "rewardBox">
+                  <!-- 30 -->
+                  {{ reward }}
+              </span>
+            </div>
+
+              <h2 v-if="hasTitle" class="title">
+                {{ title }}
+              </h2>
+              <br /><br />
+        </div>
 
           <p class="post-info">
             <span class="user-info">
@@ -21,6 +32,7 @@
             </span>
             <span class="meta"> 작성일: {{ createdDate }} </span>
             <span class="meta"> 조회수: {{ view }} </span>
+            
           </p>
           <br />
           <hr />
@@ -62,6 +74,10 @@ export default {
     content: {
       type: String,
       default: ''
+    },
+    reward: {
+      type: Number,
+      default: 0
     },
     category: {
       type: String,
@@ -144,7 +160,25 @@ export default {
 .title {
   float: left;
   margin-top: 8px;
+  margin-left: 5px;
+}
+.rewardDiv {
+  float: left;
+  margin-top: 9px;
+  margin-right: 2px;
   margin-left: 20px;
+  font-size: 0;
+  line-height: 0;
+}
+
+.rewardBox {
+  display: inline-block;
+  border-radius: 1px;
+  padding: 1px 5px 2px;
+  font-size: 15px;
+  line-height: 17px;
+  background-color: #a5adb7;
+  
 }
 .post-info {
   margin-top: 5px;
