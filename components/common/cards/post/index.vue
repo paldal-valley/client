@@ -6,6 +6,11 @@
         class="card__category">
         {{ category }}
       </div>
+      <div
+        v-if="boardTitle"
+        class="card__category">
+        {{ category }}
+      </div>
       <div class="card__header">
         <span class="card__title">{{ post.title }}</span>
         <span

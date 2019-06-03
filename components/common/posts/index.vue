@@ -11,7 +11,7 @@
           </div>
 
 <!-- 내공 보이는 부분 -->
-      <div class = "rewardTitle">
+        <div class = "rewardTitle">
             <div class = "rewardDiv">
               <span class= "rewardBox">
                   <!-- 30 -->
@@ -43,14 +43,21 @@
       </div>
       <div></div>
     </v-form>
-    <div class="text-xs-right pt-2">
-      <v-btn v-if="hasSelectBtn" outline large fab color="blue">
+
+
+<!-- 채택 버튼 들어가야 할 부분 -->
+    <!-- <div class="text-xs-right pt-2"> -->
+      <!-- <v-btn v-if="hasSelectBtn" outline large fab color="blue">
         <v-icon>check</v-icon>
-      </v-btn>
-      <v-btn outline large fab color="red">
-        <v-icon>thumb_up</v-icon>
-      </v-btn>
-    </div>
+      </v-btn> -->
+      <div class = "like">
+        <v-btn outline large fab color="red">
+          <v-icon>thumb_up</v-icon>
+        </v-btn>
+      </div>
+    <!-- </div> -->
+
+
     <v-btn
       v-if="hasAnswerBtn"
       block
@@ -195,6 +202,9 @@ export default {
   text-align: left;
   margin: 20px;
   white-space: pre-line;
+}
+.like {
+  float: right;
 }
 
 </style>

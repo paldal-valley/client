@@ -7,6 +7,7 @@
     <div class="post-content">
       <vue-post
         :title="post.title"
+        :reward ="post.reward"
         :content="post.content"
         :category="category"
         :user-name="post.userName"
@@ -17,6 +18,7 @@
       <br>
       <h2> {{length}}개의 답변이 존재합니다. </h2>
       <br>
+<!-- 원래 hasAnswerBtn = true 였음 -->
       <vue-answer
         v-for="answer in answers"
         :key="answer.id"
@@ -24,7 +26,7 @@
         :user-name="answer.userName"
         :user-email="answer.userEmail"
         :created-date="answer.createdDate"
-        :hasSelectBtn=true
+        :hasSelectBtn="selectBtn(GET_USER.id)"
       />
 
       <!-- comments -->
@@ -163,6 +165,12 @@ export default {
       const routerid = this.$route.params.postId
       this.$router.push(`../answer/${routerid}`)
       //this.$router.push(`../question/${routerid}`)
+    },
+    selectBtn(loginId) {
+      if(loginId === this.post.userId){
+        return true;
+      }
+
     }
   }
 }
