@@ -101,7 +101,7 @@ module.exports = {
     baseURL:
       process.env.NODE_ENV == 'production'
         ? 'https://54.180.144.27:8000'
-        : 'http://localhost:8000/',
+        : 'https://localhost:8000/',
     // credentials: true,
   },
 
