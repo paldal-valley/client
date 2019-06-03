@@ -25,6 +25,7 @@
       <v-layout row>
         <v-flex class="pr-3">
           <v-slider
+            color="#4E98A4"
             v-model="slider"
             :max="max"
             :min="min"
@@ -91,7 +92,7 @@ export default {
     //   'contractInstance'
     // ]),
     // ...mapGetters('block-sync', [
-    //   'contractMethods'
+    //   'contractMethods'd
     // ]),
     selectorItem() {
       return this.GET_CATEGORIES['question']
