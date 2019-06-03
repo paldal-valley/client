@@ -69,7 +69,7 @@ export default {
         if (result) {
           this.submit()
         } else {
-          this.$notifySuccess('모든 필수정보를 올바르게 입력해주세요.')
+          this.$notifyError('모든 필수정보를 올바르게 입력해주세요.')
         }
       })
     },
@@ -85,7 +85,7 @@ export default {
           this.$notifySuccess('변경된 비밀번호로 로그인해주세요.')
           this.$router.push('/')
         }).catch(e=>{
-          this.$notifySuccess('올바르지 않은 접근입니다.')
+          this.$notifyError('올바르지 않은 접근입니다.')
           console.log(e)
         })
     }
