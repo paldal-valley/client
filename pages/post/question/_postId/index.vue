@@ -177,8 +177,6 @@ export default {
       if(loginId === this.post.userId){
         return true;
       }
-
-    }
     },
    onGetAuthority(userId) {
      if(userId === this.GET_USER.id){
