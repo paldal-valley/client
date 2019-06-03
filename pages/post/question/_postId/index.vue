@@ -8,16 +8,19 @@
     <div class="post-content">
       <vue-post
         :title="post.title"
+        :reward ="post.reward"
         :content="post.content"
         :category="category"
         :user-name="post.userName"
         :user-email="post.userEmail"
         :created-date="post.createdDate"
         :hasAnswerBtn=true
+        :hasReward=true
       />
       <br>
       <h2> {{length}}개의 답변이 존재합니다. </h2>
       <br>
+<!-- 원래 hasAnswerBtn = true 였음 -->
       <vue-answer
         v-for="answer in answers"
         :key="answer.id"
@@ -31,6 +34,7 @@
         :hasUpdateBtn="onGetAuthority(answer.userId)"
         :hasDeleteBtn="onGetAuthority(answer.userId)"
         @answers-changed="fetchPost"
+        :hasSelectBtn="selectBtn(GET_USER.id)"
       />
       <!-- comments -->
       <vue-category-separator
@@ -168,6 +172,13 @@ export default {
       const postId = this.$route.params.postId
       this.$router.push(`../${postId}/answer`)
       //this.$router.push(`../question/${routerid}`)
+    },
+    selectBtn(loginId) {
+      if(loginId === this.post.userId){
+        return true;
+      }
+
+    }
     },
    onGetAuthority(userId) {
      if(userId === this.GET_USER.id){

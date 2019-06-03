@@ -18,6 +18,32 @@
           label="제목"
           full-width/>
 
+                  <v-divider
+          class="separator"/>
+
+   <v-subheader>아주코인을 걸어주세요(0AC~100AC)</v-subheader>
+    <v-card-text>
+      <v-layout row>
+        <v-flex class="pr-3">
+          <v-slider
+            v-model="post.reward"
+            :max="max"
+            :min="min"
+          ></v-slider>
+        </v-flex>
+
+        <v-flex shrink style="width: 60px">
+          <v-text-field
+            v-model="post.reward"
+            class="mt-0"
+            hide-details
+            single-line
+            type="number"
+          ></v-text-field>
+        </v-flex>
+      </v-layout>
+    </v-card-text> 
+
         <v-divider
           class="separator"/>
 
@@ -51,7 +77,8 @@ export default {
   },
   data: () => ({
     postId: '',
-    post: {}
+    post: {},
+    postQuetion: {}
   }),
   mounted() {
     this.postId = this.$route.params.postId
@@ -83,8 +110,14 @@ export default {
         method: 'put',
         params: { categoryId: this.post.categoryId },
         data: {
-          title: this.post.title,
-          content: this.post.content
+          post: {
+            title: this.post.title,
+            content: this.post.content
+            
+          },
+          postQuestion: {
+            reward: this.post.reward
+          }
         }
       }
 
