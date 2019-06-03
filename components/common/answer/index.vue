@@ -20,14 +20,10 @@
       </div>
       <div></div>
     </v-form>
-    <div class="text-xs-right pt-2">
-      <v-btn v-if="hasSelectBtn" outline large fab color="blue">
-        <v-icon>check</v-icon>
-      </v-btn>
-      <v-btn outline large fab color="red">
-        <v-icon>thumb_up</v-icon>
-      </v-btn>
-    </div>
+    <v-card-actions>
+      <v-btn flat color="blue" @click="updateAnswer()">수정하기</v-btn>
+      <v-btn flat color="red" @click="deleteAnswer()">삭제하기</v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -59,7 +55,15 @@ export default {
       type: Boolean,
       default: true
     },
+    answerId: {
+      type: String,
+      default: ''
+    },
     questionId: {
+      type: String,
+      default: ''
+    },
+    postId : {
       type: String,
       default: ''
     }
@@ -72,7 +76,44 @@ export default {
     }
   },
   methods: {
+    async updateAnswer() {
+      //alert(this.answerId)
+      //./${postId}/answer
+      this.$router.push(`./${this.postId}/answer/${this.answerId}`)
+      
+      // const options = {
+      //   url: `post/${this.answerId}`,
+      //   method: 'put',
+      //   data: { content: this.content }
+      // }
+      // try {
+      //   await this.$axios(options)
+      //   this.$notifySuccess('답변 수정 완료')
+      //   this.$emit('answers-changed')
+      //   this.isEditing = false
+      // } catch (err) {
+      //   console.error(err)
+      //   this.$notifyError('에러가 발생했습니다.')
+      // }
+    },
+    async deleteAnswer(){
 
+      const options = {
+        url: `post/${this.answerId}`,
+        method: 'delete'
+      }
+
+      try {
+        if (confirm('답변을 정말 삭제하시겠습니까?')) {
+          await this.$axios(options)
+          this.$notifySuccess('정상적으로 삭제되었습니다.')
+          this.$router.back()
+        }
+      } catch (err) {
+        console.error(err)
+        this.$notifyError('에러가 발생했습니다.')
+      }
+    }
   }
 }
 </script>

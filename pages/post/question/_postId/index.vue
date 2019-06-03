@@ -4,6 +4,7 @@
     <vue-board-sidebar
       :buttons="GET_QUESTION_META.sidebarButtons"
       :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
+      
     <div class="post-content">
       <vue-post
         :title="post.title"
@@ -24,9 +25,12 @@
         :user-name="answer.userName"
         :user-email="answer.userEmail"
         :created-date="answer.createdDate"
-        :hasSelectBtn=true
+        :answerId="answer.id"
+        :questionId="postId_Q"
+        :postId="postId"
+        :hasSelectBtn=false
+        @answers-changed="fetchPost"
       />
-
       <!-- comments -->
       <vue-category-separator
         :category-name="commentText"/>
@@ -127,14 +131,14 @@ export default {
         this.postId_Q = data.id
         try{
           const options2 = {
-            url: `post/answer/${this.postId}`,
+            url: `post/answer`,
             method: 'get',
             params: { postId_Q: this.postId_Q }
           }
           const ans = (await this.$axios(options2)).data
           this.answers = ans
           this.length = ans.length
-
+        
         }catch (err) {
           console.error(err)
         }
@@ -160,8 +164,8 @@ export default {
       }
     },
    onWriteClick() {
-      const routerid = this.$route.params.postId
-      this.$router.push(`../answer/${routerid}`)
+      const postId = this.$route.params.postId
+      this.$router.push(`../${postId}/answer`)
       //this.$router.push(`../question/${routerid}`)
     }
   }
