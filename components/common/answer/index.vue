@@ -22,7 +22,9 @@
     </v-form>
     <!-- 여기서 v-if로 함수를 하나 더 걸어서 주인장이면 나오게 하란 말? -->
     <div class="text-xs-right pt-2">
-      <v-btn v-if="hasSelectBtn" outline large fab color="blue">
+      <v-btn v-if="hasSelectBtn" 
+      outline large fab color="blue"
+      @click="updateSelected()">
         <v-icon>check</v-icon></v-btn>
     </div>
     <v-card-actions>
@@ -101,6 +103,23 @@ export default {
 
       this.$router.push(`./${this.postId}/answer/${this.answerId}`)
     
+    },
+    async updateSelected() {
+      try {
+       const options = {
+         url: `post/answer/select/${this.answerId}`,
+         method: 'put',
+         params: { isSelected : 1 }
+       }
+       //alert(this.postId_Q)
+       await this.$axios(options)
+       //alert(this.postId_Q)
+       // await this.getReward("0x98FE5eaFd3D61af18fB2b2322b8346dF05057202")
+       this.$router.back()
+     } catch (err) {
+       console.error(err)
+     }
+
     },
     async deleteAnswer(){
 
