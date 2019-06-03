@@ -4,11 +4,13 @@
       <v-form>
         <vue-post
           :title="post.title"
+          :reward ="post.reward"
           :content="post.content"
           :category="category"
           :user-name="post.userName"
           :user-email="post.userEmail"
           :created-date="post.createdDate"
+          :hasReward=true
         />
 
         <v-divider

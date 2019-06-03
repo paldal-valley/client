@@ -11,8 +11,8 @@
           </div>
 
 <!-- 내공 보이는 부분 -->
-        <div class = "rewardTitle">
-            <div class = "rewardDiv">
+        <div  class = "rewardTitle">
+            <div v-if="hasReward" class = "rewardDiv">
               <span class= "rewardBox">
                   <!-- 30 -->
                   {{ reward }}
@@ -111,6 +111,10 @@ export default {
       default: false
     },
     hasSelectBtn: {
+      type: Boolean,
+      default: false
+    },
+    hasReward: {
       type: Boolean,
       default: false
     },

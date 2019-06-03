@@ -14,6 +14,7 @@
         :user-email="post.userEmail"
         :created-date="post.createdDate"
         :hasAnswerBtn=true
+        :hasReward=true
       />
       <br>
       <h2> {{length}}개의 답변이 존재합니다. </h2>
