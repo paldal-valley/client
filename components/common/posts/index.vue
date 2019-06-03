@@ -137,9 +137,10 @@ export default {
   methods: {
     onWriteClick() {
       //const routerid = this.questionId
-      const routerid = this.$route.params.postId
+      const postId = this.$route.params.postId
       //alert(routerid)
-      this.$router.push(`../answer/${routerid}`)
+      //this.$router.push(`../question/answer/${routerid}`)
+      this.$router.push(`./${postId}/answer`)
       // this.$axios.$get('/boards').then((response) => {
       //   this.posts[0].title = response
       //   //this.posts[0].title = response.data
