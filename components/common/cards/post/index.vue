@@ -1,6 +1,11 @@
 <template>
   <nuxt-link :to="to" class="card-link">
     <div class="card-container">
+      <!-- <div v-if="hasReward" class = "rewardDiv">
+        <span class= "rewardBox">
+          {{ reward }}
+        </span>
+      </div> -->
       <div
         v-if="boardTitle"
         class="card__category">
@@ -32,6 +37,10 @@ export default {
     boardTitle: {
       type: String,
       default: ''
+    },
+    hasReward: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -114,5 +123,24 @@ export default {
     font-weight: bold;
     color: gray;
   }
+
+//   .rewardDiv {
+//   float: left;
+//   margin-top: 9px;
+//   margin-right: 2px;
+//   margin-left: 20px;
+//   font-size: 0;
+//   line-height: 0;
+// }
+
+// .rewardBox {
+//   display: inline-block;
+//   border-radius: 1px;
+//   padding: 1px 5px 2px;
+//   font-size: 15px;
+//   line-height: 17px;
+//   background-color: #a5adb7;
+  
+// }
 }
 </style>

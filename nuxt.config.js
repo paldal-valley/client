@@ -100,7 +100,7 @@ module.exports = {
   axios: {
     baseURL:
       process.env.NODE_ENV == 'production'
-        ? 'https://54.180.144.27:8000'
+        ? 'https://api.doajou.ga/'
         : 'http://localhost:8000/',
     // credentials: true,
   },

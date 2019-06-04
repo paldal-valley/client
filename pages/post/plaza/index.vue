@@ -51,11 +51,6 @@ export default {
       'GET_PLAZA_META'
     ]),
   },
-  methods: {
-    foo() {
-      console.log('clickckckk')
-    }
-  }
 }
 </script>
 

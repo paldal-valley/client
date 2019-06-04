@@ -9,10 +9,21 @@
             </span>
             <br /><br />
           </div>
-          <h2 v-if="hasTitle" class="title">
-            {{ title }}
-          </h2>
-          <br /><br />
+
+<!-- 내공 보이는 부분 -->
+        <div  class = "rewardTitle">
+            <div v-if="hasReward" class = "rewardDiv">
+              <span class= "rewardBox">
+                  <!-- 30 -->
+                  {{ reward }}
+              </span>
+            </div>
+
+              <h2 v-if="hasTitle" class="title">
+                {{ title }}
+              </h2>
+              <br /><br />
+        </div>
 
           <p class="post-info">
             <span class="user-info">
@@ -21,6 +32,7 @@
             </span>
             <span class="meta"> 작성일: {{ createdDate }} </span>
             <span class="meta"> 조회수: {{ view }} </span>
+            
           </p>
           <br />
           <hr />
@@ -31,14 +43,21 @@
       </div>
       <div></div>
     </v-form>
+
+
+<!-- 채택 버튼 들어가야 할 부분 -->
     <div class="text-xs-right pt-2">
       <v-btn v-if="hasSelectBtn" outline large fab color="blue">
         <v-icon>check</v-icon>
       </v-btn>
-      <v-btn outline large fab color="red">
-        <v-icon>thumb_up</v-icon>
-      </v-btn>
+      <div class = "like">
+        <v-btn outline large fab color="red">
+          <v-icon>thumb_up</v-icon>
+        </v-btn>
+      </div>
     </div>
+
+
     <v-btn
       v-if="hasAnswerBtn"
       block
@@ -62,6 +81,10 @@ export default {
     content: {
       type: String,
       default: ''
+    },
+    reward: {
+      type: Number,
+      default: 0
     },
     category: {
       type: String,
@@ -91,6 +114,10 @@ export default {
       type: Boolean,
       default: false
     },
+    hasReward: {
+      type: Boolean,
+      default: false
+    },
     hasTitle: {
       type: Boolean,
       default: true
@@ -110,9 +137,10 @@ export default {
   methods: {
     onWriteClick() {
       //const routerid = this.questionId
-      const routerid = this.$route.params.postId
+      const postId = this.$route.params.postId
       //alert(routerid)
-      this.$router.push(`../answer/${routerid}`)
+      //this.$router.push(`../question/answer/${routerid}`)
+      this.$router.push(`./${postId}/answer`)
       // this.$axios.$get('/boards').then((response) => {
       //   this.posts[0].title = response
       //   //this.posts[0].title = response.data
@@ -143,7 +171,25 @@ export default {
 .title {
   float: left;
   margin-top: 8px;
+  margin-left: 5px;
+}
+.rewardDiv {
+  float: left;
+  margin-top: 9px;
+  margin-right: 2px;
   margin-left: 20px;
+  font-size: 0;
+  line-height: 0;
+}
+
+.rewardBox {
+  display: inline-block;
+  border-radius: 1px;
+  padding: 1px 5px 2px;
+  font-size: 15px;
+  line-height: 17px;
+  background-color: #a5adb7;
+  
 }
 .post-info {
   margin-top: 5px;
@@ -161,6 +207,9 @@ export default {
   text-align: left;
   margin: 20px;
   white-space: pre-line;
+}
+.like {
+  float: right;
 }
 
 </style>
