@@ -22,11 +22,11 @@
 
 <script>
 import VuePost from '~/components/common/posts/index'
-import VueAnswer from '~/components/common/posts/write/index'
+//import VueAnswer from '~/components/common/posts/write/index'
 export default {
   components: {
     VuePost,
-    VueAnswer
+    //VueAnswer
   },
   data() {
     return {

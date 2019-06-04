@@ -4,19 +4,23 @@
     <vue-board-sidebar
       :buttons="GET_QUESTION_META.sidebarButtons"
       :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
+      
     <div class="post-content">
       <vue-post
         :title="post.title"
+        :reward ="post.reward"
         :content="post.content"
         :category="category"
         :user-name="post.userName"
         :user-email="post.userEmail"
         :created-date="post.createdDate"
         :hasAnswerBtn=true
+        :hasReward=true
       />
       <br>
       <h2> {{length}}개의 답변이 존재합니다. </h2>
       <br>
+<!-- 원래 hasAnswerBtn = true 였음 -->
       <vue-answer
         v-for="answer in answers"
         :key="answer.id"
@@ -24,9 +28,14 @@
         :user-name="answer.userName"
         :user-email="answer.userEmail"
         :created-date="answer.createdDate"
-        :hasSelectBtn=true
+        :answerId="answer.id"
+        :questionId="postId_Q"
+        :postId="postId"
+        :hasUpdateBtn="onGetAuthority(answer.userId)"
+        :hasDeleteBtn="onGetAuthority(answer.userId)"
+        @answers-changed="fetchPost"
+        :hasSelectBtn="selectBtn(GET_USER.id)"
       />
-
       <!-- comments -->
       <vue-category-separator
         :category-name="commentText"/>
@@ -127,14 +136,14 @@ export default {
         this.postId_Q = data.id
         try{
           const options2 = {
-            url: `post/answer/${this.postId}`,
+            url: `post/answer`,
             method: 'get',
             params: { postId_Q: this.postId_Q }
           }
           const ans = (await this.$axios(options2)).data
           this.answers = ans
           this.length = ans.length
-
+        
         }catch (err) {
           console.error(err)
         }
@@ -160,10 +169,21 @@ export default {
       }
     },
    onWriteClick() {
-      const routerid = this.$route.params.postId
-      this.$router.push(`../answer/${routerid}`)
+      const postId = this.$route.params.postId
+      this.$router.push(`../${postId}/answer`)
       //this.$router.push(`../question/${routerid}`)
-    }
+    },
+    selectBtn(loginId) {
+      if(loginId === this.post.userId){
+        return true;
+      }
+    },
+   onGetAuthority(userId) {
+     if(userId === this.GET_USER.id){
+       //alert(this.GET_USER.id)
+       return true;
+     }
+   }
   }
 }
 </script>
