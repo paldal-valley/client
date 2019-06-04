@@ -20,7 +20,16 @@
         <v-container fluid fill-height class="pd-0">
           <transition class="fade" mode="out-in">
             <v-layout justify-center align-center>
-              <v-flex text-xs-center>
+              <v-flex text-xs-center class="bg-white">
+                <div class="bg-green">
+                  <v-container class="pd-10">
+                    <v-layout row>
+                      <v-flex md8 class="mx-auto">
+                        <vue-button-group :buttons="GET_MYPAGE_META.nav_buttons" />
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </div>
                 <nuxt />
               </v-flex>
             </v-layout>
@@ -37,6 +46,9 @@ import $ from 'jquery'
 import VueToolbar from '~/components/nav-bar/toolbar'
 import VueDrawer from '~/components/nav-bar/drawer'
 import VueFooter from '~/components/footer'
+import VueButtonGroup from '~/components/common/buttons/nav/group'
+
+import { mapGetters } from 'vuex'
 export default {
   // created 시점에서는 localStorage 생성이 안되어있음
   beforeMount() {
@@ -44,10 +56,16 @@ export default {
     this.$store.dispatch('block-sync/checkWeb3')
     this.$store.dispatch('block-sync/getContractInstance')
   },
+  computed: {
+    ...mapGetters('page-meta', [
+      'GET_MYPAGE_META'
+    ]),
+  },
   components: {
     VueToolbar,
     VueDrawer,
-    VueFooter
+    VueFooter,
+    VueButtonGroup
   }
 }
 </script>
@@ -66,5 +84,14 @@ export default {
 }
 .pd-0 {
   padding: 0px !important;
+}
+.bg-white{
+  background: white;
+}
+.bg-green{
+  background: #4e98a4 !important;
+}
+.pd-10{
+  padding: 10px;
 }
 </style>

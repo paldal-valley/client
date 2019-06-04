@@ -28,7 +28,7 @@ export default {
   },
   data: () => ({
     highlight: {
-      color: '#4E98A4'
+      color: 'white'
     }
   }),
   methods: {
@@ -65,10 +65,11 @@ export default {
 
   .nav-btn {
     display: block;
-    padding: 20px;
+    padding: 10px 20px;
     text-decoration: none;
-    text-align: center;
-    color: rgba(0, 0, 0, 0.35);
+    text-align: left;
+    color: rgba(255, 255, 255, 0.55);
+    width: 128px;
 
     .btn-text {
       display: inline-block;
@@ -76,13 +77,13 @@ export default {
   }
 
   .nav-btn.nuxt-link-active:after{
-    border-color: transparent transparent #4e98a4;
+    border-color: transparent transparent white;
     border-style: solid;
     border-width: 0 12px 12px;
     content: "";
     position: relative;
     right: 50%;
-    bottom: -21px;
+    bottom: -10px;  
     -webkit-transform: translate(-50%);
     transform: translate(-50%);
   }
@@ -91,7 +92,7 @@ export default {
     cursor: pointer;
 
     .nav-btn {
-      color: rgb(78, 152, 164);
+      color: white;
     }
   }
 }
