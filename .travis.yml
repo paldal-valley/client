@@ -31,7 +31,7 @@ deploy:
     key: paldalvalley-client.zip # 해당 버킷에 저장되어 있는 파일 이름
     bundle_type: zip # 버킷에 저장되어 있는 파일의 확장자
     application: paldalvalley-ci-cd-codeDeploy-service # AWS 배포 애플리케이션
-    deployment_group: paldalvalley-ci-cd-group # AWS 배포 애플리케이션에 만들어져 있는 배포 그룹
+    deployment_group: paldalvalley-client-deploy # AWS 배포 애플리케이션에 만들어져 있는 배포 그룹
     region: ap-northeast-2
     wait-until-deployed: true
     on:
