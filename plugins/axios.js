@@ -1,7 +1,8 @@
 import cookie from 'js-cookie'
-import https from 'https'
+// import https from 'https'
+
 export default function ({ $axios, store }) {
-  $axios.defaults.httpsAgent = new https.Agent({ rejectUnauthorized: false })
+  // $axios.defaults.httpsAgent = new https.Agent({ rejectUnauthorized: false })
 
   $axios.onRequest(config => {
 

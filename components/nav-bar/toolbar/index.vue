@@ -88,7 +88,7 @@ export default {
         authorized: [
           {
             text: '마이페이지',
-            to: '#'
+            to: '/mypage/account'
           },
           {
             text: '로그아웃',
