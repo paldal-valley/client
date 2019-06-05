@@ -106,6 +106,8 @@ export default {
     },
     async updateSelected() {
       try {
+
+        //만약 채택된 답변이 없다면 
        const options = {
          url: `post/answer/select/${this.answerId}`,
          method: 'put',
@@ -115,6 +117,14 @@ export default {
        await this.$axios(options)
        //alert(this.postId_Q)
        // await this.getReward("0x98FE5eaFd3D61af18fB2b2322b8346dF05057202")
+       this.$notifySuccess('채택이 완료되었습니다.')
+
+
+
+       //만약 채택 된 답변이 있다면
+      //  this.$notifySuccess('이미 채택이 완료된 질문입니다.')
+
+
        this.$router.back()
      } catch (err) {
        console.error(err)

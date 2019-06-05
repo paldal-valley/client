@@ -72,7 +72,9 @@
 
 <script>
 import { EventBus } from '~/utils/EventBus'
+import { mapGetters } from 'vuex'
 export default {
+
   props: {
     title: {
       type: String,
@@ -127,6 +129,16 @@ export default {
       default: ''
     }
   },
+  computed: {
+    ...mapGetters({
+      GET_POST_META: 'page-meta/GET_POST_META',
+      GET_QUESTION_META: 'page-meta/GET_QUESTION_META',
+      GET_USER: 'auth/GET_USER'
+    })
+    },
+ data: () => ({
+    userId: ''
+  }),
   // watcher: detect change of the data
   // updated: detect change of the DOM
   watch: {
@@ -134,13 +146,43 @@ export default {
       EventBus.$emit('categoryName from post', this.category)
     }
   },
+mounted() {
+    this.postId = this.$route.params.postId
+    this.getUserId()
+  },
   methods: {
-    onWriteClick() {
+    async getUserId() {
+        const postId = this.$route.params.postId
+          try {
+            const options = {
+              url: `post/getUser/${this.postId}`,
+              method: 'get',
+              params: { postId: this.postId  }
+            }
+            const { data } = await this.$axios(options)
+            this.userId = data.userId
+      //만약 postid랑 로그인 된 아이디랑 같으면 noti 날리고 -1로 돌아가게 해야함.
+      //if(this.GET_USER.id)
+              // alert(this.selected)
+            }
+            catch (err){
+              console.error(err)
+            }
       //const routerid = this.questionId
+
+    },
+    onWriteClick() {
+      
       const postId = this.$route.params.postId
-      //alert(routerid)
-      //this.$router.push(`../question/answer/${routerid}`)
-      this.$router.push(`./${postId}/answer`)
+      if(this.userId == this.GET_USER.id){
+        this.$notifyError('본인 질문에는 답변할 수 없습니다.')
+      }
+      else{
+        //alert(routerid)
+        //this.$router.push(`../question/answer/${routerid}`)
+
+        this.$router.push(`./${postId}/answer`)
+      }
       // this.$axios.$get('/boards').then((response) => {
       //   this.posts[0].title = response
       //   //this.posts[0].title = response.data
