@@ -12,7 +12,8 @@
 
 <!-- 내공 보이는 부분 -->
         <div  class = "rewardTitle">
-            <div v-if="hasReward" class = "rewardDiv">
+          <!-- v-if has reward 걸기 -->
+            <div  class = "rewardDiv">
               <span class= "rewardBox">
                   <!-- 30 -->
                   {{ reward }}
@@ -124,12 +125,19 @@ export default {
       type: Boolean,
       default: true
     },
+    boardTitle: {
+      type: String,
+      default: ''
+    },
     questionId: {
       type: String,
       default: ''
     }
   },
   computed: {
+    // category() {
+    //   return this.$categoryMapper(this.boardTitle, this.post.categoryId)
+    // },
     ...mapGetters({
       GET_POST_META: 'page-meta/GET_POST_META',
       GET_QUESTION_META: 'page-meta/GET_QUESTION_META',
@@ -151,6 +159,14 @@ mounted() {
     this.getUserId()
   },
   methods: {
+    // hasReward() {
+    //   alert(this.boardTitle)
+    //   // if(this.category)
+    //   // alert(this.boardTitle)
+    //   // console.log(this.boardTitle)
+
+    //   // if(this.boardTitle == "QnA"){}
+    // },
     async getUserId() {
         const postId = this.$route.params.postId
           try {
