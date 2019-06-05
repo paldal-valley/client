@@ -49,8 +49,8 @@ export default {
         to: '#'
       },
       {
-        src: require('@/assets/images/main_3.png'),
-        to: '#'
+        src: require('@/assets/images/Main_ver2.png'),
+        to: '/tutorial'
       },
       {
         src: require('@/assets/images/main_4.png'),
