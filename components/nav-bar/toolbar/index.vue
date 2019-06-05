@@ -136,7 +136,7 @@ export default {
   margin-right: 20%;
 
   .nav-home {
-    margin-left: -5px;
+    margin-left: -15px;
     margin-top: 6px;
     font-size: 26px;
     cursor: pointer;
