@@ -88,7 +88,7 @@ export default {
         authorized: [
           {
             text: '마이페이지',
-            to: '#'
+            to: '/mypage/account'
           },
           {
             text: '로그아웃',
@@ -136,7 +136,7 @@ export default {
   margin-right: 20%;
 
   .nav-home {
-    margin-left: -5px;
+    margin-left: -15px;
     margin-top: 6px;
     font-size: 26px;
     cursor: pointer;

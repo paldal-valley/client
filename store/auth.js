@@ -15,6 +15,20 @@ export const mutations = {
 }
 
 export const actions = {
+  async TOKEN_FETCH ({ commit }) {
+    const options = {
+      url: 'auth/fetch',
+      method: 'get',
+    }
+    try {
+      const { data } = await this.$axios(options)
+      cookie.set('x-access-token', data.token, { expires: 7 })
+      commit('SET_USER', data.user)
+    } catch (err) {
+      console.error(err)
+      throw Error('error in actions: [auth/FETCH]')
+    }
+  },
   async FETCH ({ commit }) {
     const options = {
       url: 'auth',

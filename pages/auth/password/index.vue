@@ -15,12 +15,13 @@
                 data-vv-name="email" 
                 required
                 >
-                    <template v-slot:label>
-                        <strong>이메일</strong> 입력
-                        <v-icon style="vertical-align: middle">email</v-icon>
-                    </template>
+                  <template v-slot:label>
+                      <strong>이메일</strong> 입력
+                      <v-icon style="vertical-align: middle">email</v-icon>
+                  </template>
                 </v-text-field>
-                <v-btn color="primary" large block @click="validation">비밀번호 찾기</v-btn>
+                <v-btn color="primary" large block @click="validation" v-if="!isSent" :disabled="isSent">비밀번호 찾기</v-btn>
+                <v-btn color="primary" large block v-else :disabled="isSent">해당 메일을 확인해주세요!</v-btn>
                 <v-layout row wrap>
                     <v-btn color="primary" to="/" flat class="left mt-3">뒤로가기</v-btn>
                 </v-layout>
@@ -50,7 +51,7 @@ export default {
       email_send: false,
       email: '',
       password: '',
-      check: false,
+      isSent: false,
       dictionary: {
         attributes: {
             email: 'E-mail Address',
@@ -92,6 +93,7 @@ export default {
         .then(res => {
           this.$notifySuccess('비밀번호 변경 이메일을 전송하였습니다.')
           this.email_send = true
+          this.isSent = true
         })
     }
   }

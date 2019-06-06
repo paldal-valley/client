@@ -97,6 +97,18 @@ export const state = () => ({
         }
 
       ]
+    },
+    mypage: {
+      nav_buttons: [
+        {
+          text: '계정설정',
+          to: '/mypage/account'
+        },
+        {
+          text: '토큰관리',
+          to: '/mypage/tokens'
+        }
+      ]
     }
   }
 })
@@ -106,5 +118,6 @@ export const getters = {
   GET_POST_META: state => state.pageMeta.post,
   GET_PLAZA_META: state => state.pageMeta.post.plaza,
   GET_QUESTION_META: state => state.pageMeta.post.question,
-  GET_REVIEW_META: state => state.pageMeta.post.review
+  GET_REVIEW_META: state => state.pageMeta.post.review,
+  GET_MYPAGE_META: state => state.pageMeta.mypage
 }
