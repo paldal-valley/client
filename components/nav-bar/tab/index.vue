@@ -9,7 +9,6 @@
     <template #activator="{ on }">
       <v-btn
         v-if="text === '로그아웃'"
-        :to="to"
         class="hidden-sm-and-down"
         flat
         @click.native="logout"
