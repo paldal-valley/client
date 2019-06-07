@@ -92,7 +92,7 @@ export default {
           },
           {
             text: '로그아웃',
-            to: '#'
+            to: '/'
           }
         ]
       }

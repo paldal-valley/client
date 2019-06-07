@@ -56,11 +56,24 @@ export default {
           password: this.password
         })
 
-        this.$router.push('/')
+        this.redirect()
       } catch (err) {
         this.$notifyError("올바르지 않은 이메일주소 혹은 비밀번호입니다.")
       }
-    }
+    },
+     redirect () {
+        const {search} = window.location
+        const tokens = search.replace(/^\?/, '').split('&')
+        let {returnPath} = tokens.reduce((qs, tkn) => {
+          const pair = tkn.split('=')
+          qs[pair[0]] = decodeURIComponent(pair[1])
+          return qs
+        }, {})
+        if (!returnPath) {
+          returnPath = '/'
+        }
+        this.$router.push(returnPath)
+     }
   }
 }
 </script>
