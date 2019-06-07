@@ -29,7 +29,7 @@
           <p class="post-info">
             <span class="user-info">
               <strong>작성자: {{ userName }}</strong>
-              {{ userEmail }}
+              ({{ userEmail }})
             </span>
             <span class="meta right"> {{ createdDate }} </span>
           </p>
