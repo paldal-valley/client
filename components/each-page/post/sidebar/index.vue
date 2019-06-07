@@ -1,5 +1,6 @@
 <template>
   <vue-sidebar-container>
+ 
     <!-- images -->
     <vue-sidebar-img-container>
       <nuxt-link to="/">
@@ -14,7 +15,23 @@
 
     <v-divider class="separator"/>
 
-    <vue-button-group :buttons="buttonsDownside" />
+       <!-- images -->
+    <vue-sidebar-img-container>
+      <nuxt-link to="/">
+        <div class="tmp-img-container">
+          <img class="tmp-img" src="~assets/images/banner_1.png" />
+        </div>
+      </nuxt-link>
+    </vue-sidebar-img-container>
+
+    <vue-sidebar-img-container>
+      <nuxt-link to="/">
+        <div class="tmp-img-container">
+          <img class="tmp-img" src="~assets/images/banner_2.png" />
+        </div>
+      </nuxt-link>
+    </vue-sidebar-img-container>
+
   </vue-sidebar-container>
 </template>
 
