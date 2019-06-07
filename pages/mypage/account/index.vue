@@ -123,12 +123,13 @@
                 <v-flex xs8>
                    <v-text-field
                     v-model="form.walletAddress"
-                    v-validate="'length:42'"
+                    v-validate="'required|length:42'"
                     :counter="42"
                     :error-messages="errors.collect('walletAddress')"
                     label="Wallet Address"
                     data-vv-name="walletAddress"
                     outline
+                    required
                   ></v-text-field>
                 </v-flex>
               </v-layout>
