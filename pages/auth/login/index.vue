@@ -56,10 +56,9 @@ export default {
           password: this.password
         })
 
-        console.log(this.GET_USER)
         this.$router.push('/')
       } catch (err) {
-        console.error(err)
+        this.$notifyError("올바르지 않은 이메일주소 혹은 비밀번호입니다.")
       }
     }
   }

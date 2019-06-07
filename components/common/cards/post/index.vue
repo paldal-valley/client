@@ -17,7 +17,7 @@
           v-if="post.totalComment"
           class="card__comment">[{{ post.totalComment }}]</span>
       </div>
-      <p class="card__content">{{ post.content }}</p>
+      <p class="card__content">{{ content }}</p>
       <div class="card__date"> {{ post.createdDate }} </div>
     </div>
   </nuxt-link>
@@ -49,6 +49,9 @@ export default {
     },
     category() {
       return this.$categoryMapper(this.boardTitle, this.post.categoryId)
+    },
+    content() {
+      return this.post.content.length > 10 ? `${this.post.content.substr(0, 10)} ...` : `${this.post.content}`
     }
   }
 }

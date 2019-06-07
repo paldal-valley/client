@@ -91,16 +91,19 @@
         ></v-text-field>
         <v-text-field
           v-model="form.walletAddress"
-          v-validate="'length:42'"
+          v-validate="'required|length:42'"
           :counter="42"
           :error-messages="errors.collect('walletAddress')"
           label="Wallet Address"
           data-vv-name="walletAddress"
+          required
         ></v-text-field>
         <v-select
           v-model="form.majorId"
           v-validate="'required'"
-          :items="majors"
+          :items="selectorItem"
+          item-value="id"
+          item-text="title"
           :error-messages="errors.collect('majorId')"
           :state="null"
           label="전공"
@@ -120,19 +123,7 @@
     >
 
     <v-stepper-content step="3">
-      <v-card color="lighten-1" class="mb-5" height="200px">
-        <v-card-title class="headline grey lighten-2" primary-title
-          >이용약관</v-card-title
-        >
-        <v-card-text
-          >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.</v-card-text
-        >
+      <VueSignupScroll/>
         <v-layout align-center>
           <v-checkbox
             v-model="enabled"
@@ -141,7 +132,6 @@
             hide-details
           ></v-checkbox>
         </v-layout>
-      </v-card>
       <v-btn class="before" color="#eeeeee" @click="e6 = 2">이전 단계</v-btn>
       <v-btn
         class="next"
@@ -165,6 +155,10 @@ import Vue from 'vue'
 import VeeValidate from 'vee-validate'
 import { AjouEmailRule } from '@/validates/AjouEmailValidates'
 
+import VueSignupScroll from '~/components/each-page/signup'
+
+import { mapGetters } from 'vuex'
+
 VeeValidate.Validator.extend('ajouEmail', AjouEmailRule)
 Vue.use(VeeValidate)
 
@@ -172,7 +166,9 @@ export default {
   $_veeValidate: {
     validator: 'new'
   },
-
+  components:{
+    VueSignupScroll
+  },
   data: () => ({
     e6: 1,
     isActive: false,
@@ -197,12 +193,6 @@ export default {
     buttons: {
       text: '인증하기'
     },
-    majors: [
-      '소프트웨어학과',
-      '미디어학과',
-      '블라블라학과',
-      '어쩌구저쩌구학과'
-    ],
     snackbar: {
       open: false,
       text: '',
@@ -230,8 +220,7 @@ export default {
         },
         walletAddress: {
           required: () => '필수 정보입니다.',
-          min: '지갑주소는 42자 입니다.',
-          min: '지갑주소는 42자 입니다.'
+          length: '지갑주소는 42자 입니다.'
         },
         majorId: {
           required: () => '필수 정보입니다.'
@@ -246,7 +235,14 @@ export default {
   mounted() {
     this.$validator.localize('en', this.dictionary)
   },
-
+  computed: {
+    ...mapGetters({
+      GET_CATEGORIES: 'models/GET_CATEGORIES'
+    }),
+    selectorItem() {
+      return this.GET_CATEGORIES['major']
+    }
+  },
   methods: {
     submit() {
       this.$validator.validateAll()
@@ -265,7 +261,7 @@ export default {
         if (result) {
           this.e6 = 3
         } else {
-          alert('모든 필수정보를 입력해주세요.')
+          this.$notifyWarning('모든 필수정보를 입력해주세요.')
         }
       })
     },
@@ -282,15 +278,13 @@ export default {
               token: this.token
             })
             .then(res => {
-              if (res.msg == 'email_dup') {
-                this.snackbar.text = '이미 인증된 이메일 주소입니다.'
-                this.snackbar.open = true
-              } else {
-                console.log(this.token)
-                this.email_send = true
-                this.snackbar.text = '정상적으로 이메일이 전송 되었습니다.'
-                this.snackbar.open = true
-              }
+              console.log(this.token)
+              this.email_send = true
+              this.snackbar.text = '정상적으로 이메일이 전송 되었습니다.'
+              this.snackbar.open = true
+            }).catch(e=>{
+              this.snackbar.text = '이미 인증된 이메일 주소입니다.'
+              this.snackbar.open = true
             })
         }
       })
@@ -300,6 +294,8 @@ export default {
         this.email_confirm = true
         this.isActive = true
         this.buttons.text = '인증완료'
+      } else {
+        this.$notifyError("올바르지 않은 인증번호입니다.")
       }
     },
     send_user_info() {
@@ -314,18 +310,13 @@ export default {
           majorId: this.form.majorId
         })
         .then(res => {
-          if (res == 'ER_DUP_ENTRY') {
-            this.snackbar.text = '이미 존재하는 아이디 입니다.'
-            this.snackbar.open = true
-          } else {
-            this.snackbar.text = '회원가입이 정상적으로 되었습니다.'
-            this.snackbar.open = true
-            this.$router.push('/')
-          }
+          this.snackbar.text = '회원가입이 정상적으로 되었습니다.'
+          this.snackbar.open = true
+          this.$router.push('/')
         })
         .catch(err => {
-          alert(err)
-          console.log(err)
+          console.log(this.form)
+          this.$notifyError("이미 존재하는 아이디입니다.")
         })
     }
   }
