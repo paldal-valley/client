@@ -41,6 +41,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  middleware: ['isLoggedIn'],
   props: {
     titlePlaceHolder: {
       type: String,
