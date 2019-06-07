@@ -19,7 +19,7 @@
       <v-content class="pd-0">
         <v-container fluid fill-height class="pd-0">
           <v-layout justify-center align-center>
-            <v-flex text-xs-center>
+            <v-flex text-xs-center class="innerFlex">
               <nuxt />
             </v-flex>
           </v-layout>
@@ -61,8 +61,12 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
 }
 .pd-0 {
   padding: 0px !important;
+}
+.innerFlex {
+  height: 100%;
 }
 </style>
