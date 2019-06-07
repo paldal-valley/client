@@ -4,53 +4,58 @@
     <vue-board-sidebar
       :buttons="GET_QUESTION_META.sidebarButtons"
       :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
-      
-    <div class="post-content">
-      <vue-post
-        :title="post.title"
-        :reward ="post.reward"
-        :content="post.content"
-        :category="category"
-        :user-name="post.userName"
-        :user-email="post.userEmail"
-        :created-date="post.createdDate"
-        :hasAnswerBtn=true
-        :hasReward=true
-      />
-      <br>
-      <h2> {{length}}개의 답변이 존재합니다. </h2>
-      <br>
-<!-- 원래 hasAnswerBtn = true 였음 -->
-      <vue-answer
-        v-for="answer in answers"
-        :key="answer.id"
-        :content="answer.content"
-        :user-name="answer.userName"
-        :user-email="answer.userEmail"
-        :created-date="answer.createdDate"
-        :answerId="answer.id.toString()"
-        :questionId="postId_Q.toString()"
-        :postId="postId"
-        :hasUpdateBtn="onGetAuthority(answer.userId)"
-        :hasDeleteBtn="onGetAuthority(answer.userId)"
-        @answers-changed="fetchPost"
-        :hasSelectBtn="selectBtn(GET_USER.id)"
-      />
-      <!-- comments -->
-      <vue-category-separator
-        :category-name="commentText"/>
 
-      <vue-comment-textarea
-        @comment-created="fetchPost"/>
+    <vue-post-container>
+      <!-- buttons -->
+      <vue-button-group :buttons="GET_POST_META.icon_buttons" />
+      <!-- posts -->
+      <div class="post-content">
+        <vue-post
+          :title="post.title"
+          :reward ="post.reward"
+          :content="post.content"
+          :category="category"
+          :user-name="post.userName"
+          :user-email="post.userEmail"
+          :created-date="post.createdDate"
+          :hasAnswerBtn=true
+          :hasReward=true
+        />
+        <br>
+        <h2> {{length}}개의 답변이 존재합니다. </h2>
+        <br>
+  <!-- 원래 hasAnswerBtn = true 였음 -->
+        <vue-answer
+          v-for="answer in answers"
+          :key="answer.id"
+          :content="answer.content"
+          :user-name="answer.userName"
+          :user-email="answer.userEmail"
+          :created-date="answer.createdDate"
+          :answerId="answer.id.toString()"
+          :questionId="postId_Q.toString()"
+          :postId="postId"
+          :hasUpdateBtn="onGetAuthority(answer.userId)"
+          :hasDeleteBtn="onGetAuthority(answer.userId)"
+          @answers-changed="fetchPost"
+          :hasSelectBtn="selectBtn(GET_USER.id)"
+        />
+        <!-- comments -->
+        <vue-category-separator
+          :category-name="commentText"/>
 
-      <transition-group name="fade" tag="div">
-        <vue-comment-card
-          v-for="comment in post.comments"
-          :key="comment.id"
-          :comment="comment"
-          @comments-changed="fetchPost"/>
-      </transition-group>
-    </div>
+        <vue-comment-textarea
+          @comment-created="fetchPost"/>
+
+        <transition-group name="fade" tag="div">
+          <vue-comment-card
+            v-for="comment in post.comments"
+            :key="comment.id"
+            :comment="comment"
+            @comments-changed="fetchPost"/>
+        </transition-group>
+      </div>
+    </vue-post-container>
     <div
       v-if="GET_USER.id === post.userId"
       class="float-btn-group">
@@ -80,6 +85,7 @@ import VueAnswer from '~/components/common/answer'
 import VueCommentCard from '~/components/common/cards/comment'
 import VueCommentTextarea from '~/components/common/textareas/comment'
 import VueCategorySeparator from '~/components/common/separators/category'
+import VueButtonGroup from '~/components/common/buttons/with-icon/group'
 
 import { mapGetters } from 'vuex'
 
@@ -94,7 +100,8 @@ export default {
     VueAnswer,
     VueCommentCard,
     VueCommentTextarea,
-    VueCategorySeparator
+    VueCategorySeparator,
+    VueButtonGroup
   },
   computed: {
     ...mapGetters({
