@@ -9,9 +9,8 @@
               <strong>작성자: {{ userName }}</strong>
               ({{ userEmail }})
             </span>
-            <span class="meta"> 작성일: {{ createdDate }} </span>
+            <span class="meta">{{ createdDate }} </span>
           </p>
-          <br />
           <hr />
         </header>
       </div>
@@ -161,13 +160,14 @@ export default {
 .post-info {
   margin-top: 5px;
   margin-left: 20px;
+  overflow: auto;
 }
 .user-info {
   float: left;
 }
 .meta {
-  float: left;
-  margin-left: 20px;
+  float: right;
+  margin-right: 20px;
   color: gray;
 }
 .post-content {
