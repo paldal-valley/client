@@ -42,7 +42,7 @@
           ></v-text-field>
         </v-flex>
       </v-layout>
-    </v-card-text> 
+    </v-card-text>
 
         <v-divider
           class="separator"/>
@@ -69,7 +69,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 export default {
-  middleware: ['isLoggedIn'],  
+  middleware: ['isLoggedIn'],
   props: {
     titlePlaceHolder: {
       type: String,
@@ -85,16 +85,6 @@ export default {
       GET_USER: 'auth/GET_USER',
       GET_CATEGORIES: 'models/GET_CATEGORIES'
     }),
-    // ...mapGetters([
-    //   'getUserId'
-    // ]),
-    // ...mapState('block-sync', [
-    //   'web3',
-    //   'contractInstance'
-    // ]),
-    // ...mapGetters('block-sync', [
-    //   'contractMethods'd
-    // ]),
     selectorItem() {
       return this.GET_CATEGORIES['question']
     }
@@ -106,7 +96,7 @@ export default {
     min: "0",
     max: "100",
     slider: "30"
-      
+
   }),
   methods: {
     async createPost() {
