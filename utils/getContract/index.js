@@ -1,4 +1,4 @@
-import { ABI, address } from './constants/manager'
+import { ABI, address } from './constants'
 import Web3 from 'web3'
 
 export default () => {
