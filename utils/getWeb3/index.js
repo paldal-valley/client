@@ -45,12 +45,15 @@ export const pollWeb3 = state => {
         try {
           const newCoinbase = coinbase
           const newBalance = await web3.eth.getBalance(newCoinbase)
+          const newDoatBalance = await state.contractInstance()
+            .methods.balanceOf(newCoinbase).call()
+
           changeCoinbase(state, {
             coinbase: newCoinbase,
-            balance: Number(newBalance)
+            balance: Number(newBalance),
+            doatBalance: newDoatBalance / Math.pow(10, 18)
           })
 
-          // 아래 refresh logic 꼭 있어야하는 것은 아님
           window.location.replace('/')
         } catch (err) {
           console.error('error occurred in pollWeb3', err)
@@ -59,10 +62,14 @@ export const pollWeb3 = state => {
       // 3. 유저 wallet 정보가 존재할 때
       } else {
         // console.log(state)
+        const newDoatBalance = await state.contractInstance()
+          .methods.balanceOf(coinbase).call()
+
         state.web3 = {
           web3Instance: () => web3,
           networkId: await web3.eth.net.getNetworkType(),
           balance: await web3.eth.getBalance(coinbase),
+          doatBalance: newDoatBalance / Math.pow(10, 18),
           coinbase,
         }
       }
@@ -73,7 +80,8 @@ export const pollWeb3 = state => {
 
 const changeCoinbase = (state, payload) => {
   state.web3.coinbase = payload.coinbase
-  state.web3.balance = parseInt(payload.balance, 10)
+  state.web3.balance = Number(payload.balance)
+  state.web3.doatBalance = Number(payload.doatBalance)
 }
 
 const clearWeb3Instance = state => {
@@ -81,4 +89,5 @@ const clearWeb3Instance = state => {
   state.web3.networkID = null
   state.web3.coinbase = null
   state.web3.balance = null
+  state.web3.doatBalance = null
 }
