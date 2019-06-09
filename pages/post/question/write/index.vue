@@ -20,29 +20,29 @@
         <v-divider
           class="separator"/>
 
-    <v-subheader>아주코인을 걸어주세요(0AC~100AC)</v-subheader>
-    <v-card-text>
-      <v-layout row>
-        <v-flex class="pr-3">
-          <v-slider
-            color="#4E98A4"
-            v-model="slider"
-            :max="max"
-            :min="min"
-          ></v-slider>
-        </v-flex>
+        <v-subheader>아주코인을 걸어주세요(0AC~100AC)</v-subheader>
+        <v-card-text>
+          <v-layout row>
+            <v-flex class="pr-3">
+              <v-slider
+                color="#4E98A4"
+                v-model="reward"
+                :max="max"
+                :min="min"
+              ></v-slider>
+            </v-flex>
 
-        <v-flex shrink style="width: 60px">
-          <v-text-field
-            v-model="slider"
-            class="mt-0"
-            hide-details
-            single-line
-            type="number"
-          ></v-text-field>
-        </v-flex>
-      </v-layout>
-    </v-card-text> 
+            <v-flex shrink style="width: 60px">
+              <v-text-field
+                v-model="reward"
+                class="mt-0"
+                hide-details
+                single-line
+                type="number"
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
+        </v-card-text>
 
         <v-divider
           class="separator"/>
@@ -67,9 +67,10 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters } from 'vuex'
+
 export default {
-  middleware: ['isLoggedIn'],  
+  middleware: ['isLoggedIn', 'walletValidation'],
   props: {
     titlePlaceHolder: {
       type: String,
@@ -83,18 +84,10 @@ export default {
   computed: {
     ...mapGetters({
       GET_USER: 'auth/GET_USER',
-      GET_CATEGORIES: 'models/GET_CATEGORIES'
+      GET_CATEGORIES: 'models/GET_CATEGORIES',
+      WEB3_META: 'block-sync/WEB3_META',
+      CONTRACT_METHODS: 'block-sync/CONTRACT_METHODS'
     }),
-    // ...mapGetters([
-    //   'getUserId'
-    // ]),
-    // ...mapState('block-sync', [
-    //   'web3',
-    //   'contractInstance'
-    // ]),
-    // ...mapGetters('block-sync', [
-    //   'contractMethods'd
-    // ]),
     selectorItem() {
       return this.GET_CATEGORIES['question']
     }
@@ -105,12 +98,18 @@ export default {
     categoryId: 0,
     min: "0",
     max: "100",
-    slider: "30"
-      
+    reward: "30"
   }),
   methods: {
     async createPost() {
       try {
+        /* 보유 토큰 검증 */
+        const reward = Number(this.reward)
+        if (reward > this.WEB3_META.doatBalance) {
+          this.$notifyWarning(`${reward - this.WEB3_META.doatBalance}DOAT가 부족합니다.`)
+          return
+        }
+
         const options = {
           url: `post/question`,
           method: 'post',
@@ -123,42 +122,25 @@ export default {
 
             },
             postQuestion: {
-              reward: this.slider
+              reward: this.reward
             }
-            // title: this.title,
-            // content: this.content,
-            // userId: this.GET_USER.id,
-
           }
         }
-        await this.$axios(options)
-        // await this.getReward("0x98FE5eaFd3D61af18fB2b2322b8346dF05057202")
+
+        const { data } = await this.$axios(options)
+        const questionId = data.insertId
+
+        if (reward > 0) {
+          await this.CONTRACT_METHODS.questionCreated(questionId, reward * Math.pow(10, 18)).send({
+            from: this.WEB3_META.coinbase,
+          })
+        }
+
         this.$router.back()
       } catch (err) {
         console.error(err)
       }
     },
-    // async getReward(wallet_address) {
-    //     try {
-    //       this.createListing(wallet_address)
-    //       // const myCoin = await this.contractMethods.balanceOf(this.web3.coinbase).call()
-    //       alert(`글 등록 완료!\n보상: 50AC`)
-    //     } catch (err) {
-    //       console.log(err)
-    //     }
-    // },
-    // createListing (useraddress) {
-    //     try {
-    //       let result = this.contractMethods.createListing(useraddress).send({
-    //         gas: 3000000,
-    //         value: 0,
-    //         from: this.web3.coinbase
-    //       })
-    //       console.log(result)
-    //     } catch (err) {
-    //       throw console.error(err)
-    //     }
-    //   },
   }
 }
 </script>

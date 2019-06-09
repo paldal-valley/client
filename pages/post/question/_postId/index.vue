@@ -18,8 +18,9 @@
           :user-name="post.userName"
           :user-email="post.userEmail"
           :created-date="post.createdDate"
+          :view="post.view"
           :hasAnswerBtn=true
-          :hasReward=true
+          :hasReward="true"
         />
         <br>
         <h2> {{length}}개의 답변이 존재합니다. </h2>
@@ -141,8 +142,28 @@ export default {
           method: 'get'
         }
         const { data } = await this.$axios(options)
+        data.view++;
         this.post = data
         this.postId_Q = data.id
+        
+        
+        //update view
+
+         const options3 = {
+          url: `post/view/${this.postId}`,
+          method: 'put',
+          data: {
+            view: data.view
+          }
+        }
+      try{
+        await this.$axios(options3)
+      }
+      catch(err){
+        console.error(err)
+      }
+
+
         try{
           const options2 = {
             url: `post/answer`,

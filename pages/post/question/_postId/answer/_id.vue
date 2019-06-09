@@ -11,8 +11,8 @@
          :user-name="post.userName"
          :user-email="post.userEmail"
          :created-date="post.createdDate"
-         :hasReward=true
          :hasLike="false"
+         :hasReward="true"
        />
         <br><br>
        <v-textarea

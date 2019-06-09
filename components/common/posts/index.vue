@@ -12,7 +12,8 @@
           </div>
 
         <div  class = "rewardTitle">
-            <div  class = "rewardDiv">
+          <!-- v-if has reward 걸기 -->
+            <div v-if="hasReward" class = "rewardDiv">
               <span class= "rewardBox">
                   {{ reward }}
               </span>
@@ -29,7 +30,8 @@
               <strong>작성자: {{ userName }}</strong>
               ({{ userEmail }})
             </span>
-            <span class="meta right"> {{ createdDate }} </span>
+            <span class="meta"> 작성일: {{ createdDate }} </span>
+            <span class="meta"> 조회수: {{ view }} </span>
           </p>
           <hr />
         </header>
@@ -52,8 +54,6 @@
         </v-btn>
       </div>
     </div>
-
-
     <v-btn
       v-if="hasAnswerBtn"
       block
@@ -196,17 +196,8 @@ mounted() {
         this.$notifyError('본인 질문에는 답변할 수 없습니다.')
       }
       else{
-        //alert(routerid)
-        //this.$router.push(`../question/answer/${routerid}`)
-
         this.$router.push(`./${postId}/answer`)
       }
-      // this.$axios.$get('/boards').then((response) => {
-      //   this.posts[0].title = response
-      //   //this.posts[0].title = response.data
-      // })
-      //this.posts[0].title = 취업꿀팁
-      //window.location='./qna/writepost';
     }
   }
 }
@@ -263,11 +254,13 @@ mounted() {
 }
 .user-info {
   float: left;
+  overflow: hidden;
 }
 .meta {
   float: left;
   margin-left: 20px;
   color: gray;
+  overflow: hidden;
 }
 .post-content {
   text-align: left;
