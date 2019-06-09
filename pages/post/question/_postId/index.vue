@@ -228,6 +228,13 @@ export default {
        return true;
      }
    },
+   hasRewardBox(){
+    //  alert(this.boardTitle)
+    
+     if(this.boardTitle == "qna"){
+       return true
+     }
+   },
     selectBtn(loginId) {
         //요부분 API 추가해서 수정
       try {
@@ -235,24 +242,15 @@ export default {
             if( this.selected > 0){
               return false
             }
-
             if(loginId === this.post.userId){
                 return true
              }
-
-
 
         }catch (err) {
          console.error(err)
         }
 
 
-      //만약 디비 쿼리 날려서 채택 된 질문이라면
-      //return false
-      //아니라면 밑에 if문 넣고 return true
-      // if(loginId === this.post.userId){
-      //   return true;
-      // }
 
     }
 

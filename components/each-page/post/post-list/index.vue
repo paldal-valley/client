@@ -1,5 +1,11 @@
 <template>
   <vue-post-container>
+    <div class ="reward" v-if="fetchCategory(this.boardTitle)">
+      <span class ="waitSelect" onclick="">채택 대기</span>
+      <span> | </span>
+      <span class = "completeSelect">채택 완료</span>
+    </div>
+
     <vue-post-card
       v-for="post in posts"
       :board-title="boardTitle"
@@ -36,7 +42,9 @@ export default {
   },
   data: () => ({
     postCnt: 5,
-    posts: []
+    posts: [],
+    posts_selected: [],
+    posts_ready: []
   }),
   props: {
     apiEndpoint: {
@@ -67,6 +75,11 @@ export default {
     this.fetchPostList()
   },
   methods: {
+    fetchCategory(category){
+      if(category == "question"){
+        return true
+      }
+    },
     async fetchPostList() {
       const query = this.$route.query || {}
       const options = {
@@ -77,6 +90,10 @@ export default {
       try {
         const { data } = await this.$axios(options)
         this.posts = data
+        // if(this.boardTitle == "question"){
+        //   //쿼리 작성.
+        // }
+
       } catch (err) {
         console.error(err)
       }
@@ -105,6 +122,11 @@ export default {
   }
 }
 
+.reward {
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 6px;
+}
 // .float-add-post-btn {
 //   position: fixed;
 //   margin-left: 46%;

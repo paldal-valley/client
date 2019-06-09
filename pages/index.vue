@@ -50,7 +50,7 @@ export default {
       },
       {
         src: require('@/assets/images/about-us.png'),
-        to: '#'
+        to: '/aboutus'
       }
     ]
   }),

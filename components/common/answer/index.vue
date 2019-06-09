@@ -90,6 +90,7 @@ export default {
       default: ''
     }
   },
+
   // watcher: detect change of the data
   // updated: detect change of the DOM
   watch: {

@@ -13,8 +13,10 @@
       </div>
 
 
+<!-- 여기서 v-if로 보드 타이틀을 확인해 줘야하는데..... -->
+<!-- 글의 테이블 이름을 확인해 주면 되나...? -->
     <div  class = "card__header">
-        <span class= "card__rewardBox">
+        <span v-if="fetchBoardTitle(this.boardTitle)" class= "card__rewardBox">
                   <!-- 30 -->
              {{ post.reward }}
         </span>
@@ -58,6 +60,15 @@ export default {
     },
     content() {
       return this.post.content.length > 10 ? `${this.post.content.substr(0, 10)} ...` : `${this.post.content}`
+    }
+  },
+  methods: {
+    
+    fetchBoardTitle(category){
+      //question, review, plaz
+      if(category == "question"){
+        return true
+      }
     }
   }
 }
