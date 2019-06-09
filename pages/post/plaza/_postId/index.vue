@@ -19,7 +19,7 @@
           :user-name="post.userName"
           :user-email="post.userEmail"
           :created-date="post.createdDate"
-          view="34"
+          :view="post.view"
         />
 
         <!-- comments -->
@@ -118,7 +118,23 @@ export default {
           method: 'get'
         }
         const { data } = await this.$axios(options)
+        data.view++;
         this.post = data
+
+         const options2 = {
+          url: `post/view/${this.postId}`,
+          method: 'put',
+          data: {
+            view: data.view
+          }
+        }
+        try{
+          await this.$axios(options2)
+        }
+        catch(err){
+          console.error(err)
+        }
+
       } catch (err) {
         console.error(err)
       }

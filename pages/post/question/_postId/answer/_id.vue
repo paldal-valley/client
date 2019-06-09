@@ -12,7 +12,7 @@
          :user-email="post.userEmail"
          :created-date="post.createdDate"
          :hasLike="false"
-         :hasReward=true
+         :hasReward="true"
        />
         <br><br>
        <v-textarea

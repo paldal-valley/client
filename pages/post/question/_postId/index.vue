@@ -20,7 +20,7 @@
           :created-date="post.createdDate"
           :view="post.view"
           :hasAnswerBtn=true
-          :hasReward=true
+          :hasReward="true"
         />
         <br>
         <h2> {{length}}개의 답변이 존재합니다. </h2>
