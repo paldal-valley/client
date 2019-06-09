@@ -31,7 +31,6 @@
               ({{ userEmail }})
             </span>
             <span class="meta"> 작성일: {{ createdDate }} </span>
-            <span class="meta"> 조회수: {{ view }} </span>
           </p>
           <hr />
         </header>

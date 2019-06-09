@@ -1,6 +1,11 @@
 <template>
   <nuxt-link :to="to" class="card-link">
     <div class="card-container">
+      <div v-if="hasReward" class = "rewardDiv">
+        <span class= "rewardBox">
+          {{ reward }}
+        </span>
+      </div>
       <div
         v-if="boardTitle"
         class="card__category">
