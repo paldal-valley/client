@@ -33,7 +33,6 @@
             </span>
             <span class="meta"> 작성일: {{ createdDate }} </span>
             <span class="meta"> 조회수: {{ view }} </span>
-            
           </p>
           <br />
           <hr />
@@ -57,8 +56,6 @@
         </v-btn>
       </div>
     </div>
-
-
     <v-btn
       v-if="hasAnswerBtn"
       block
@@ -194,17 +191,8 @@ mounted() {
         this.$notifyError('본인 질문에는 답변할 수 없습니다.')
       }
       else{
-        //alert(routerid)
-        //this.$router.push(`../question/answer/${routerid}`)
-
         this.$router.push(`./${postId}/answer`)
       }
-      // this.$axios.$get('/boards').then((response) => {
-      //   this.posts[0].title = response
-      //   //this.posts[0].title = response.data
-      // })
-      //this.posts[0].title = 취업꿀팁
-      //window.location='./qna/writepost';
     }
   }
 }
@@ -214,7 +202,6 @@ mounted() {
 @import '~assets/scss/index';
 .post {
   width: 100%;
-  height: 500px;
 
   // 아래 세 요소 scss로 래핑하기
   box-shadow: $box-shadow;
@@ -252,14 +239,17 @@ mounted() {
 .post-info {
   margin-top: 5px;
   margin-left: 20px;
+  overflow: hidden;
 }
 .user-info {
   float: left;
+  overflow: hidden;
 }
 .meta {
   float: left;
   margin-left: 20px;
   color: gray;
+  overflow: hidden;
 }
 .post-content {
   text-align: left;

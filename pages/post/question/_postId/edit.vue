@@ -120,7 +120,7 @@ export default {
           }
         }
       }
-
+  
       try {
         await this.$axios(options)
         this.$router.back()
