@@ -13,12 +13,6 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ dispatch, commit }, ctx) {
-    // refresh 하면 store의 user 데이터도 리셋되므로
-    // auth/FETCH를 통해서 refresh 시 매번 user데이터를 init 해준다.
-    // 또한 FETCH를 위해서도 역시 헤더에 x-access-token이 있어야하는데
-    // 서버사이드에서 보내는 요청이므로 plugins/axios 설정에 있는
-    // js-cookie로는 브라우저단 쿠키를 잡지 못한다.
-    // 따라서 server side cookie 모듈로 쿠키를 헤더에 설정해줘야함
     try {
       // auth
       const cookies = cookie.parse(ctx.req.headers.cookie || '')
