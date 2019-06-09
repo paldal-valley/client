@@ -20,7 +20,7 @@
             <h2>DoAJOU,
                 누가 사용하나요?
             </h2>
-            <v-img :src="images.sample" style="margin-top: 5px"/>
+            <v-img class="target_img" :src="images.sample" style="margin-top: 5px"/>
             <h6>DoAJOU는 아주대학교 졸업생들과 재학생들이 <br>
             함께 경험을 나누는 공간입니다.
             </h6>
@@ -59,20 +59,22 @@
             <h2>아주코인,
                 어디서 사용하나요?
             </h2>
-            <v-layout class = "usage-list">
-                <v-flex class = "univ">
-                    <v-img class="univ_img" :src="images.univ_icon"/>
-                    <span>학교 내 식당</span>
+            <v-layout class = "usage-list">                    
+                    <v-flex class = "univ">
+                        <v-img class="univ_img" :src="images.univ_icon"/>
+                        <span>학교 내 식당</span>
+                    </v-flex>
+                    <v-flex class ="print">
+                        <v-img class="print_img" :src="images.printer_icon"/>
+                        <span>학교 내 프린트 수수료</span>
+                    </v-flex>
+                <v-flex class ="store">
+                        <v-img class="store_img" :src="images.store_icon" />
+                        <span>학교 주변 제휴 업체</span>
                 </v-flex>
-                <v-flex class ="print">
-                    <v-img class="print_img" :src="images.printer_icon"/>
-                    <span>학교 내 프린트 수수료</span>
-                </v-flex>
-               <v-flex class ="store">
-                    <v-img class="store_img" :src="images.store_icon" />
-                    <span>학교 주변 제휴 업체</span>
-               </v-flex>
+                
             </v-layout>
+            
             <h6>학교 내부 프린트 수수료, <br>
             학교 주변 상권 제휴 업체에서 사용합니다.
             </h6>
@@ -87,7 +89,7 @@
             <h2>DoAJOU,
                 어떤 기술을 사용했나요?
             </h2>
-            <v-img :src="images.tech" style="margin-top: 20px; margin-bottom: 20px;"/>
+            <v-img class="tech_img" :src="images.tech"/>
             <h6>도아주는 Javascript 기반으로 개발된 <br>
             이더리움 기반 블록체인 생태계입니다.
             </h6>
@@ -118,8 +120,11 @@
 
 <script>
 export default{
+    layout: "main",
     data(){
+
         return{
+
             images: {
                 sample : require('@/assets/images/main_target.PNG'),
                 univ_icon : require ('@/assets/images/univ_icon.PNG'),
@@ -190,13 +195,27 @@ export default{
 .carousel {
     margin-top: 35px;
     margin-bottom: 35px;
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: none;
+}
+
+.target_img, .tech_img {
+    width: 50%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .usage-list {
     margin-top: 35px;
     margin-bottom: 35px;
+    margin-left: 15rem;
+    margin-right: 15rem;
 }
 
 
@@ -245,8 +264,8 @@ export default{
     margin-bottom: 35px; 
     margin-left: auto;
     margin-right: auto;
-    width: 60%; 
-    height: 60%; 
+    width: 50%; 
+    height: 50%; 
 }
 
 </style>
