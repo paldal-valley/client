@@ -125,7 +125,9 @@ export default {
     postId_Q: '',
     length: '',
     post: {},
-    answers: []
+    answers: [],
+    selectedItem: [],
+    selected: '',
   }),
   mounted() {
     this.postId = this.$route.params.postId
@@ -150,10 +152,29 @@ export default {
           const ans = (await this.$axios(options2)).data
           this.answers = ans
           this.length = ans.length
+
+          try {
+            const options3 = {
+              url: `post/answer/isSelected/${this.postId_Q}`,
+              method: 'get',
+              params: { postId_Q: this.postId_Q  }
+            }
+              const { data } = await this.$axios(options3)
+              this.selectedItem = data
+              this.selected = this.selectedItem.length
+              // alert(this.selected)
+            }
+            catch (err){
+              console.error(err)
+            }
+
+        
         
         }catch (err) {
           console.error(err)
         }
+
+        
       } catch (err) {
         console.error(err)
       }
@@ -180,17 +201,40 @@ export default {
       this.$router.push(`../${postId}/answer`)
       //this.$router.push(`../question/${routerid}`)
     },
-    selectBtn(loginId) {
-      if(loginId === this.post.userId){
-        return true;
-      }
-    },
    onGetAuthority(userId) {
      if(userId === this.GET_USER.id){
        //alert(this.GET_USER.id)
        return true;
      }
-   }
+   },
+    selectBtn(loginId) {
+        //요부분 API 추가해서 수정
+      try {
+
+            if( this.selected > 0){
+              return false
+            }
+
+            if(loginId === this.post.userId){
+                return true
+             }
+
+
+
+        }catch (err) {
+         console.error(err)
+        }
+
+
+      //만약 디비 쿼리 날려서 채택 된 질문이라면
+      //return false
+      //아니라면 밑에 if문 넣고 return true
+      // if(loginId === this.post.userId){
+      //   return true;
+      // }
+
+    }
+
   }
 }
 </script>

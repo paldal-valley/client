@@ -11,7 +11,13 @@
         class="card__category">
         {{ category }}
       </div>
-      <div class="card__header">
+
+
+    <div  class = "card__header">
+        <span class= "card__rewardBox">
+                  <!-- 30 -->
+             {{ post.reward }}
+        </span>
         <span class="card__title">{{ post.title }}</span>
         <span
           v-if="post.totalComment"
@@ -127,14 +133,15 @@ export default {
     color: gray;
   }
 
-//   .rewardDiv {
-//   float: left;
-//   margin-top: 9px;
-//   margin-right: 2px;
-//   margin-left: 20px;
-//   font-size: 0;
-//   line-height: 0;
-// }
+  .card__rewardBox {
+    color: black;
+    display: inline-block;
+    border-radius: 1px;
+    padding: 1px 5px 2px;
+    font-size: 15px;
+    line-height: 17px;
+    background-color: #a5adb7;
+}
 
 // .rewardBox {
 //   display: inline-block;

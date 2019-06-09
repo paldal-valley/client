@@ -18,7 +18,7 @@
           label="제목"
           full-width/>
 
-                  <v-divider
+        <v-divider
           class="separator"/>
 
    <v-subheader>아주코인을 걸어주세요(0AC~100AC)</v-subheader>
@@ -120,7 +120,7 @@ export default {
           }
         }
       }
-
+  
       try {
         await this.$axios(options)
         this.$router.back()

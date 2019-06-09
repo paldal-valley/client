@@ -90,13 +90,16 @@
           required
         ></v-text-field>
         <v-text-field
+          outline
+          color="orange"
           v-model="form.walletAddress"
           v-validate="'required|length:42'"
           :counter="42"
           :error-messages="errors.collect('walletAddress')"
           label="Wallet Address"
           data-vv-name="walletAddress"
-          required
+          append-icon="info"
+          @click:append="go_tutorial"
         ></v-text-field>
         <v-select
           v-model="form.majorId"
@@ -244,6 +247,10 @@ export default {
     }
   },
   methods: {
+    go_tutorial(){
+      let route = this.$router.resolve({path: '../tutorial'})
+      window.open(route.href,'_blank')
+    },
     submit() {
       this.$validator.validateAll()
     },
