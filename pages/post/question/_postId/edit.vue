@@ -42,7 +42,7 @@
           ></v-text-field>
         </v-flex>
       </v-layout>
-    </v-card-text> 
+    </v-card-text>
 
         <v-divider
           class="separator"/>
@@ -66,7 +66,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  middleware: ['isLoggedIn'],
+  middleware: ['isLoggedIn', 'walletValidation'],
   computed: {
     ...mapGetters({
       GET_USER: 'auth/GET_USER'

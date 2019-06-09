@@ -58,10 +58,15 @@ module.exports = {
    ** Plugins to load before mounting the App
    */
 
+  router: {
+    // middleware: ['poll-wallet-info']
+  },
+
   plugins: [
     '@/plugins/vuetify',
     '~/plugins/axios',
     '~/plugins/utils',
+    { src: '~/plugins/poll-wallet-info', ssr: false },
     { src: '~/plugins/vue-notifications', ssr: false }
   ],
 
