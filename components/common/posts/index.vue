@@ -14,7 +14,7 @@
 <!-- 내공 보이는 부분 -->
         <div  class = "rewardTitle">
           <!-- v-if has reward 걸기 -->
-            <div  class = "rewardDiv">
+            <div v-if="hasReward" class = "rewardDiv">
               <span class= "rewardBox">
                   <!-- 30 -->
                   {{ reward }}
