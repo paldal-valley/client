@@ -11,10 +11,9 @@
          :user-name="post.userName"
          :user-email="post.userEmail"
          :created-date="post.createdDate"
+         :hasLike="false"
          :hasReward=true
        />
-       <v-divider
-         class="separator"/>
         <br><br>
        <v-textarea
          v-model="answer.content"
@@ -58,6 +57,9 @@ export default {
      GET_USER: 'auth/GET_USER',
      GET_CATEGORIES: 'models/GET_CATEGORIES'
    }),
+   category() {
+      return this.$categoryMapper('question', this.post.categoryId)
+   }
   //  selectorItem() {
   //    return this.GET_CATEGORIES['question']
   //  }

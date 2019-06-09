@@ -51,12 +51,10 @@ export default {
   box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.07), 0 5px 20px 0 rgba(0, 0, 0, 0.06),
     0 8px 40px 0 rgba(0, 0, 0, 0.04);
   &:hover {
-    .card__title {
-      color: $ac-green;
-    }
     transform: scale(1.04); /*  default */
     -webkit-transform: scale(1.04); /*  크롬 */
     -moz-transform: scale(1.04); /* FireFox */
+    box-shadow: 1px 2px 1px 0 rgba(0, 0, 0, 0.20), 0 5px 20px 0 rgba(0, 0, 0, 0.20), 0 8px 40px 0 rgba(0, 0, 0, 0.20);
     transition: all 0.1s ease-in-out;
   }
 }

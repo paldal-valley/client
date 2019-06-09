@@ -69,6 +69,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 export default {
+  middleware: ['isLoggedIn'],  
   props: {
     titlePlaceHolder: {
       type: String,

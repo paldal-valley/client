@@ -5,33 +5,37 @@
       :buttons="GET_REVIEW_META.sidebarButtons"
       :buttons-downside="GET_POST_META.sidebarButtonsDownside"/>
 
-    <!-- post-content -->
-    <div class="post-content">
-      <vue-post
-        :title="post.title"
-        :content="post.content"
-        :category="category"
-        :user-name="post.userName"
-        :user-email="post.userEmail"
-        :created-date="post.createdDate"
-        view="34"
-      />
+    <vue-post-container>
+      <!-- buttons -->
+      <vue-button-group :buttons="GET_POST_META.icon_buttons" />
+      <!-- post-content -->
+      <div class="post-content">
+        <vue-post
+          :title="post.title"
+          :content="post.content"
+          :category="category"
+          :user-name="post.userName"
+          :user-email="post.userEmail"
+          :created-date="post.createdDate"
+          view="34"
+        />
 
-      <!-- comments -->
-      <vue-category-separator
-        :category-name="commentText"/>
+        <!-- comments -->
+        <vue-category-separator
+          :category-name="commentText"/>
 
-      <vue-comment-textarea
-        @comment-created="fetchPost"/>
+        <vue-comment-textarea
+          @comment-created="fetchPost"/>
 
-      <transition-group name="fade" tag="div">
-        <vue-comment-card
-          v-for="comment in post.comments"
-          :key="comment.id"
-          :comment="comment"
-          @comments-changed="fetchPost"/>
-      </transition-group>
-    </div>
+        <transition-group name="fade" tag="div">
+          <vue-comment-card
+            v-for="comment in post.comments"
+            :key="comment.id"
+            :comment="comment"
+            @comments-changed="fetchPost"/>
+        </transition-group>
+      </div>
+    </vue-post-container>
 
     <!-- float buttons -->
 
@@ -54,6 +58,7 @@
 <script>
 // containers
 import VueBoardContainer from '~/containers/board'
+import VuePostContainer from '~/containers/post'
 
 // components
 import VueBoardSidebar from '~/components/each-page/post/sidebar'
@@ -62,6 +67,7 @@ import VueFloatBtn from '~/components/common/buttons/float'
 import VueCommentCard from '~/components/common/cards/comment'
 import VueCommentTextarea from '~/components/common/textareas/comment'
 import VueCategorySeparator from '~/components/common/separators/category'
+import VueButtonGroup from '~/components/common/buttons/with-icon/group'
 
 import { mapGetters } from 'vuex'
 
@@ -69,12 +75,14 @@ export default {
   middleware: ['isLoggedIn'],
   components: {
     VueBoardContainer,
+    VuePostContainer,
     VueBoardSidebar,
     VuePost,
     VueFloatBtn,
     VueCommentCard,
     VueCommentTextarea,
-    VueCategorySeparator
+    VueCategorySeparator,
+    VueButtonGroup
   },
   computed: {
     ...mapGetters({
