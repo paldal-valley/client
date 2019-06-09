@@ -110,7 +110,10 @@ export default {
        const options = {
          url: `post/answer/select/${this.answerId}`,
          method: 'put',
-         params: { isSelected : 1 }
+         params: { isSelected : 1 },
+         data: {
+           postId_Q : this.questionId
+         }
        }
        //alert(this.postId_Q)
        await this.$axios(options)
