@@ -1,35 +1,36 @@
 import Vue from 'vue'
 import VueNotifications from 'vue-notification'
 
+Vue.use(VueNotifications)
 
-const Plugin = {}
-Plugin.install = Vue => {
-  Vue.mixin({
-    methods: {
-      $notifySuccess(text) {
-        this.$notify({
-          type: null,
-          title: '알림메시지',
-          text
-        })
-      },
-      $notifyWarning(text) {
-        this.$notify({
-          type: 'warn',
-          title: '알림메시지',
-          text
-        })
-      },
-      $notifyError(text) {
-        this.$notify({
-          type: 'error',
-          title: '에러메시지',
-          text
-        })
-      }
-    }
-  })
+const notifyBundle = {
+  notifySuccess(text) {
+    Vue.prototype.$notify({
+      type: null,
+      title: '알림메시지',
+      text
+    })
+  },
+  notifyWarning(text) {
+    Vue.prototype.$notify({
+      type: 'warn',
+      title: '알림메시지',
+      text
+    })
+  },
+  notifyError(text) {
+    Vue.prototype.$notify({
+      type: 'error',
+      title: '에러메시지',
+      text
+    })
+  }
 }
 
-Vue.use(VueNotifications)
-Vue.use(Plugin)
+export default (ctx, inject) => {
+  Object.assign(ctx, { notifyBundle })
+  inject('notifySuccess', notifyBundle.notifySuccess)
+  inject('notifyWarning', notifyBundle.notifyWarning)
+  inject('notifyError', notifyBundle.notifyError)
+};
+
