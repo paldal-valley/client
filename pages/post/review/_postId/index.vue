@@ -21,6 +21,7 @@
           :hasLike="true"
           :likes="likeNum"
           :isLiked="isLiked"
+          @likes-pushed="fetchPost"
         />
 
         <!-- comments -->

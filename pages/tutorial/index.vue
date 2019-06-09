@@ -12,7 +12,7 @@ export default{
         return{
             images: {
                 sample : require('@/assets/images/Metamask.png'),
-                sample1 : require('@/assets/images/Metamask_1.png')
+                sample1 : require('@/assets/images/Tutorial_real.png')
             }
         }
     }

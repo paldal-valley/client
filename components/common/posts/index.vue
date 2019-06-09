@@ -11,12 +11,10 @@
             <br /><br />
           </div>
 
-<!-- 내공 보이는 부분 -->
         <div  class = "rewardTitle">
           <!-- v-if has reward 걸기 -->
             <div v-if="hasReward" class = "rewardDiv">
               <span class= "rewardBox">
-                  <!-- 30 -->
                   {{ reward }}
               </span>
             </div>
@@ -168,16 +166,9 @@ export default {
 mounted() {
     this.postId = this.$route.params.postId
     this.getUserId()
+
   },
   methods: {
-    // hasReward() {
-    //   alert(this.boardTitle)
-    //   // if(this.category)
-    //   // alert(this.boardTitle)
-    //   // console.log(this.boardTitle)
-
-    //   // if(this.boardTitle == "QnA"){}
-    // },
     async getUserId() {
         const postId = this.$route.params.postId
           try {
@@ -217,6 +208,7 @@ mounted() {
           data: { userId: this.userId }
         }
         const { data } = await this.$axios(options)
+        this.$emit("likes-pushed")
         if (data.msg == "create") {
           this.isLiked = true
           this.likes = this.likes + 1
@@ -275,6 +267,7 @@ mounted() {
   background-color: #4e98a4;
   color: white;
 }
+
 .post-info {
   margin-top: 5px;
   margin-left: 20px;
