@@ -129,6 +129,7 @@ export default {
         this.post = data
         this.likeNum= this.post.likes.length
         this.isLiked = this.checkUserLike()
+        console.log("push fetch post")
       } catch (err) {
         console.error(err)
       }

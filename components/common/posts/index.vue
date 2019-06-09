@@ -103,8 +103,8 @@ export default {
       default: ''
     },
     view: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     },
     hasAnswerBtn: {
       type: Boolean,
@@ -209,13 +209,6 @@ mounted() {
         }
         const { data } = await this.$axios(options)
         this.$emit("likes-pushed")
-        if (data.msg == "create") {
-          this.isLiked = true
-          this.likes = this.likes + 1
-        } else {
-          this.isLiked = false
-          this.likes = this.likes - 1
-        }
       }
       catch (err){
         console.error(err)
