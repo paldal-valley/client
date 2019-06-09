@@ -13,7 +13,6 @@
          :created-date="post.createdDate"
          :hasReward=true
          :hasLike="false"
->>>>>>>>> Temporary merge branch 2
        />
         <br><br>
        <v-textarea
