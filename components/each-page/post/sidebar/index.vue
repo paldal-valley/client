@@ -1,5 +1,6 @@
 <template>
   <vue-sidebar-container>
+ 
     <!-- images -->
     <vue-sidebar-img-container>
       <nuxt-link to="/">
@@ -14,7 +15,19 @@
 
     <v-divider class="separator"/>
 
-    <vue-button-group :buttons="buttonsDownside" />
+       <!-- images -->
+    <vue-sidebar-img-container>
+      <nuxt-link to="/">
+        <img class="banner-img mt-3" src="~assets/images/banner_1.png" />
+      </nuxt-link>
+    </vue-sidebar-img-container>
+
+    <vue-sidebar-img-container>
+      <nuxt-link to="/tutorial">
+        <img class="banner-img" src="~assets/images/banner_2.png" />
+      </nuxt-link>
+    </vue-sidebar-img-container>
+
   </vue-sidebar-container>
 </template>
 
@@ -54,6 +67,10 @@ export default {
     max-height: 120px;
     margin: 10px 0;
   }
+}
+.banner-img {
+  max-width: 200px;
+  max-height: 140px;
 }
 .separator {
   margin-top: 30px;
