@@ -19,6 +19,7 @@
           :user-name="post.userName"
           :user-email="post.userEmail"
           :created-date="post.createdDate"
+          :hasReward=false
           view="34"
         />
 

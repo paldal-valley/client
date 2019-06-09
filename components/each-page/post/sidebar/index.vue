@@ -17,7 +17,7 @@
 
        <!-- images -->
     <vue-sidebar-img-container>
-      <nuxt-link to="/">
+      <nuxt-link to="/aboutus">
         <img class="banner-img mt-3" src="~assets/images/banner_1.png" />
       </nuxt-link>
     </vue-sidebar-img-container>

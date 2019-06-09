@@ -11,11 +11,9 @@
             <br /><br />
           </div>
 
-<!-- 내공 보이는 부분 -->
         <div  class = "rewardTitle">
             <div  class = "rewardDiv">
               <span class= "rewardBox">
-                  <!-- 30 -->
                   {{ reward }}
               </span>
             </div>
@@ -158,15 +156,18 @@ export default {
 mounted() {
     this.postId = this.$route.params.postId
     this.getUserId()
+
   },
   methods: {
     // hasReward() {
-    //   alert(this.boardTitle)
+    //   // alert(this.boardTitle)
     //   // if(this.category)
     //   // alert(this.boardTitle)
     //   // console.log(this.boardTitle)
 
-    //   // if(this.boardTitle == "QnA"){}
+    //   if(this.boardTitle == "QnA"){
+    //     alert(this.boardTitle)
+    //   }
     // },
     async getUserId() {
         const postId = this.$route.params.postId
