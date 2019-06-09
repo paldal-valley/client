@@ -1,5 +1,5 @@
-import { getWeb3, pollWeb3 } from "../utils/getWeb3";
-import getContract from "../utils/getContract";
+import { getWeb3, pollWeb3 } from "../utils/getWeb3"
+import getContract from "../utils/getContract"
 
 export const strict = false
 
@@ -8,7 +8,8 @@ export const state = () => ({
     web3Instance: null,
     networkId: null,
     coinbase: null,
-    balance: null
+    balance: null,
+    doatBalance: null,
   },
   contractInstance: null,
   isIntervalExist: false,
@@ -30,7 +31,9 @@ export const mutations = {
     pollWeb3(state)
   },
   SET_CONTRACT_INSTANCE (state, payload) {
-    state.contractInstance = () => payload
+    const { contractInstance, doatBalance } = payload
+    state.web3.doatBalance = doatBalance
+    state.contractInstance = () => contractInstance
   }
 }
 
@@ -43,12 +46,19 @@ export const actions = {
       pollWeb3(state)
     }
   },
-  async FETCH_CONTRACT_INSTANCE({ commit }) {
+  async FETCH_CONTRACT_INSTANCE({ commit, state }) {
+    // const web3 = new Web3(window.web3.currentProvider)
+
     try {
-      let result = await getContract()
-      commit('SET_CONTRACT_INSTANCE', result)
+      const contractInstance = await getContract()
+      const doatBalance = await contractInstance.methods.balanceOf(state.web3.coinbase).call()
+
+      commit('SET_CONTRACT_INSTANCE', {
+        contractInstance,
+        doatBalance: doatBalance / Math.pow(10, 18)
+      })
     } catch (err) {
-      throw console.error('Error in action getContractInstance', err)
+      throw console.error('Error in action FETCH_CONTRACT_INSTANCE', err)
     }
   }
 }
