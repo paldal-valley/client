@@ -28,14 +28,14 @@
 
         <v-parallax
             height="200"
-            src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
+            src="https://images.unsplash.com/photo-1524673450801-b5aa9b621b76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
         ></v-parallax>
 
         <section class = "relationship">
             <h2>DoAJOU,
                 어떻게 사용하나요?
             </h2>
-            <v-carousel class="carousel" hide-delimiters="true" max="800px">
+            <v-carousel class="carousel" hide-delimiters max="800px">
                 <v-carousel-item
                 v-for="(item,i) in items"
                 :key="i"
@@ -50,7 +50,7 @@
 
         <v-parallax
             height="200"
-            src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
+            src="https://images.unsplash.com/photo-1524673450801-b5aa9b621b76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
         ></v-parallax>
 
 
@@ -82,7 +82,7 @@
 
         <v-parallax
             height="200"
-            src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
+            src="https://images.unsplash.com/photo-1524673450801-b5aa9b621b76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
         ></v-parallax>
 
         <section class = "tech-stack">
@@ -97,7 +97,7 @@
 
         <v-parallax
             height="200"
-            src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
+            src="https://images.unsplash.com/photo-1524673450801-b5aa9b621b76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
         ></v-parallax>
 
         
@@ -113,7 +113,7 @@
 
         <v-parallax
             height="200"
-            src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
+            src="https://images.unsplash.com/photo-1524673450801-b5aa9b621b76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
         ></v-parallax>
     </div>   
 </template>
