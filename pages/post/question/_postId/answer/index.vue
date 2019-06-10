@@ -66,7 +66,6 @@ export default {
  },
  mounted() {
    this.postId = this.$route.params.postId
-   //this.postId_Q
    this.fetchPost()
  },
  methods: {
@@ -94,10 +93,7 @@ export default {
            userId: this.GET_USER.id
          }
        }
-       alert(this.postId_Q)
        await this.$axios(options)
-       //alert(this.postId_Q)
-       // await this.getReward("0x98FE5eaFd3D61af18fB2b2322b8346dF05057202")
        this.$router.back()
      } catch (err) {
        console.error(err)

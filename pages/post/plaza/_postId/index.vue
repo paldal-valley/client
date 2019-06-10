@@ -108,7 +108,9 @@ export default {
   }),
   mounted() {
     this.postId = this.$route.params.postId
-    this.fetchPost()
+    this.fetchPost().then(()=>{
+      this.viewPost()
+    })
   },
   methods: {
     async fetchPost() {
@@ -118,26 +120,26 @@ export default {
           method: 'get'
         }
         const { data } = await this.$axios(options)
-        data.view++;
         this.post = data
-
-         const options2 = {
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    async viewPost() {
+      this.post.view++;
+      const options = {
           url: `post/view/${this.postId}`,
           method: 'put',
           data: {
-            view: data.view
+            view: this.post.view
           }
         }
         try{
-          await this.$axios(options2)
+          await this.$axios(options)
         }
         catch(err){
           console.error(err)
         }
-
-      } catch (err) {
-        console.error(err)
-      }
     },
     async deletePost() {
       const options = {

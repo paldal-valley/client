@@ -1,11 +1,6 @@
 <template>
   <nuxt-link :to="to" class="card-link">
     <div class="card-container">
-      <div v-if="hasReward" class = "rewardDiv">
-        <span class= "rewardBox">
-          {{ reward }}
-        </span>
-      </div>
       <div
         v-if="boardTitle"
         class="card__category">
@@ -13,11 +8,8 @@
       </div>
 
 
-<!-- 여기서 v-if로 보드 타이틀을 확인해 줘야하는데..... -->
-<!-- 글의 테이블 이름을 확인해 주면 되나...? -->
-    <div  class = "card__header">
-        <span v-if="fetchBoardTitle(this.boardTitle)" class= "card__rewardBox">
-                  <!-- 30 -->
+    <div class="card__header">
+        <span v-if="hasReward" class= "card__rewardBox">
              {{ post.reward }}
         </span>
         <span class="card__title">{{ post.title }}</span>
@@ -26,7 +18,12 @@
           class="card__comment">[{{ post.totalComment }}]</span>
       </div>
       <p class="card__content">{{ content }}</p>
-      <div class="card__date"> {{ post.createdDate }} </div>
+      <div class="card__bottom">
+        <span v-if="hasLike" class="likeicon">
+          <font-awesome-icon icon="thumbs-up"/> {{ post.totalLike }}
+        </span>
+         {{ post.createdDate }}
+      </div>
     </div>
   </nuxt-link>
 </template>
@@ -45,10 +42,6 @@ export default {
     boardTitle: {
       type: String,
       default: ''
-    },
-    hasReward: {
-      type: Boolean,
-      default: false
     }
   },
   computed: {
@@ -60,15 +53,12 @@ export default {
     },
     content() {
       return this.post.content.length > 10 ? `${this.post.content.substr(0, 10)} ...` : `${this.post.content}`
-    }
-  },
-  methods: {
-    
-    fetchBoardTitle(category){
-      //question, review, plaz
-      if(category == "question"){
-        return true
-      }
+    },
+    hasReward() {
+      return this.boardTitle === "question" ? true : false
+    },
+    hasLike() {
+      return this.boardTitle === "review" ? true : false
     }
   }
 }
@@ -138,30 +128,25 @@ export default {
     border-radius: 3px;
   }
 
-  .card__date {
+  .card__bottom {
     text-align: right;
     font-weight: bold;
     color: gray;
+      .likeicon{
+        color: #4e98a4;
+        float: left;
+      }
   }
 
   .card__rewardBox {
-    color: black;
+    margin-right: 5px;
     display: inline-block;
-    border-radius: 1px;
-    padding: 1px 5px 2px;
+    border-radius: 6px;
+    padding: 2px 5px;
     font-size: 15px;
     line-height: 17px;
-    background-color: #a5adb7;
-}
-
-// .rewardBox {
-//   display: inline-block;
-//   border-radius: 1px;
-//   padding: 1px 5px 2px;
-//   font-size: 15px;
-//   line-height: 17px;
-//   background-color: #a5adb7;
-  
-// }
+    background-color: #4e98a4;
+    color: white;
+  }
 }
 </style>

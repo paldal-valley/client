@@ -18,6 +18,10 @@
           :user-email="post.userEmail"
           :created-date="post.createdDate"
           :view="post.view"
+          :hasLike="true"
+          :likes="likeNum"
+          :isLiked="isLiked"
+          @likes-pushed="fetchPost"
         />
 
         <!-- comments -->
@@ -103,11 +107,15 @@ export default {
   },
   data: () => ({
     postId: '',
-    post: {}
+    post: {},
+    likeNum: 0,
+    isLiked: true
   }),
   mounted() {
     this.postId = this.$route.params.postId
-    this.fetchPost()
+    this.fetchPost().then(()=>{
+      this.viewPost()
+    })
   },
   methods: {
     async fetchPost() {
@@ -117,26 +125,30 @@ export default {
           method: 'get'
         }
         const { data } = await this.$axios(options)
-        data.view++;
+        
         this.post = data
-
-        const options2 = {
+        this.likeNum= this.post.likes.length
+        this.isLiked = this.checkUserLike()
+        console.log("push fetch post")
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    async viewPost() {
+      this.post.view++;
+      const options = {
           url: `post/view/${this.postId}`,
           method: 'put',
           data: {
-            view: data.view
+            view: this.post.view
           }
         }
         try{
-          await this.$axios(options2)
+          await this.$axios(options)
         }
         catch(err){
           console.error(err)
         }
-
-      } catch (err) {
-        console.error(err)
-      }
     },
     async deletePost() {
       const options = {
@@ -155,6 +167,10 @@ export default {
         this.$notifyError('에러가 발생했습니다.')
       }
     },
+    checkUserLike() {
+      const temp = JSON.parse(JSON.stringify(this.post.likes))
+      return temp.some(temp => temp['userId'] === this.GET_USER.id)
+    }
   }
 }
 </script>

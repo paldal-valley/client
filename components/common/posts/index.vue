@@ -30,9 +30,9 @@
               <strong>작성자: {{ userName }}</strong>
               ({{ userEmail }})
             </span>
-            <span class="meta"> 작성일: {{ createdDate }} </span>
+            <span class="meta right"> {{ createdDate }} </span>
           </p>
-          <hr />
+          <hr class="header"/>
         </header>
       </div>
       <div class="post-content">
@@ -47,10 +47,13 @@
       <v-btn v-if="hasSelectBtn" outline large fab color="blue">
         <v-icon>check</v-icon>
       </v-btn>
-      <div class = "like">
-        <v-btn v-if="hasLike" outline large fab color="red">
-          <v-icon>thumb_up</v-icon>
-        </v-btn>
+      <div v-if="hasLike" class="like">
+        <button @click="likeButtonClick()" v-bind:class="{likebtn:true, liked:isLiked, unliked:!isLiked}">
+          <i aria-hidden="true" class="likeicon v-icon material-icons theme--light">thumb_up</i>
+           <span class="number">
+            {{ likes }}
+          </span>
+        </button>
       </div>
     </div>
     <v-btn
@@ -100,8 +103,8 @@ export default {
       default: ''
     },
     view: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     },
     hasAnswerBtn: {
       type: Boolean,
@@ -129,7 +132,15 @@ export default {
     },
     hasLike: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    likes: {
+      type: Number,
+      default: 0
+    },
+    isLiked: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -141,7 +152,7 @@ export default {
       GET_QUESTION_META: 'page-meta/GET_QUESTION_META',
       GET_USER: 'auth/GET_USER'
     })
-    },
+  },
  data: () => ({
     userId: ''
   }),
@@ -158,16 +169,6 @@ mounted() {
 
   },
   methods: {
-    // hasReward() {
-    //   // alert(this.boardTitle)
-    //   // if(this.category)
-    //   // alert(this.boardTitle)
-    //   // console.log(this.boardTitle)
-
-    //   if(this.boardTitle == "QnA"){
-    //     alert(this.boardTitle)
-    //   }
-    // },
     async getUserId() {
         const postId = this.$route.params.postId
           try {
@@ -189,13 +190,28 @@ mounted() {
 
     },
     onWriteClick() {
-      
       const postId = this.$route.params.postId
       if(this.userId == this.GET_USER.id){
         this.$notifyError('본인 질문에는 답변할 수 없습니다.')
       }
       else{
         this.$router.push(`./${postId}/answer`)
+      }
+    },
+    async likeButtonClick() {
+      const currentUserId = this.GET_USER.id
+      try {
+        const options = {
+          url: `post/like/${this.postId}`,
+          method: 'post',
+          params: { postId: this.postId  },
+          data: { userId: this.userId }
+        }
+        const { data } = await this.$axios(options)
+        this.$emit("likes-pushed")
+      }
+      catch (err){
+        console.error(err)
       }
     }
   }
@@ -235,7 +251,6 @@ mounted() {
   font-size: 0;
   line-height: 0;
 }
-
 .rewardBox {
   display: inline-block;
   border-radius: 6px;
@@ -285,4 +300,42 @@ mounted() {
   float: right !important;
   margin-right: 20px;
 }
+.liked {
+  padding-bottom: 0.5rem;
+  color: white !important;
+  background: #333399 !important;
+  box-shadow: none !important;
+}
+.unliked {
+  padding-bottom: 0.5rem;
+  color: #333399 !important;
+  background: transparent !important;
+  border: 2px solid #333399 !important;
+  box-shadow: none !important;
+}
+.likebtn {
+  margin: 10px;
+  width: 80px;
+  height: 80px;
+  padding: 14px;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 26px;
+  transition: all .15s ease-in-out;
+
+  .likeicon {
+    display: block;
+    color: inherit !important;
+    font-weight: 600;
+    font-size: 28px;
+  }
+}
+.likebtn:focus {
+  outline: none;
+}
+.header{
+  border: 0px;
+  border-top: 0.8px solid #dddddd
+}
+
 </style>
