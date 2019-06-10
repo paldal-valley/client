@@ -41,12 +41,23 @@
 import VueToolbar from '~/components/nav-bar/toolbar'
 import VueDrawer from '~/components/nav-bar/drawer'
 import VueFooter from '~/components/footer'
+
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
     VueToolbar,
     VueDrawer,
     VueFooter
-  }
+  },
+  computed: {
+    ...mapGetters({
+      GET_QUESTION_META: 'block-sync/WEB3_META'
+    }),
+    checkMeta() {
+      return this.GET_QUESTION_META.web3Instance ? true : false
+    }
+  },
 }
 </script>
 
