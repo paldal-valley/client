@@ -90,7 +90,7 @@ export default {
           to: '/mypage/tokens'
         }
       ],
-    tokenAddress : ''
+    tokenAddress : '0x40f65781fbbd220ee7a4ba2d04ee78981be5ee0d'
   }),
 
   mounted() {

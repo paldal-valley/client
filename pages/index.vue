@@ -2,6 +2,7 @@
   <div>
     <vue-carousel :items="bannerItems" />
     <div class="base-container">
+      <vue-question-carousel :items="questionList"/>
       <vue-board-card-group :board-cards="boardCards" />
     </div>
   </div>
@@ -9,6 +10,7 @@
 
 <script>
 import VueCarousel from '~/components/common/carousel'
+import VueQuestionCarousel from '~/components/common/carousel/question'
 import VueBoardCardGroup from '~/components/common/cards/board/group'
 import { EventBus } from '~/utils/EventBus'
 
@@ -16,7 +18,8 @@ export default {
   layout: 'main',
   components: {
     VueCarousel,
-    VueBoardCardGroup
+    VueBoardCardGroup,
+    VueQuestionCarousel
   },
   data: () => ({
     boardCards: [
@@ -52,6 +55,16 @@ export default {
         src: require('@/assets/images/about-us.png'),
         to: '/aboutus'
       }
+    ],
+    questionList: [
+      {
+        title: "",
+        to: '/',
+      },
+      {
+        title: "",
+        to: '/',
+      }
     ]
   }),
   methods: {
@@ -61,17 +74,23 @@ export default {
       } else {
         $('nav').addClass('hide_background')
       }
+    },
+    async fetchPostList() {
+      const options = {
+        method: 'get',
+        url: 'post/question/unselected'
+      }
+      const { data } = await this.$axios(options)
+      this.questionList = data
     }
   },
   beforeMount() {
     $('nav').addClass('hide_background')
-    // this.$store.dispatch('login_check').then(check => {
-    //   EventBus.$emit('isLogin', check)
-    // })
   },
-  mounted() {
+  async mounted() {
     $('nav').addClass('hide_background')
     document.addEventListener('scroll', this.handleScroll)
+    await this.fetchPostList()
   },
   destroyed() {
     document.removeEventListener('scroll', this.handleScroll)

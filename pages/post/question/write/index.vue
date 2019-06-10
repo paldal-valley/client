@@ -132,6 +132,7 @@ export default {
           const questionId = data.insertId
 
           if (reward > 0) {
+            this.$notifySuccess('게시글 작성이 완료되었습니다. 잠시만 기다려주세요.')
             await this.CONTRACT_METHODS.questionCreated(questionId, reward * Math.pow(10, 18)).send({
               from: this.WEB3_META.coinbase,
             })

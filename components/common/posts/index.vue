@@ -13,7 +13,13 @@
 
         <div  class = "rewardTitle">
           <!-- v-if has reward 걸기 -->
-            <div v-if="hasReward" class = "rewardDiv">
+            <div v-if="hasReward && isSelected" class = "selectDiv">
+              <span class = "status">
+                채택
+              </span>
+            </div>
+
+            <div v-if="hasReward" v-bind:class="{rewardDiv:isSelected, selectDiv:!isSelected}">
               <span class= "rewardBox">
                   {{ reward }}
               </span>
@@ -141,6 +147,10 @@ export default {
     isLiked: {
       type: Boolean,
       default: false
+    },
+    isSelected: {
+      type: Boolean,
+      defalut: false
     }
   },
   computed: {
@@ -169,6 +179,7 @@ mounted() {
 
   },
   methods: {
+
     async getUserId() {
         const postId = this.$route.params.postId
           try {
@@ -187,7 +198,13 @@ mounted() {
               console.error(err)
             }
       //const routerid = this.questionId
+    },
 
+    selectStatus(){
+
+      // if(this.isSelected == 1){
+      //   return true
+      // }
     },
     onWriteClick() {
       const postId = this.$route.params.postId
@@ -205,7 +222,7 @@ mounted() {
           url: `post/like/${this.postId}`,
           method: 'post',
           params: { postId: this.postId  },
-          data: { userId: currentUserId }
+          data: { userId: this.userId }
         }
         const { data } = await this.$axios(options)
         this.$emit("likes-pushed")
@@ -247,7 +264,7 @@ mounted() {
   float: left;
   margin-top: 12px;
   margin-right: 2px;
-  margin-left: 20px;
+  margin-left: 1px;
   font-size: 0;
   line-height: 0;
 }
@@ -258,6 +275,24 @@ mounted() {
   font-size: 15px;
   line-height: 17px;
   background-color: #4e98a4;
+  color: white;
+}
+
+.selectDiv {
+  float: left;
+  margin-top: 12px;
+  margin-left: 20px;
+  font-size: 0;
+  line-height: 0;
+}
+
+.status {
+  display: inline-block;
+  border-radius: 6px;
+  padding: 2px 5px;
+  font-size: 15px;
+  line-height: 17px;
+  background-color: grey;
   color: white;
 }
 

@@ -9,7 +9,10 @@
 
 
     <div class="card__header">
-        <span v-if="hasReward" class= "card__rewardBox">
+        <span  v-if="hasReward && hasSelected(post.selected)" class= "card__selectBox">
+             채택완료
+        </span>
+        <span v-if="hasReward && hasUnSelected(post.selected)" class= "card__rewardBox">
              {{ post.reward }}
         </span>
         <span class="card__title">{{ post.title }}</span>
@@ -59,6 +62,17 @@ export default {
     },
     hasLike() {
       return this.boardTitle === "review" ? true : false
+    }
+
+  },
+  methods: {
+    hasSelected(isSelected) {
+      if(isSelected == 1)
+        return true
+    },
+    hasUnSelected(isUnSelected){
+      if(isUnSelected !=1)
+        return true
     }
   }
 }
@@ -146,6 +160,16 @@ export default {
     font-size: 15px;
     line-height: 17px;
     background-color: #4e98a4;
+    color: white;
+  }
+  .card__selectBox {
+    margin-right: 5px;
+    display: inline-block;
+    border-radius: 6px;
+    padding: 2px 5px;
+    font-size: 15px;
+    line-height: 17px;
+    background-color: grey;
     color: white;
   }
 }

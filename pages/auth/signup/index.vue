@@ -90,8 +90,6 @@
           required
         ></v-text-field>
         <v-text-field
-          outline
-          color="orange"
           v-model="form.walletAddress"
           v-validate="'required|length:42'"
           :counter="42"

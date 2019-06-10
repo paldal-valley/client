@@ -1,9 +1,6 @@
 <template>
   <vue-post-container>
     <div class ="reward" v-if="fetchCategory(this.boardTitle)">
-      <span class ="waitSelect" onclick="">채택 대기</span>
-      <span> | </span>
-      <span class = "completeSelect">채택 완료</span>
     </div>
 
     <vue-post-card
