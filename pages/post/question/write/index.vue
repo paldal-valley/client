@@ -127,7 +127,7 @@ export default {
           }
         }
 
-        if(checkValidation()) {
+        if(this.checkValidation()) {
           const { data } = await this.$axios(options)
           const questionId = data.insertId
 
