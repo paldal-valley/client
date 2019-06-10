@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - stable
+  - 10.6.0
 script: # run the build script.
   - npm test
   - npm run build
