@@ -21,6 +21,7 @@
           :view="post.view"
           :hasAnswerBtn=true
           :hasReward="true"
+          :isSelected="selectStatus(postId_Q)"
         />
         <br>
         <h2> {{length}}개의 답변이 존재합니다. </h2>
@@ -38,8 +39,10 @@
           :postId="postId"
           :hasUpdateBtn="onGetAuthority(answer.userId)"
           :hasDeleteBtn="onGetAuthority(answer.userId)"
+          :hasSelect="hasSelect(answer.postId_A)"
           @answers-changed="fetchPost"
           :hasSelectBtn="selectBtn(GET_USER.id)"
+
         />
         <!-- comments -->
         <vue-category-separator
@@ -129,20 +132,59 @@ export default {
     answers: [],
     selectedItem: [],
     selected: '',
+    selectedOne: '',
+    isSelected: '',
+    selectedId: 0,
+    postId_A: '',
+    gotSelected: ''
   }),
   mounted() {
     this.postId = this.$route.params.postId
      this.fetchPost().then(()=>{
       this.viewPost()
+      this.getPostSelected()
     })
+
+
   },
   methods: {
+    async getPostSelected() {
+          try {
+            
+            const options = {
+              url: `post/question/getSelected/${this.postId_Q}`,
+
+              method: 'get',
+              params: { postId_Q: this.postId_Q  }
+            }
+            const { data } = await this.$axios(options)
+            // alert(this.answer.isSelected)
+              // this.isSelected = data[0].isSelected
+              
+              this.gotSelected = 0;
+              for(var i = 0; i<= this.selected; i++) {
+                if(data[i].isSelected == 1)
+                  this.gotSelected = 1;
+              }
+
+
+
+            // alert(data.isSelected)
+      //만약 postid랑 로그인 된 아이디랑 같으면 noti 날리고 -1로 돌아가게 해야함.
+      //if(this.GET_USER.id)
+              // alert(this.selected)
+            }
+            catch (err){
+              console.error(err)
+            }
+    },
     async fetchPost() {
       try {
         const options = {
           url: `post/question/${this.postId}`,
           method: 'get'
         }
+        this.isSelected = 0
         const { data } = await this.$axios(options)
         this.post = data
         this.postId_Q = data.id
@@ -155,6 +197,8 @@ export default {
           }
           const ans = (await this.$axios(options2)).data
           this.answers = ans
+
+          // this.postId_A = this.answers.id
           this.length = ans.length
 
           try {
@@ -165,7 +209,11 @@ export default {
             }
               const { data } = await this.$axios(options3)
               this.selectedItem = data
+              this.selectedOne = this.selectedItem[0].id
               this.selected = this.selectedItem.length
+
+              this.selectedId = this.selectedOne
+
               // alert(this.selected)
             }
             catch (err){
@@ -234,6 +282,7 @@ export default {
        return true
      }
    },
+
     selectBtn(loginId) {
         //요부분 API 추가해서 수정
       try {
@@ -251,6 +300,28 @@ export default {
 
 
 
+    },
+    selectStatus(){
+
+
+      //selected Item에 채택된 답변의 id가 들어감.
+      if(this.gotSelected == 1){
+        return true
+      }
+      else
+        return false
+
+
+    },
+    hasSelect(ansId){
+
+      if(ansId === this.selectedOne){
+        return true
+      }
+      else{
+        // alert(this.selectedOne)
+        return false
+      }
     }
 
   }

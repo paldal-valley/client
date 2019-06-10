@@ -10,6 +10,8 @@
          :user-email="post.userEmail"
          :created-date="post.createdDate"
          :hasLike='false'
+
+
        />
 
        <v-textarea
@@ -93,20 +95,12 @@ export default {
            userId: this.GET_USER.id
          }
        }
-       if(this.checkValidation()){
-        await this.$axios(options)
-        this.$router.back()
-       } else {
-         this.$notifyWarning('게시글을 모두 작성해주세요.')
-       }
+       await this.$axios(options)
+       this.$router.back()
      } catch (err) {
-        this.$notifyError('에러가 발생하였습니다.')
-        console.error(err)
+       console.error(err)
      }
    },
-   checkValidation() {
-     return this.postId && this.content
-   }
  }
 }
 </script>

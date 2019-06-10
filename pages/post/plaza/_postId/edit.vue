@@ -87,20 +87,14 @@ export default {
           content: this.post.content
         }
       }
-      try{
-        if(this.checkValidation()) {
-            await this.$axios(options)
-            this.$router.back()         
-          } else {
-            this.$notifyWarning('게시글을 모두 작성해주세요.')
-          }
+
+      try {
+        await this.$axios(options)
+        this.$router.back()
       } catch (err) {
-        this.$notifyError('에러가 발생했습니다.')
         console.error(err)
+        alert('에러가 발생했습니다.')
       }
-    },
-    checkValidation() {
-      return this.post.title && this.post.content && (this.post.categoryId > 0)
     }
   },
 }

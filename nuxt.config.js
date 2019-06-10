@@ -24,8 +24,7 @@ module.exports = {
       {
         rel: 'stylesheet',
         href:
-          'https://fonts.googleapis.com/css?family=Aclonica|Nanum+Myeongjo&display=swap'
-          
+          'https://fonts.googleapis.com/css?family=Aclonica&display=swap'
       }
     ],
     script: [

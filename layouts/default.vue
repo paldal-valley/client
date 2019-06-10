@@ -1,17 +1,12 @@
 <template>
   <v-app>
-    <div v-if="!checkMeta" class="topNotification">
-      <v-icon class="notiIcon">notification_important</v-icon>
-      메타마스크가 설치되지 않았거나, 정상적으로 로그인되지 않았습니다.
-    </div>
-    <div v-bind:class="{'layout-container': true, 'top-margin':!checkMeta}">
+    <div class="layout-container">
       <vue-toolbar
         toolbar-fixed
         toolbar-color="white"
         toolbar-flat
         menu-hover
         menu-transition="slide-x-transition"
-        v-bind:class="{'top-margin':!checkMeta}"
       />
       <vue-drawer />
       <no-ssr>
@@ -41,23 +36,12 @@
 import VueToolbar from '~/components/nav-bar/toolbar'
 import VueDrawer from '~/components/nav-bar/drawer'
 import VueFooter from '~/components/footer'
-
-import { mapGetters } from 'vuex'
-
 export default {
   components: {
     VueToolbar,
     VueDrawer,
     VueFooter
-  },
-  computed: {
-    ...mapGetters({
-      GET_QUESTION_META: 'block-sync/WEB3_META'
-    }),
-    checkMeta() {
-      return this.GET_QUESTION_META.web3Instance ? true : false
-    }
-  },
+  }
 }
 </script>
 
@@ -77,28 +61,5 @@ export default {
 }
 .fade{
   transition: width .2s,opacity .4s;
-}
-
-.topNotification {
-  height: 50px;
-  width: 100%;
-  background: #00004D;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  text-align: center;
-  line-height: 3rem;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-  transition: all .15s ease-in-out;
-
-  .notiIcon{
-    color: white;
-  }
-}
-.top-margin {
-  margin-top: 50px !important;
 }
 </style>

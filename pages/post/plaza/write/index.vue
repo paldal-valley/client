@@ -80,20 +80,34 @@ export default {
           }
         }
 
-       if(this.checkValidation()) {
-          await this.$axios(options)
-          this.$router.back()         
-        } else {
-          this.$notifyWarning('게시글을 모두 작성해주세요.')
-        }
+        await this.$axios(options)
+        // await this.getReward("0x98FE5eaFd3D61af18fB2b2322b8346dF05057202")
+        this.$router.back()
       } catch (err) {
-        this.$notifyError('에러가 발생했습니다.')
         console.error(err)
       }
     },
-    checkValidation() {
-      return this.title && this.content && (this.categoryId > 0)
-    }
+    // async getReward(wallet_address) {
+    //     try {
+    //       this.createListing(wallet_address)
+    //       // const myCoin = await this.contractMethods.balanceOf(this.web3.coinbase).call()
+    //       alert(`글 등록 완료!\n보상: 50AC`)
+    //     } catch (err) {
+    //       console.log(err)
+    //     }
+    // },
+    // createListing (useraddress) {
+    //   try {
+    //     let result = this.contractMethods.createListing(useraddress).send({
+    //       gas: 3000000,
+    //       value: 0,
+    //       from: this.web3.coinbase
+    //     })
+    //     console.log(result)
+    //   } catch (err) {
+    //     throw console.error(err)
+    //   }
+    // },
   }
 }
 </script>

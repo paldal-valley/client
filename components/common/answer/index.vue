@@ -1,6 +1,9 @@
 <template>
   <v-card class="post">
     <v-form>
+            <span  v-if="hasSelect" class = "status">
+              채택
+            </span>
       <div class="post-container">
         <header>
             <br>
@@ -88,6 +91,11 @@ export default {
     postId : {
       type: String,
       default: ''
+    },
+    hasSelect: {
+      type: Boolean,
+      default: false
+      
     }
   },
 
@@ -119,7 +127,7 @@ export default {
        this.$axios(options)
        this.$notifySuccess('채택이 완료되었습니다.')
 
-       this.$router.go(0)
+       this.$router.back()
      } catch (err) {
        console.error(err)
      }
@@ -181,4 +189,19 @@ export default {
   white-space: pre-line;
 }
 
+.status {
+  float: left;
+  margin-top: 25px;
+  margin-left: 20px;
+  margin-right: 5px;
+  font-size: 0;
+  line-height: 0;
+  display: inline-block;
+  border-radius: 6px;
+  padding: 2px 5px;
+  font-size: 15px;
+  line-height: 17px;
+  background-color: grey;
+  color: white;
+}
 </style>

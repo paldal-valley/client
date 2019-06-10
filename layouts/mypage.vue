@@ -53,7 +53,7 @@ export default {
   computed: {
     ...mapGetters('page-meta', [
       'GET_MYPAGE_META'
-    ])
+    ]),
   },
   components: {
     VueToolbar,
