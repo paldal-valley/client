@@ -60,9 +60,6 @@ export default {
    category() {
       return this.$categoryMapper('question', this.post.categoryId)
    }
-  //  selectorItem() {
-  //    return this.GET_CATEGORIES['question']
-  //  }
  },
  mounted() {
    this.postId = this.$route.params.postId
@@ -108,11 +105,16 @@ export default {
          }
        }
        //alert(this.postId_Q)
-       await this.$axios(options)
+       if(this.answer.content) {
+          await this.$axios(options)
+          this.$router.back()         
+       } else {
+        this.$notifyWarning('게시글의 글을 작성해주세요.')
+       }
        //alert(this.postId_Q)
        // await this.getReward("0x98FE5eaFd3D61af18fB2b2322b8346dF05057202")
-       this.$router.back()
      } catch (err) {
+       this.$notifyError('올바르지 않는 수정입니다.')
        console.error(err)
      }
    },

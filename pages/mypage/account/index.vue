@@ -221,7 +221,6 @@ export default {
 
   mounted() {
     this.$validator.localize('en', this.dictionary)
-    console.log(this.GET_USER)
     this.form = Object.assign(this.form, this.GET_USER)
   },
 

@@ -127,20 +127,28 @@ export default {
           }
         }
 
-        const { data } = await this.$axios(options)
-        const questionId = data.insertId
+        if(checkValidation()) {
+          const { data } = await this.$axios(options)
+          const questionId = data.insertId
 
-        if (reward > 0) {
-          await this.CONTRACT_METHODS.questionCreated(questionId, reward * Math.pow(10, 18)).send({
-            from: this.WEB3_META.coinbase,
-          })
+          if (reward > 0) {
+            await this.CONTRACT_METHODS.questionCreated(questionId, reward * Math.pow(10, 18)).send({
+              from: this.WEB3_META.coinbase,
+            })
+          }
+
+          this.$router.back()
+        } else {
+          this.$notifyWarning('게시글을 모두 작성해주세요.')
         }
-
-        this.$router.back()
       } catch (err) {
         console.error(err)
+        this.$notifyError('오류가 발생하였습니다.')
       }
     },
+    checkValidation() {
+      return this.title && this.content && (this.categoryId > 0)
+    }
   }
 }
 </script>

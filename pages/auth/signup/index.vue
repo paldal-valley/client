@@ -319,11 +319,12 @@ export default {
         .then(res => {
           this.snackbar.text = '회원가입이 정상적으로 되었습니다.'
           this.snackbar.open = true
+          this.$notifySuccess('[Welcome] 가입기념 토큰이 지급되었습니다.')
           this.$router.push('/')
         })
         .catch(err => {
           console.log(this.form)
-          this.$notifyError("이미 존재하는 아이디입니다.")
+          this.$notifyError("오류가 발생하였습니다.")
         })
     }
   }
