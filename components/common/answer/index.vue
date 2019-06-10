@@ -21,19 +21,19 @@
     </v-form>
     <!-- 여기서 v-if로 함수를 하나 더 걸어서 주인장이면 나오게 하란 말? -->
     <div class="text-xs-right pt-2">
-      <v-btn v-if="hasSelectBtn" 
+      <v-btn v-if="hasSelectBtn"
       outline large fab color="blue"
       @click="updateSelected()">
         <v-icon>check</v-icon></v-btn>
     </div>
     <v-card-actions>
       <v-btn v-if="hasUpdateBtn"
-      flat color="blue" 
+      flat color="blue"
       @click="updateAnswer()">
       수정하기
       </v-btn>
       <v-btn v-if="hasDeleteBtn"
-      flat color="red" 
+      flat color="red"
       @click="deleteAnswer()">
       삭제하기
       </v-btn>
@@ -102,12 +102,12 @@ export default {
     async updateAnswer() {
 
       this.$router.push(`./${this.postId}/answer/${this.answerId}`)
-    
+
     },
     async updateSelected() {
       try {
 
-        //만약 채택된 답변이 없다면 
+        //만약 채택된 답변이 없다면
        const options = {
          url: `post/answer/select/${this.answerId}`,
          method: 'put',
@@ -116,17 +116,8 @@ export default {
            postId_Q : this.questionId
          }
        }
-       //alert(this.postId_Q)
-       await this.$axios(options)
-       //alert(this.postId_Q)
-       // await this.getReward("0x98FE5eaFd3D61af18fB2b2322b8346dF05057202")
+       this.$axios(options)
        this.$notifySuccess('채택이 완료되었습니다.')
-
-
-
-       //만약 채택 된 답변이 있다면
-      //  this.$notifySuccess('이미 채택이 완료된 질문입니다.')
-
 
        this.$router.back()
      } catch (err) {
