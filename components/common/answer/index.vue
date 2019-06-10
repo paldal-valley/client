@@ -119,7 +119,7 @@ export default {
        this.$axios(options)
        this.$notifySuccess('채택이 완료되었습니다.')
 
-       this.$router.back()
+       this.$router.go(0)
      } catch (err) {
        console.error(err)
      }
