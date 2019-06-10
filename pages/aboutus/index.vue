@@ -129,7 +129,7 @@ export default{
                 sample : require('@/assets/images/main_target.PNG'),
                 univ_icon : require ('@/assets/images/univ_icon.PNG'),
                 store_icon : require ('@/assets/images/store_icon.PNG'),
-                printer_icon : require ('@/assets/images/printer_icon.PNG'),
+                printer_icon : require ('@/assets/images/printer_icon.png'),
                 tech: require('@/assets/images/system_architecture.PNG'),
                 us: require('@/assets/images/us.jpg')
             },
