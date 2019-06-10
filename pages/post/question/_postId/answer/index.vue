@@ -93,12 +93,20 @@ export default {
            userId: this.GET_USER.id
          }
        }
-       await this.$axios(options)
-       this.$router.back()
+       if(this.checkValidation()){
+        await this.$axios(options)
+        this.$router.back()
+       } else {
+         this.$notifyWarning('게시글을 모두 작성해주세요.')
+       }
      } catch (err) {
-       console.error(err)
+        this.$notifyError('에러가 발생하였습니다.')
+        console.error(err)
      }
    },
+   checkValidation() {
+     return this.postId && this.content
+   }
  }
 }
 </script>
