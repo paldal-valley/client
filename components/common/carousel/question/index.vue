@@ -1,6 +1,6 @@
 <template>
   <div class="category-group">
-    <h2>답변을 기다리는 질문</h2>
+    <h2>뜨고있는 질문 <font-awesome-icon icon="fire-alt" class="fire"/></h2>
     <div class="category-card-container">
       <v-carousel hide-controls hide-delimiters class="question-list" height="50px">
         <nuxt-link v-for="(item, i) in items" :key="i" :to="route(item)">
@@ -9,7 +9,7 @@
               <span class= "reward">
                   {{ item.reward }}
               </span>
-              <span>Q. {{ calTitle(item.title) }}</span>
+              <span style="font-weight: 600">Q. {{ calTitle(item.title) }}</span>
               <font-awesome-icon icon="chevron-right" class="carousel-icon"/>
             </div>
           </v-carousel-item>
@@ -44,6 +44,9 @@ export default {
   margin-top: 30px;
   text-align: left;
 
+  .fire{
+    color: tomato;
+  }
   .line-separator {
     display: block;
     height: 1px;

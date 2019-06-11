@@ -194,14 +194,12 @@ export default {
   margin-top: 25px;
   margin-left: 20px;
   margin-right: 5px;
-  font-size: 0;
-  line-height: 0;
   display: inline-block;
   border-radius: 6px;
-  padding: 2px 5px;
-  font-size: 15px;
+  padding: 3px 6px;
+  font-size: 13px;
   line-height: 17px;
-  background-color: grey;
+  background-color: lightcoral;
   color: white;
 }
 </style>

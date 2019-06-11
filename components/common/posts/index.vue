@@ -288,11 +288,12 @@ mounted() {
 
 .status {
   display: inline-block;
+  margin-right: 2px;
   border-radius: 6px;
-  padding: 2px 5px;
-  font-size: 15px;
+  padding: 3px 6px;
+  font-size: 13px;
   line-height: 17px;
-  background-color: grey;
+  background-color: lightcoral;
   color: white;
 }
 

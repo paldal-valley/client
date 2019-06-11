@@ -166,11 +166,12 @@ export default {
     margin-right: 5px;
     display: inline-block;
     border-radius: 6px;
-    padding: 2px 5px;
-    font-size: 15px;
+    padding: 3px 6px;
+    font-size: 14px;
     line-height: 17px;
-    background-color: grey;
+    background-color: cornflowerblue;
     color: white;
+    font-weight: 400;
   }
 }
 </style>
