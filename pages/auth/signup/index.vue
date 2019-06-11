@@ -96,7 +96,7 @@
           :error-messages="errors.collect('walletAddress')"
           label="Wallet Address"
           data-vv-name="walletAddress"
-          append-icon="info"
+          append-icon="help"
           @click:append="go_tutorial"
         ></v-text-field>
         <v-select

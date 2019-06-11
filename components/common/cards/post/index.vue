@@ -166,8 +166,8 @@ export default {
     margin-right: 5px;
     display: inline-block;
     border-radius: 6px;
-    padding: 3px 6px;
-    font-size: 14px;
+    padding: 4px 6px;
+    font-size: 12px;
     line-height: 17px;
     background-color: cornflowerblue;
     color: white;

@@ -271,7 +271,7 @@ mounted() {
 .rewardBox {
   display: inline-block;
   border-radius: 6px;
-  padding: 2px 5px;
+  padding: 3px 5px;
   font-size: 15px;
   line-height: 17px;
   background-color: #4e98a4;
