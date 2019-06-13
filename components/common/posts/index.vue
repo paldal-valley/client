@@ -222,7 +222,7 @@ mounted() {
           url: `post/like/${this.postId}`,
           method: 'post',
           params: { postId: this.postId  },
-          data: { userId: this.userId }
+          data: { userId: currentUserId }
         }
         const { data } = await this.$axios(options)
         this.$emit("likes-pushed")
