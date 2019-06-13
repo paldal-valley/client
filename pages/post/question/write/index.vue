@@ -123,22 +123,33 @@ export default {
             },
             postQuestion: {
               reward: this.reward
-            }
+            },
+            questionerWalletAddress: this.WEB3_META.coinbase
           }
         }
 
         if(this.checkValidation()) {
-          const { data } = await this.$axios(options)
-          const questionId = data.insertId
-
           if (reward > 0) {
-            this.$notifySuccess('게시글 작성이 완료되었습니다. 잠시만 기다려주세요.')
-            await this.CONTRACT_METHODS.questionCreated(questionId, reward * Math.pow(10, 18)).send({
-              from: this.WEB3_META.coinbase,
-            })
-          }
+            this.$router.back()
+            // TODO: 매니저 및 owner 주소 store 혹은 .env로 빼기
+            this.CONTRACT_METHODS.approve('0x660c060d7047aACa7979ECC21864181cdEB72046', reward * Math.pow(10, 18)).send({
+              from: this.WEB3_META.coinbase
+            }, async (err, transactionHash) => {
+              if (!err) {
+                // fetch (refresh)
+                options.data.transactionHash = transactionHash
 
-          this.$router.back()
+                await this.$axios(options)
+                this.$notifySuccess('글이 작성되었습니다.')
+              } else {
+                this.$notifyError('글 작성이 취소되었습니다.')
+              }
+            })
+          } else {
+            await this.$axios(options)
+            this.$notifySuccess('글이 작성되었습니다.')
+            this.$router.back()
+          }
         } else {
           this.$notifyWarning('게시글을 모두 작성해주세요.')
         }
