@@ -1,10 +1,3 @@
-// import truffleJSON from '../../../../../truffle/build/contracts/DietManager'
-
-// const networks = truffleJSON.networks
-// const keys = Object.keys(networks)
-// const lastIdxOfKeys = keys.length - 1
-
-// const ABI = truffleJSON.abi
 const ABI = [
   {
     "constant": true,
@@ -519,6 +512,10 @@ const ABI = [
     "constant": false,
     "inputs": [
       {
+        "name": "questioner",
+        "type": "address"
+      },
+      {
         "name": "questionId",
         "type": "uint32"
       },
@@ -577,5 +574,6 @@ const ABI = [
 ]
 // const address = networks['4649'].address
 // const address = networks[keys[lastIdxOfKeys]].address
-const address = "0x40f65781fbbd220ee7a4ba2d04ee78981be5ee0d"
+// const address = "0x40f65781fbbd220ee7a4ba2d04ee78981be5ee0d"
+const address = '0x4077d9fcf798fd800c5e89e7150ded3333c32891'
 export { ABI, address }
